@@ -1,0 +1,59 @@
+# tomcat配置
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+  servlet:
+    context-path: /zhou
+
+# Spring配置
+spring:
+  # 数据源配置
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    data-username: root
+    data-password: root
+    url: jdbc:mysql://localhost:3306/mall?serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf8&useSSL=false
+    druid:
+      initial-size: 10
+      min-idle: 10
+      max-active: 50
+      max-wait: 60000
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      validation-query: SELECT 'x'
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+  # thymeleaf 模板配置
+  thymeleaf:
+    encoding: UTF-8
+    mode: HTML
+    cache: false
+  # 上传文件配置
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+# mybatis-plus 配置
+mybatis-plus:
+  type-aliases-package: com.zhou.plus.admin.modules.entity
+  mapper-locations: classpath*:/mapper/**/*.xml
+  global-config:
+    db-config:
+      db-type: mysql
+      id-type: id_worker_str
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    cache-enabled: true
+    lazyLoadingEnabled: true
+    aggressive-lazy-loading: true
+    auto-mapping-behavior: partial
+    default-executor-type: simple
+    map-underscore-to-camel-case: true
+    local-cache-scope: session
+    jdbc-type-for-null: null
+

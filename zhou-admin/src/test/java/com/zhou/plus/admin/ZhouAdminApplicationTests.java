@@ -1,4 +1,4 @@
-package com.zhou.plus.zhouadmin;
+package com.zhou.plus.admin;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
