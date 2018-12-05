@@ -7,8 +7,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ZhouAdminApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(
-		        ZhouAdminApplication.class, args
-        );
+		SpringApplication.run(ZhouAdminApplication.class, args);
 	}
 }
