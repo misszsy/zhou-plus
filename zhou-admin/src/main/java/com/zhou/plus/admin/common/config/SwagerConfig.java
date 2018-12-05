@@ -1,8 +1,8 @@
 package com.zhou.plus.admin.common.config;
 
-import org.springframework.beans.factory.annotation.Configurable;
+
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -14,7 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * SwagerConfig 配置
  */
-@Configurable
+@Configuration
 @EnableSwagger2
 public class SwagerConfig {
 
