@@ -1,0 +1,227 @@
+html,body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+ .banner{
+    font-size: 0;
+    width: 100%;
+　　max-width: 100%;
+}
+ul,li {
+    list-style-type: none;
+}
+
+/* 1 rem = 50px  .5rem = 25px */
+
+.img-responsive{
+    display: inline-block;
+    height: auto;
+    max-width: 100%;
+}
+
+.img-responsive{
+    display: inline-block;
+    height: auto;
+    max-width: 100%;
+}
+
+.page {
+    max-width:750px;
+    height: auto;
+    overflow: hidden;
+    background: #eee;
+    margin:0 auto;
+
+}
+
+.page-header {
+    width:100%;
+    overflow: hidden;
+    height:auto; 
+}
+
+.lotter_type {
+    height:.5rem;
+    line-height:.5rem;
+    padding-top:0.4rem;
+    padding-bottom:0.4rem;
+    margin-left:.25rem;
+}
+.lotter_type span {
+    font-size:.36rem;
+}
+
+.header-title {
+    background: #fff;
+    border-bottom:1px solid #eee;
+}
+
+.header-intro {
+    
+    width:100%;
+    height:.5rem;
+    line-height:.5rem;
+    padding:.25rem 0;
+    margin-left:.25rem;
+    font-size:.28rem;
+    color:#808080
+}
+
+
+.show{
+    display: block;
+    padding: .1rem;
+    overflow: hidden;
+}
+.hide{
+    display:none;
+}
+
+.luck_by {
+    width:100%;
+    overflow: hidden;
+    line-height: .5rem;
+    padding:.25rem 0;
+    background: #fff;
+}
+.luck_by::after{
+    display: block;
+    content: '';
+    clear: both;
+}
+
+.luck_by .by_type{
+    float:left;
+    margin-left:.25rem;
+    font-size: .32rem;
+    color: #333;
+}
+.luck_by .by_info {
+    float:right;
+    margin-right:.25rem;
+    font-size: .32rem;
+    color: #999;
+}
+.page-header {
+    background: #fff;
+    margin-bottom:.25rem;
+}
+.page-content {
+    width:100%;
+    height:auto;
+    background:#fff;
+    padding-bottom:.5rem;
+}
+.content-box {
+    font-size:.32rem;
+    color:#999;
+    overflow:hidden;
+    margin:0 auto;
+    line-height:.5rem;
+    padding:.25rem 0;
+    margin:0 auto;
+    width:95%;
+}
+.copy-box{
+    width:100%;
+    background:#fff;
+    margin-bottom:.5rem;
+    margin-top:.48rem;
+}
+.copy_content{
+    width:85%;
+    margin:0 auto;
+    border:2px solid #999;
+    padding:.4rem;
+
+}
+.itrmessage {
+    width:90%;
+    text-align:justify;
+    margin:0 auto;
+    padding:.25rem .2rem;
+    font-size:.30rem;
+    color:#B97A57;
+
+}
+.itr_items_txt {
+    width:90%;
+    text-align:center;
+    margin:0 auto;
+    padding:.5rem .2rem;
+    background:#eee;
+    color:#BD8160;
+}
+.itr_items_btn {
+    width:2.5rem;
+    display: flex;
+    justify-content:center;
+    height:.75rem;
+    background:#B97A57;
+    color:#fff;
+    font-size:.32rem;
+    text-align:center;
+    margin:.5rem auto;
+    border-radius:.4rem;
+    line-height:.75rem;
+}
+.add-record {
+    background: #fff;
+}
+.record-info{
+    display: flex;
+    justify-content:center;
+}
+.record-list {
+    width:100%;
+    overflow: hidden;
+    height:2rem;
+}
+.record-list ul {
+    width:80%;
+    margin:0 auto;
+    height:auto;
+    margin-top:.68rem;
+}
+.record-list ul li{
+    float:left;
+    
+    display: inline-block;
+}
+.record-list ul li::after{
+    display: block;
+    content: '';
+    clear: both;
+}
+.record-list ul li img{
+    display: inline-block;
+    height: auto;
+    width:1rem;
+    height:1rem;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 中小型笔记本或大平板 laptop */
+@media all and (min-width: 980px) and (max-width: 1200px) {
+
+}
+/* 中型平板或小型笔记本 tablet */
+@media all and (min-width: 768px) and (max-width: 979px) {
+
+}
+/* 手机或小平板 phone */
+@media all and (max-width: 600px) {
+
+}

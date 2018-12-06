@@ -1,0 +1,41 @@
+[v-cloak] {
+    display: none!important;
+}
+.clearfix:after {
+    content: '';
+    display: block;
+    clear: both;
+}
+.container-body{
+    margin-top:30px;
+}
+.filter-container, .pagination-container, .app-container{
+    margin:20px 0;
+}
+.box-div div{
+    display:inline-block;
+}
+.select-title{
+    height:30px;
+    line-height:30px;
+    margin:0 15px;
+}
+.assets{
+    border:1px solid #DCDFE6;
+}
+.assets tr th{
+    font-weight:normal;
+    height:35px;
+}
+.assets tr td{
+    font-size:13px;
+    height:25px;
+}
+.assetTitle{
+    width:80%;
+    text-align: center;
+    margin-top:25px;
+}
+.assetTitle h3{
+    margin-bottom:0;
+}
