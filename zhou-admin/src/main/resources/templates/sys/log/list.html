@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>日志管理</title>
+        <link rel="stylesheet" href="static/css/element/element.css" th:href="@{/static/css/element/element.css}">
+        <link rel="stylesheet" href="static/css/common/style/layout.css" th:href="@{/static/css/common/style/layout.css}">
+    </head>
+<body class="gray-bg">
+    <div id="app" class="app-container calendar-list-container" v-cloak>
+        <div class="filter-container" style="padding-bottom: 10px;padding-top: 10px;">
+            <el-button class="filter-item" type="primary" v-waves icon="el-icon-search" @click="handleFilter">搜索</el-button>
+        </div>
+
+        <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row
+                  style="width: 100%">
+            <el-table-column align="center" type="index" label="序号" width="65px">
+            </el-table-column>
+                <el-table-column align="center" label="操作名称">
+                    <template slot-scope="scope">
+                        <span>{{scope.row.operation}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column align="center" label="操作用户">
+                    <template slot-scope="scope">
+                        <span>{{scope.row.username}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column align="center" label="日志类型">
+                    <template slot-scope="scope">
+                        <span>
+                            <el-tag  v-if="scope.row.type==0">登录登出</el-tag>
+                            <el-tag  type="success" v-if="scope.row.type==1">操作日志</el-tag>
+                            <el-tag  type="danger" v-if="scope.row.type==2">异常日志</el-tag></span>
+                        </span>
+                    </template>
+                </el-table-column>
+                <el-table-column align="center" label="请求地址">
+                    <template slot-scope="scope">
+                        <span>{{scope.row.requestUrl}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column align="center" label="请求ip">
+                    <template slot-scope="scope">
+                        <span>{{scope.row.requestIp}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column align="center" label="设备类型">
+                    <template slot-scope="scope">
+                        <span>{{scope.row.equipMent}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column align="center" label="操作系统">
+                    <template slot-scope="scope">
+                        <span>{{scope.row.operationSystem}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column align="center" label="浏览器名">
+                    <template slot-scope="scope">
+                        <span>{{scope.row.browser}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column align="center" label="操作时间">
+                    <template slot-scope="scope">
+                        <span>{{scope.row.createDate}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column align="center" label="响应时间(毫秒)">
+                    <template slot-scope="scope">
+                        <span>{{scope.row.respTime}}</span>
+                    </template>
+                </el-table-column>
+            <el-table-column align="center" label="操作" fixed="right" class-name="small-padding fixed-width">
+                <template slot-scope="scope">
+                    <el-button size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+
+        <div class="pagination-container" style="padding-top: 10px;">
+            <el-pagination background  style="text-align: center"
+                            @size-change="handleSizeChange" @current-change="handleCurrentChange"
+                           :current-page="listQuery.pageNum" :page-sizes="[10,20,30, 50]" :page-size="listQuery.pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
+            </el-pagination>
+        </div>
+
+        <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
+            <el-form :rules="rules" ref="dataForm" :model="entity" label-position="left" label-width="100px" style='width: 400px; margin-left:50px;'>
+                    <el-form-item label="操作用户" prop="userId">
+                        <el-input v-model="entity.userId" placeholder="请输入操作用户"></el-input>
+                    </el-form-item>
+                    <el-form-item label="日志类型(0:登录登出,1:操作日志,2:异常日志)" prop="type">
+                        <el-input v-model="entity.type" placeholder="请输入日志类型(0:登录登出,1:操作日志,2:异常日志)"></el-input>
+                    </el-form-item>
+                    <el-form-item label="操作名称" prop="operation">
+                        <el-input v-model="entity.operation" placeholder="请输入操作名称"></el-input>
+                    </el-form-item>
+                    <el-form-item label="请求地址" prop="requestUrl">
+                        <el-input v-model="entity.requestUrl" placeholder="请输入请求地址"></el-input>
+                    </el-form-item>
+                    <el-form-item label="请求ip" prop="requestIp">
+                        <el-input v-model="entity.requestIp" placeholder="请输入请求ip"></el-input>
+                    </el-form-item>
+                    <el-form-item label="设备名称" prop="equipMent">
+                        <el-input v-model="entity.equipMent" placeholder="请输入设备名称"></el-input>
+                    </el-form-item>
+                    <el-form-item label="浏览器名" prop="browser">
+                        <el-input v-model="entity.browser" placeholder="请输入浏览器名"></el-input>
+                    </el-form-item>
+                    <el-form-item label="响应时间" prop="respDate">
+                        <el-input v-model="entity.respTime" placeholder="请输入响应时间"></el-input>
+                    </el-form-item>
+                    <el-form-item label="操作时间" prop="createDate">
+                        <el-input v-model="entity.createDate" placeholder="请输入操作时间"></el-input>
+                    </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer" align="center">
+                <el-button v-if="dialogStatus=='create'" type="primary" @click="createData">确认</el-button>
+                <el-button v-else type="primary" @click="updateData">确认</el-button>
+                <el-button @click="dialogFormVisible = false">取消</el-button>
+            </div>
+        </el-dialog>
+    </div>
+</div>
+</body>
+
+<script src="static/js/common/vue.min.js" th:src="@{/static/js/common/vue.min.js}"></script>
+<script src="static/js/common/element.js" th:src="@{/static/js/common/element.js}"></script>
+<script src="static/js/jquery.min.js" th:src="@{/static/js/jquery.min.js}"></script>
+<script src="static/js/common/common.js" th:src="@{/static/js/common/common.js}"></script>
+<script>
+
+    var app = new Vue({
+        el: '#app',
+        name: 'rolePage',
+        data() {
+            return {
+                tableKey: 0,
+                list: null,
+                total: null,
+                listLoading: true,
+                listQuery: {
+                    pageNum: 1,
+                    pageSize: 20,
+                },
+                entity: {//临时变量，用于新增与修改
+                    userId:'',
+                    type:'',
+                    operation:'',
+                    requestUrl:'',
+                    requestIp:'',
+                    equipMent:'',
+                    browser:'',
+                    respTime:'',
+                    createDate:'',
+                },
+                dialogFormVisible: false,
+                dialogStatus: '',
+                textMap: {
+                    update: '编辑',
+                    create: '新增'
+                },
+                rules: {//表单验证
+                        userId: [{ required: true, message: '操作用户不能为空', trigger: 'change' }],
+                        type: [{ required: true, message: '日志类型(0:登录登出,1:操作日志,2:异常日志)不能为空', trigger: 'change' }],
+                        operation: [{ required: true, message: '操作名称不能为空', trigger: 'change' }],
+                        requestUrl: [{ required: true, message: '请求地址不能为空', trigger: 'change' }],
+                        requestIp: [{ required: true, message: '请求ip不能为空', trigger: 'change' }],
+                        equipMent: [{ required: true, message: '设备名称不能为空', trigger: 'change' }],
+                        browser: [{ required: true, message: '浏览器名不能为空', trigger: 'change' }],
+                    respTime: [{ required: true, message: '响应时间不能为空', trigger: 'change' }],
+                        createDate: [{ required: true, message: '操作时间不能为空', trigger: 'change' }],
+                },
+            }
+        },
+        created() {
+            this.getList()
+        },
+        methods: {
+            getList() {
+                this.listLoading = true
+                var _this = this;
+                $.ajax({
+                    method: 'GET',
+                    url: 'listData',
+                    data: _this.listQuery,
+                    success: function (data) {
+                        if(data.code==200){
+                            _this.list = data.data.records;
+                            _this.total = data.data.total;
+                            _this.listLoading = false
+                        }else{
+                            window.dataErrorHandler(data)
+                        }
+                    }
+                });
+            },
+            handleFilter() {
+                this.listQuery.pageNum = 1
+                this.getList()
+            },
+            handleSizeChange(val) {
+                this.listQuery.pageSize = val
+                this.getList()
+            },
+            handleCurrentChange(val) {
+                this.listQuery.pageNum = val
+                this.getList()
+            },
+            resetentity() {//重置临时数据
+                this.entity = {
+                    userId:'',
+                    type:'',
+                    operation:'',
+                    requestUrl:'',
+                    requestIp:'',
+                    equipMent:'',
+                    browser:'',
+                    respTime:'',
+                    createDate:'',
+                }
+            },
+            handleCreate() {//点击新增
+                this.resetentity()
+                this.dialogStatus = 'create'
+                this.dialogFormVisible = true
+                this.$nextTick(() => {
+                    this.$refs['dataForm'].clearValidate()
+                })
+            },
+            handleUpdate(row) {//点击修改
+                const _this = this;
+                $.ajax({
+                    method: 'GET',
+                    url: 'get/'+row.id,
+                    success: function (data) {
+                        if(data.code==200){
+                            _this.entity = Object.assign({}, data.data) // copy obj
+                            _this.dialogStatus = 'update'
+                            _this.dialogFormVisible = true
+                            _this.$nextTick(() => {
+                                _this.$refs['dataForm'].clearValidate()
+                            })
+                        }else{
+                            window.dataErrorHandler(data)
+                        }
+                    }
+                });
+            },
+            handleDelete(row) {//点击删除
+                const _this = this;
+                this.$confirm('确认提交吗？', '提示', {}).then(() => {
+                        $.ajax({
+                            method: 'POST',
+                            url: 'remove/'+row.id,
+                            success: function (data) {
+                                if(data.code==200){
+                                    _this.$message({
+                                        showClose: true,
+                                        message: '删除成功',
+                                        type: 'success'
+                                    })
+                                    _this.dialogFormVisible = false
+                                    _this.getList();
+                                }else{
+                                    window.dataErrorHandler(data)
+                                }
+                        }
+                        });
+                });
+            },
+            createData() {
+                const _this = this;
+                this.$refs['dataForm'].validate((valid) => {
+                    if (valid) {
+                        this.$confirm('确认提交吗？', '提示', {}).then(() => {
+                            $.ajax({
+                                method: 'POST',
+                                url: 'save',
+                                data: _this.entity,
+                                success: function (data) {
+                                    if(data.code==200){
+                                        _this.$message({
+                                            showClose: true,
+                                            message: '添加成功',
+                                            type: 'success'
+                                        })
+                                        _this.dialogFormVisible = false
+                                        _this.getList();
+                                    } else {
+                                        window.dataErrorHandler(data)
+                                    }
+                                }
+                            });
+                        })
+                    }
+                })
+            },
+            updateData() {
+                const _this = this;
+                _this.$refs['dataForm'].validate((valid) => {
+                    if (valid) {
+                        _this.$confirm('确认提交吗？', '提示', {}).then(() => {
+                            $.ajax({
+                                method: 'POST',
+                                url: 'update',
+                                data: _this.entity,
+                                success: function (data) {
+                                    if(data.code==200){
+                                        _this.$message({
+                                            showClose: true,
+                                            message: '更新成功',
+                                            type: 'success'
+                                        })
+                                        _this.dialogFormVisible = false
+                                        _this.getList();
+                                    } else {
+                                        window.dataErrorHandler(data)
+                                    }
+                                }
+                            });
+                        })
+                    }
+                })
+            },
+        }
+    })
+</script>
+
+</html>

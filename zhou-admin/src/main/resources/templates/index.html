@@ -1,0 +1,237 @@
+  <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="renderer" content="webkit">
+
+    <title>彩票资讯后台管理</title>
+    <!--[if lt IE 9]>
+    <meta http-equiv="refresh" content="0;ie.html" />
+    <![endif]-->
+    <link rel="stylesheet" href="static/css/element/element.css" th:href="@{/static/css/element/element.css}">
+    <link rel="stylesheet" href="static/css/icon/iconfont.css" th:href="@{/static/css/icon/iconfont.css}">
+    <link rel="icon" type="image/png" href="img/favicon.png" th:href="@{/img/favicon.png}">
+    <link rel="stylesheet" href="static/css/animate.css" th:href="@{/static/css/animate.css}">
+    <link href="static/css/font-awesome.css?v=4.4.0"  th:href="@{/static/css/font-awesome.css(v=4.4.0)}" rel="stylesheet">
+    <link href="static/css/bootstrap.min.css?v=3.3.6" th:href="@{/static/css/bootstrap.min.css(v=3.3.6)}" rel="stylesheet">
+    <link href="static/css/style.css?v=4.1.0" rel="stylesheet" th:href="@{/static/css/style.css(v=4.1.0)}">
+</head>
+
+<body class="fixed-sidebar full-height-layout gray-bg" style="overflow:hidden">
+    <div id="wrapper">
+        <!--左侧导航开始-->
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="nav-close"><i class="fa fa-times-circle"></i>
+           </div>
+                <div class="login">
+                    <img src="static/img/1.png" th:src="@{/static/img/1.png}" alt="">
+                </div>
+            <div class="sidebar-collapse">
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <div class="dropdown profile-element">
+
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <!--左侧导航结束-->
+        <!--右侧部分开始-->
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+            <div class="row border-bottom">
+                <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+                        <ul id="first-nav" class="nav navbar-top-links navbar-left first-nav">
+                            <!--<li class="active"><a href="#"><span>系统管理</span></a></li>-->
+                        </ul>
+                    <ul class="nav navbar-top-links navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#">
+                                <i class="fa fa-envelope"></i> <span class="label label-warning" id="notify"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-alerts" style="width: 150px">
+                                <li>
+                                    <a href="/task/list" class="J_menuItem">
+                                        <div>
+                                            <i class="fa fa-envelope fa-fw" ></i>
+                                            <span id="total">消息</span>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li class="divider"></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown hidden-xs">
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <span class="clear">
+                            <span class="text-muted text-xs block">
+                               <shiro:user><shiro:principal property="name"/></shiro:user>
+                                <b class="caret"></b></span>
+                            </span>
+                            </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                            <li><a class="J_menuItem" href="/sys/user/modifyPwd" th:href="@{/sys/user/modifyPwd}">修改密码</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li><a href="logout" th:href="@{/logout}">安全退出</a>
+                            </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="row content-tabs">
+                <button class="roll-nav roll-left J_tabLeft"><i class="fa fa-backward"></i>
+                </button>
+                <nav class="page-tabs J_menuTabs">
+                    <div class="page-tabs-content">
+                        <a href="javascript:" class="active J_menuTab" data-id="/index_v3" >首页</a>
+                    </div>
+                </nav>
+                <button class="roll-nav roll-right J_tabRight"><i class="fa fa-forward"></i>
+                </button>
+                <div class="btn-group roll-nav roll-right">
+                    <button class="dropdown J_tabClose" data-toggle="dropdown">关闭操作<span class="caret"></span>
+
+                    </button>
+                    <ul role="menu" class="dropdown-menu dropdown-menu-right">
+                        <li class="J_tabCloseAll"><a>关闭全部选项卡</a>
+                        </li>
+                        <li class="J_tabCloseOther"><a>关闭其他选项卡</a>
+                        </li>
+                    </ul>
+                </div>
+                <a href="/logout" th:href="@{/logout}" class="roll-nav roll-right J_tabExit"><i class="fa fa fa-sign-out"></i> 退出</a>
+            </div>
+            <div class="row J_mainContent" id="content-main">
+                <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="species/list"  th:src="@{/species/list}" frameborder="0" data-id="goods/list" seamless></iframe>
+            </div>
+            <div class="footer">
+                <div class="pull-right">&copy; 2018-2020 <a href="#" target="_blank">前海埃帝</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 全局js -->
+    <script src="static/js/jquery.min.js?v=2.1.4" th:src="@{/static/js/jquery.min.js(v=2.1.4)}"></script>
+    <script src="static/js/common/common.js" th:src="@{/static/js/common/common.js}"></script>
+    <script src="static/js/bootstrap.min.js?v=3.3.6" th:src="@{/static/js/bootstrap.min.js(v=3.3.6)}"></script>
+    <script src="static/js/plugins/metisMenu/jquery.metisMenu.js" th:src="@{/static/js/plugins/metisMenu/jquery.metisMenu.js}"></script>
+    <script src="static/js/plugins/slimscroll/jquery.slimscroll.min.js" th:src="@{/static/js/plugins/slimscroll/jquery.slimscroll.min.js}"></script>
+    <script src="static/js/plugins/layer/layer.js"  th:src="@{/static/js/plugins/layer/layer.js}"></script>
+
+    <!-- 自定义js -->
+    <script src="static/js/hplus.js?v=4.1.0" th:src="@{/static/js/hplus.js(v=4.1.0)}"></script>
+
+    <!-- 第三方插件 -->
+    <script src="static/js/plugins/pace/pace.min.js" th:src="@{/static/js/plugins/pace/pace.min.js}"></script>
+
+    <script src="static/js/contabs.js" th:src="@{/static/js/contabs.js}"></script>
+
+    <script>
+        $(function () {
+            loadMenu();
+        });
+        function assembleNav(menuList,currHtml) {
+            var html='';
+            for(var i in menuList){
+                //第二级
+                var firstLevelMenu = menuList[i];
+
+                if(i==0){
+                    html += '<li class="active-tow">';
+                }else{
+                    html += '<li>';
+                }
+                html+= '<a href="#">' +
+                    '<i class="'+firstLevelMenu.icon+'"></i>' +
+                    '<span class="nav-label">' + firstLevelMenu.name + '</span>' +
+                    '<span class="fa arrow"></span>' +
+                    '</a>';
+
+                html += '<ul class="nav nav-second-level">';
+
+                //第三级菜单
+
+                var secondLevelMenuList = firstLevelMenu.children;
+                for(var j in secondLevelMenuList){
+                    var secondLevelMenu = secondLevelMenuList[j];
+
+                    html += '<li>';
+                    if(secondLevelMenu.children && secondLevelMenu.children.length > 0){
+                        html +=
+                            '<a href="#">' +
+                             '<i class="'+secondLevelMenu.icon+'"></i>' +
+                            '<span class="nav-label">' + secondLevelMenu.name + '</span>' +
+                            '<span class="fa arrow"></span>' +
+                            '</a>';
+                        html += '<ul class="nav nav-third-level">';
+                        //四級菜單
+                        var lastLevelList = secondLevelMenu.children;
+                        for( var n in  lastLevelList){
+                            var lastLevelMenu = lastLevelList[n];
+                            html += '<li>';
+                             html += '<a class="J_menuItem" href="'+ lastLevelMenu.href +'" data-index="'+ lastLevelMenu.id +'" >'+ lastLevelMenu.name +'</a>';
+                            html += '</li>'
+                        }
+                        html += '</ul>';
+                    }else{
+                            html += '<a class="J_menuItem" href="'+ secondLevelMenu.href +'" data-index="'+ secondLevelMenu.id +'" >'+
+                                '<i class="'+secondLevelMenu.icon+'"></i>' +
+                                secondLevelMenu.name +'</a>';
+                    }
+
+                    html += '</li>';
+
+                }
+
+                html += '</ul>';
+                html += '</li>';
+            }
+
+
+
+            $('#side-menu').html(currHtml + html);
+
+            //调用插件
+            $('#side-menu').metisMenu();
+        }
+        function setData(data,index,currHtml){
+            $("#first-nav li").removeClass("active");
+            $("#first-nav li:eq("+index+")").addClass("active");
+            assembleNav(data,currHtml);
+        }
+        function loadMenu() {
+            $.ajax({
+                url:'sys/menu/getMenuTree',
+                type:'GET',
+                success: function(data) {
+                    if(data.code == 200){
+                        //第一级菜单
+                        var menuList = data.data[0].children;
+
+                        var currHtml = $('#side-menu').html();
+
+                        setData(menuList,0,currHtml);
+                    }else if(data.code == 401){
+                        layer.alert(data.message,function(){
+                            window.location.href="/logout";
+                        });
+                    }else{
+                        layer.alert(data.message);
+                    }
+                },
+                error: function (data) {
+                    layer.alert('加载数据失败')
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>

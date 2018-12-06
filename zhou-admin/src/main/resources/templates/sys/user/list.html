@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>系统用户管理</title>
+        <link rel="stylesheet" href="static/css/element/element.css" th:href="@{/static/css/element/element.css}">
+        <link rel="stylesheet" href="static/css/common/style/layout.css" th:href="@{/static/css/common/style/layout.css}">
+    </head>
+<body class="gray-bg">
+    <div id="app" class="app-container calendar-list-container" v-cloak>
+        <div class="filter-container" style="padding-bottom: 10px;padding-top: 10px;">
+            <el-input  style="width: 200px;" class="filter-item" placeholder="请输入登录账号" v-model="listQuery.username"></el-input>
+            <el-input style="width: 200px;" class="filter-item" placeholder="请输入真实姓名" v-model="listQuery.name"></el-input>
+            <el-button class="filter-item" type="primary" v-waves icon="el-icon-search" @click="handleFilter">搜索</el-button>
+             <el-button class="filter-item" style="margin-left: 10px;" @click="handleCreate" type="primary" icon="el-icon-edit">添加</el-button>
+        </div>
+
+        <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row
+                  style="width: 100%">
+            <el-table-column align="center" type="index" label="序号" width="65px">
+            </el-table-column>
+                <el-table-column align="center" label="登录账号">
+                    <template slot-scope="scope">
+                        <span>{{scope.row.username}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column align="center" label="真实姓名">
+                    <template slot-scope="scope">
+                        <span>{{scope.row.name}}</span>
+                    </template>
+                </el-table-column>
+            <el-table-column align="center" label="操作" fixed="right" class-name="small-padding fixed-width">
+                <template slot-scope="scope">
+                    <el-button v-if="scope.row.id!=1" type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
+                    <el-button v-if="scope.row.id!=1" size="mini" type="danger" @click="handleDelete(scope.row)">删除</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+
+        <div class="pagination-container" style="padding-top: 10px;">
+            <el-pagination background  style="text-align: center"
+                            @size-change="handleSizeChange" @current-change="handleCurrentChange"
+                           :current-page="listQuery.pageNum" :page-sizes="[10,20,30, 50]" :page-size="listQuery.pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
+            </el-pagination>
+        </div>
+
+        <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
+            <el-form :rules="rules" ref="dataForm" :model="entity" label-position="left" label-width="100px" style='width: 400px; margin-left:50px;'>
+                    <el-form-item label="登录账号" prop="username">
+                        <el-input v-model="entity.username" placeholder="请输入登录账号"></el-input>
+                    </el-form-item>
+                    <el-form-item label="登录密码" prop="password">
+                        <el-input type="password" v-model="entity.password" placeholder="请输入登录密码"autocomplete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="确认密码" prop="checkPass">
+                        <el-input type="password" v-model="entity.checkPass" placeholder="请输入确认密码"autocomplete="off"></el-input>
+                    </el-form-item>
+                    <el-form-item label="真实姓名" prop="name">
+                        <el-input v-model="entity.name" placeholder="请输入真实姓名"></el-input>
+                    </el-form-item>
+                    <el-form-item label="角色信息" prop="roleList" >
+                        <el-checkbox-group v-model="entity.roleList">
+                            <el-checkbox v-for="role in roles" :label="role.id">{{role.name}}</el-checkbox>
+                        </el-checkbox-group>
+                    </el-form-item>
+            </el-form>
+            <div slot="footer" class="dialog-footer" align="center">
+                <el-button v-if="dialogStatus=='create'" type="primary" @click="createData">确认</el-button>
+                <el-button v-else type="primary" @click="updateData">确认</el-button>
+                <el-button @click="dialogFormVisible = false">取消</el-button>
+            </div>
+        </el-dialog>
+    </div>
+</div>
+</body>
+
+<script src="static/js/common/vue.min.js" th:src="@{/static/js/common/vue.min.js}"></script>
+<script src="static/js/common/element.js" th:src="@{/static/js/common/element.js}"></script>
+<script src="static/js/jquery.min.js" th:src="@{/static/js/jquery.min.js}"></script>
+<script src="static/js/common/common.js" th:src="@{/static/js/common/common.js}"></script>
+<script>
+
+    var app = new Vue({
+        el: '#app',
+        name: 'rolePage',
+        data() {
+            var validatePass = (rule, value, callback) => {
+                if (value === '') {
+                    callback(new Error('登录密码不能为空'));
+                } else {
+                    callback();
+                }
+            };
+            var validatePass2 = (rule, value, callback) => {
+                if (value === '') {
+                    callback(new Error('请再次输入密码'));
+                } else if (value !== this.entity.password) {
+                    callback(new Error('两次输入密码不一致!'));
+                } else {
+                    callback();
+                }
+            };
+            return {
+                tableKey: 0,
+                list: null,
+                total: null,
+                listLoading: true,
+                listQuery: {
+                    pageNum: 1,
+                    pageSize: 20,
+                },
+                entity: {//临时变量，用于新增与修改
+                    username:'',
+                    oldUsername:'',
+                    password:'',
+                    checkPass:'',
+                    name:'',
+                    roleList:[],
+                },
+                roles:[],
+                dialogFormVisible: false,
+                dialogStatus: '',
+                textMap: {
+                    update: '编辑',
+                    create: '新增'
+                },
+                rules: {//表单验证
+                        username: [{ required: true, message: '登录账号不能为空', trigger: 'change' }],
+                        name: [{ required: true, message: '真实姓名不能为空', trigger: 'change' }],
+                        password: [ {  required: true,validator: validatePass, trigger: 'change' } ],
+                        checkPass: [ { required: true, validator: validatePass2, trigger: 'change' }],
+                    roleList:[{ required: true, message: '角色不能为空', trigger: 'change' }]
+                },
+            }
+        },
+        created() {
+            this.getList()
+            this.getRoleList();
+        },
+        methods: {
+            getList() {
+                this.listLoading = true
+                var _this = this;
+                $.ajax({
+                    method: 'GET',
+                    url: 'listData',
+                    data: _this.listQuery,
+                    success: function (data) {
+                        if(data.code==200){
+                            _this.list = data.data.records;
+                            _this.total = data.data.total;
+                            _this.listLoading = false
+                        }else{
+                            window.dataErrorHandler(data)
+                        }
+                    }
+                });
+            },
+            getRoleList:function(){
+                var _this = this;
+                $.ajax({
+                    method: 'GET',
+                    url: '[[@{/sys/role/getRoleList}]]',
+                    success: function (data) {
+                        if(data.code==200){
+                            _this.roles=data.data;
+                        }
+                    }
+                });
+            },
+            handleFilter:function() {
+                this.listQuery.pageNum = 1
+                this.getList()
+            },
+            handleSizeChange:function(val) {
+                this.listQuery.pageSize = val
+                this.getList()
+            },
+            handleCurrentChange:function(val) {
+                this.listQuery.pageNum = val
+                this.getList()
+            },
+            resetentity:function() {//重置临时数据
+                this.entity = {
+                    username:'',
+                    oldUsername:'',
+                    password:'',
+                    checkPass:'',
+                    name:'',
+                    roleList:[],
+                }
+            },
+            handleCreate:function() {//点击新增
+                const _this = this;
+                $.ajax({
+                    method: 'GET',
+                    url: 'checkPermission',
+                    success: function (data) {
+                        if(data.code==200){
+                            _this.resetentity()
+                            _this.dialogStatus = 'create'
+                            _this.dialogFormVisible = true
+                            _this.$nextTick(() => {
+                                _this.$refs['dataForm'].clearValidate()
+                            })
+                        }else{
+                            window.dataErrorHandler(data)
+                        }
+                    }
+                });
+            },
+            handleUpdate(row) {//点击修改
+                const _this = this;
+                $.ajax({
+                    method: 'GET',
+                    url: 'get/'+row.id,
+                    success: function (data) {
+                        if(data.code==200){
+                            _this.entity = Object.assign({}, data.data) // copy obj
+                            _this.entity.oldUsername=row.username;
+                            _this.entity.password='';
+                            _this.dialogStatus = 'update'
+                            _this.dialogFormVisible = true
+                            _this.$nextTick(() => {
+                                _this.$refs['dataForm'].clearValidate()
+                            })
+                        }else{
+                            window.dataErrorHandler(data)
+                        }
+                    }
+                });
+            },
+            handleDelete(row) {//点击删除
+                const _this = this;
+                this.$confirm('确认提交吗？', '提示', {}).then(() => {
+                        $.ajax({
+                            method: 'POST',
+                            url: 'remove/'+row.id,
+                            data:{
+                              id:row.id
+                            },
+                            success: function (data) {
+                                if(data.code==200){
+                                    _this.$message({
+                                        showClose: true,
+                                        message: '删除成功',
+                                        type: 'success'
+                                    })
+                                    _this.dialogFormVisible = false
+                                    _this.getList();
+                                }else{
+                                    window.dataErrorHandler(data)
+                                }
+                        }
+                        });
+                });
+            },
+            createData() {
+                const _this = this;
+                this.$refs['dataForm'].validate((valid) => {
+                    if (valid) {
+                        this.$confirm('确认提交吗？', '提示', {}).then(() => {
+                            $.ajax({
+                                method: 'POST',
+                                url: 'save',
+                                data: _this.entity,
+                                success: function (data) {
+                                    if(data.code==200){
+                                        _this.$message({
+                                            showClose: true,
+                                            message: '添加成功',
+                                            type: 'success'
+                                        })
+                                        _this.dialogFormVisible = false
+                                        _this.getList();
+                                    } else {
+                                        _this.entity.roleList=_this.roles;
+                                        window.dataErrorHandler(data)
+                                    }
+                                }
+                            });
+                        })
+                    }
+                })
+            },
+            updateData() {
+                const _this = this;
+                _this.$refs['dataForm'].validate((valid) => {
+                    if (valid) {
+                        _this.$confirm('确认提交吗？', '提示', {}).then(() => {
+                            $.ajax({
+                                method: 'POST',
+                                url: 'update',
+                                data: _this.entity,
+                                success: function (data) {
+                                    if(data.code==200){
+                                        _this.$message({
+                                            showClose: true,
+                                            message: '更新成功',
+                                            type: 'success'
+                                        })
+                                        _this.dialogFormVisible = false
+                                        _this.getList();
+                                    } else {
+                                        _this.entity.roleList=_this.roles;
+                                        window.dataErrorHandler(data)
+                                    }
+                                }
+                            });
+                        })
+                    }
+                })
+            },
+            arrayCheckedToString:function(value){
+                var array=[];
+                for(var i=0;i<value.length;i++){
+                    array.push(value[i]);
+                }
+                return array.length==0?"":array.join(",");
+            }
+        }
+    })
+</script>
+
+</html>
