@@ -6,7 +6,6 @@ import com.zhou.plus.admin.common.authc.LogoutFilter;
 import com.zhou.plus.admin.common.realm.SystemAuthorizingRealm;
 import com.zhou.plus.framework.security.CustomCredentialsMatcher;
 import com.zhou.plus.framework.security.session.CacheSessionDAO;
-import com.zhou.plus.framework.security.session.SessionDao;
 import com.zhou.plus.framework.security.session.SessionManager;
 import com.zhou.plus.framework.utils.IdGen;
 import org.apache.shiro.cache.ehcache.EhCacheManager;
@@ -17,21 +16,32 @@ import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
-import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.web.filter.DelegatingFilterProxy;
 
 import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 @Configuration
-@EnableCaching
 public class ShiroConfig {
+
+
+    @Bean
+    public FilterRegistrationBean delegatingFilterProxy(){
+        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+        DelegatingFilterProxy proxy = new DelegatingFilterProxy();
+        proxy.setTargetFilterLifecycle(true);
+        proxy.setTargetBeanName("shiroFilter");
+        filterRegistrationBean.setFilter(proxy);
+        return filterRegistrationBean;
+    }
 
     /**
      * 自定义密码匹配器
@@ -55,18 +65,6 @@ public class ShiroConfig {
 
 
     /**
-     * 自定义缓存
-     * @return
-     */
-    @Bean
-    public EhCacheManagerFactoryBean cacheManager(){
-        EhCacheManagerFactoryBean cacheManagerFactoryBean = new EhCacheManagerFactoryBean ();
-        cacheManagerFactoryBean.setConfigLocation (new ClassPathResource("cache/ehcache-local.xml"));
-        cacheManagerFactoryBean.setShared(true);
-        return cacheManagerFactoryBean;
-    }
-
-    /**
      * 会话Id生成
      * @return
      */
@@ -74,31 +72,6 @@ public class ShiroConfig {
     @Lazy(value = false)
     public IdGen idGen(){
         return new IdGen();
-    }
-
-
-    /**
-     * 自定义系统缓存
-     * @return
-     */
-    @Bean
-    public EhCacheManager ehCacheManager(){
-        EhCacheManager ehCacheManager=new EhCacheManager();
-        ehCacheManager.setCacheManager(cacheManager().getObject());
-        return ehCacheManager;
-    }
-
-
-    /**
-     * 自定义SessionDao
-     */
-    @Bean
-    public CacheSessionDAO sessionDAO(){
-        CacheSessionDAO sessionDAO=new CacheSessionDAO();
-        sessionDAO.setSessionIdGenerator(idGen());
-        sessionDAO.setActiveSessionsCacheName("activeSessionsCacheName");
-        sessionDAO.setCacheManager(ehCacheManager());
-        return sessionDAO;
     }
 
 
@@ -121,7 +94,6 @@ public class ShiroConfig {
      */
     public SessionManager sessionManager(){
         SessionManager sessionManager=new SessionManager();
-        sessionManager.setSessionDAO(sessionDAO());
         sessionManager.setGlobalSessionTimeout(180000);
         sessionManager.setSessionValidationInterval(120000);
         sessionManager.setSessionValidationSchedulerEnabled(true);
@@ -139,7 +111,6 @@ public class ShiroConfig {
     public SecurityManager securityManager(){
         DefaultWebSecurityManager securityManager=new DefaultWebSecurityManager();
         securityManager.setRealm(systemAuthorizingRealm());
-        securityManager.setCacheManager(ehCacheManager());
         securityManager.setSessionManager(sessionManager());
         return securityManager;
     }
@@ -155,19 +126,11 @@ public class ShiroConfig {
 
 
     /**
-     * shiro退出过滤器
-     * @return
-     */
-    @Bean
-    public LogoutFilter logoutFilter(){
-        return  new LogoutFilter();
-    }
-    /**
      * Filter工厂，设置对应的过滤条件和跳转条件
      * @param securityManager
      * @return
      */
-    @Bean
+    @Bean("shiroFilter")
     public ShiroFilterFactoryBean shiroFilterFactoryBean(SecurityManager securityManager) {
         ShiroFilterFactoryBean factoryBean = new ShiroFilterFactoryBean();
 
@@ -179,7 +142,7 @@ public class ShiroConfig {
         // 自定义过滤器
         Map<String, Filter> filterMap = factoryBean.getFilters();
         filterMap.put("authc", formAuthenticationFilter());
-        filterMap.put("logout", logoutFilter());
+        filterMap.put("logout", new LogoutFilter());
         factoryBean.setFilters(filterMap);
 
         Map<String,String> map = new LinkedHashMap<>();

@@ -37,7 +37,7 @@ public class UnifiedUploadController {
             return R.fail("文件不能为空");
         }
         String filePath="";
-        return R.ok(Global.getConfig("image.ip")+filePath);
+        return R.ok(filePath);
     }
 
     /**
@@ -65,7 +65,7 @@ public class UnifiedUploadController {
                 map.put("state", "SUCCESS");
                 map.put("original", file.getOriginalFilename());//原来的文件名
                 map.put("title", file.getOriginalFilename());//随意，代表的是鼠标经过图片时显示的文字
-                map.put("url", Global.getConfig("image.ip")+filePath);
+                map.put("url",filePath);
                 return map;
             }
         }catch (Exception e) {

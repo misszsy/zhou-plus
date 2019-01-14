@@ -1,4 +1,4 @@
-# tomcatÅäÖÃ
+# tomcaté…ç½®
 server:
   port: 8080
   tomcat:
@@ -6,39 +6,42 @@ server:
   servlet:
     context-path: /zhou
 
-# SpringÅäÖÃ
+# Springé…ç½®
 spring:
-  # Êı¾İÔ´ÅäÖÃ
+  # æ•°æ®æºé…ç½®
   datasource:
-    druid:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      username: root
-      password: root
-      url: jdbc:mysql://localhost:3306/mall?serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf8&useSSL=false
-      initial-size: 10 #³õÊ¼»¯´óĞ¡
-      min-idle: 10     #×îĞ¡³õÊ¼»¯
-      max-active: 30   #×î´ó³õÊ¼»¯
-      max-wait: 60000  #»ñÈ¡Á¬½ÓµÈ´ı³¬Ê±µÄÊ±¼ä
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: mailitui
+    password: RG8b3P4NNs2WeGFS
+    url: jdbc:mysql://122.14.224.243:3306/mailitui?serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf8&useSSL=false
+  druid:
+      initial-size: 10 #åˆå§‹åŒ–å¤§å°
+      min-idle: 10     #æœ€å°åˆå§‹åŒ–
+      max-active: 30   #æœ€å¤§åˆå§‹åŒ–
+      max-wait: 60000  #è·å–è¿æ¥ç­‰å¾…è¶…æ—¶çš„æ—¶é—´
       test-while-idle: true
       test-on-borrow: false
       test-on-return: false
       validation-query: SELECT 'x'
-      time-between-eviction-runs-millis: 20000  # ÅäÖÃ¼ä¸ô¶à¾Ã¼ì²âĞèÒª¹Ø±ÕµÄ¿ÕÏĞÁ¬½Ó,µ¥Î»ºÁÃë
-      min-evictable-idle-time-millis: 300000    # ÅäÖÃÒ»¸öÁ¬½ÓÔÚ³ØÖĞ×îĞ¡µÄÉú´æÊ±¼ä,µ¥Î»ºÁÃë
-      max-evictable-idle-time-millis: 600000    # ÅäÖÃÒ»¸öÁ¬½ÓÔÚ³ØÖĞ×î´óµÄÉú´æÊ±¼ä,µ¥Î»ºÁÃë
+      time-between-eviction-runs-millis: 20000  # é…ç½®é—´éš”å¤šä¹…æ£€æµ‹éœ€è¦å…³é—­çš„ç©ºé—²è¿æ¥,å•ä½æ¯«ç§’
+      min-evictable-idle-time-millis: 300000    # é…ç½®ä¸€ä¸ªè¿æ¥åœ¨æ± ä¸­æœ€å°çš„ç”Ÿå­˜æ—¶é—´,å•ä½æ¯«ç§’
+      max-evictable-idle-time-millis: 600000    # é…ç½®ä¸€ä¸ªè¿æ¥åœ¨æ± ä¸­æœ€å¤§çš„ç”Ÿå­˜æ—¶é—´,å•ä½æ¯«ç§’
       filters: stat,wall
-  # thymeleaf Ä£°åÅäÖÃ
+  # thymeleaf æ¨¡æ¿é…ç½®
   thymeleaf:
     encoding: UTF-8
-    mode: HTML
+    suffix: .html
+    prefix: classpath:/templates/
     cache: false
-  # ÉÏ´«ÎÄ¼şÅäÖÃ
+    mode: HTML5
+  # ä¸Šä¼ æ–‡ä»¶é…ç½®
   servlet:
     multipart:
       max-file-size: 10MB
       max-request-size: 10MB
 
-# mybatis-plus ÅäÖÃ
+# mybatis-plus é…ç½®
 mybatis-plus:
   type-aliases-package: com.zhou.plus.admin.modules.entity
   mapper-locations: classpath*:/mapper/**/*.xml
@@ -57,4 +60,3 @@ mybatis-plus:
     map-underscore-to-camel-case: true
     local-cache-scope: session
     jdbc-type-for-null: null
-

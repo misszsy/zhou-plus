@@ -27,14 +27,8 @@ import java.util.Map.Entry;
  */
 public class Servlets {
 
-	// -- 常用数值定义 --//
-	public static final long ONE_YEAR_SECONDS = 60 * 60 * 24 * 365;
-	
 	// 静态文件后缀
-	private final static String[] staticFiles = StringUtils.split(Global.getConfig("web.staticFile"), ",");
-
-    // 动态映射URL后缀
-	private final static String urlSuffix = "";
+	private final static String[] staticFiles =StringUtils.split(".css,.js,.png,.jpg,.gif,.jpeg,.bmp,.ico,.swf,.psd,.htc,.htm,.html,.crx,.xpi,.exe,.ipa,.apk");
 
 	/**
 	 * 设置客户端缓存过期时间 的Header.

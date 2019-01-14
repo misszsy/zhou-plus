@@ -15,7 +15,6 @@ import javax.servlet.ServletResponse;
 /**
  * shiro退出拦截器
  */
-@Component
 public class LogoutFilter extends org.apache.shiro.web.filter.authc.LogoutFilter{
 
     private static final Logger logger = LoggerFactory.getLogger(LogoutFilter.class);
@@ -27,6 +26,7 @@ public class LogoutFilter extends org.apache.shiro.web.filter.authc.LogoutFilter
         try {
             UserUtils.clearCache();
             subject.logout();
+            return false;
         } catch (SessionException ise) {
             logger.debug("Encountered session exception during logout.  This can generally safely be ignored.", ise);
         }
@@ -37,7 +37,7 @@ public class LogoutFilter extends org.apache.shiro.web.filter.authc.LogoutFilter
 
     @Override
     protected String getRedirectUrl(ServletRequest request, ServletResponse response, Subject subject) {
-        String url = Global.getConfig("shiro.logoutUrl");
+        String url = "/login";
         // 如果配置了登出之后跳转的url，并且url不能为 ${adminPath}/logout 否则会造成死循环。
         if (StringUtils.isNoneBlank(url) && !url.equals(("/api/logout"))){
             return url;

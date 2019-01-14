@@ -23,10 +23,7 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 
 
-@Component
 public class SystemAuthorizingRealm extends AuthorizingRealm {
-
-	private Logger logger = LoggerFactory.getLogger(getClass());
 
 	@Autowired
 	private SysUserService sysUserService;

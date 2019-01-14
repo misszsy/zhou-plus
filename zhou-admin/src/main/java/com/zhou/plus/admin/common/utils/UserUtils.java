@@ -8,7 +8,6 @@ import com.zhou.plus.admin.modules.service.SysMenuService;
 import com.zhou.plus.admin.modules.service.SysRoleService;
 import com.zhou.plus.admin.modules.service.SysUserService;
 import com.zhou.plus.framework.security.Principal;
-import com.zhou.plus.framework.utils.CacheUtils;
 import com.zhou.plus.framework.utils.SpringContextHolder;
 import com.zhou.plus.framework.utils.StringUtils;
 import org.springframework.util.CollectionUtils;
@@ -38,8 +37,6 @@ public class UserUtils extends CommonUtils{
 
 	public static final String CACHE_MENU_LIST = "sysMenuList";
 
-	public static final String USER_CACHE = "userCache";
-
 	public static final String USER_CACHE_ID_ = "id_";
 
 
@@ -49,14 +46,14 @@ public class UserUtils extends CommonUtils{
 	 * @return 取不到返回null
 	 */
 	public static SysUser get(String id){
-		SysUser user = (SysUser) CacheUtils.get(USER_CACHE, USER_CACHE_ID_ + id);
+		SysUser user = (SysUser) getCache(USER_CACHE_ID_ + id);
 		if (user ==  null){
 			user = sysUserService.getById(id);
 			if (user == null){
 				return null;
 			}
 			user.setRoleList(sysUserService.getRoleByUserId(user.getId()));
-			CacheUtils.put(USER_CACHE, USER_CACHE_ID_ + user.getId(), user);
+			putCache(USER_CACHE_ID_ + user.getId(), user);
 		}
 		return user;
 	}
@@ -76,7 +73,7 @@ public class UserUtils extends CommonUtils{
 	 * @param user
 	 */
 	public static void clearCache(SysUser user){
-		CacheUtils.remove(USER_CACHE, USER_CACHE_ID_ + user.getId());
+		removeCache(USER_CACHE_ID_ + user.getId());
 	}
 
 

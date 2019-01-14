@@ -6,7 +6,6 @@ package com.zhou.plus.framework.security.session;
 import com.zhou.plus.framework.config.Global;
 import com.zhou.plus.framework.utils.Servlets;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.DateUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
@@ -49,8 +48,8 @@ public class CacheSessionDAO extends EnterpriseCacheSessionDAO implements Sessio
 				return;
 			}
 			// 如果是视图文件，则不更新SESSION
-			if (StringUtils.startsWith(uri, Global.getConfig("web.view.prefix"))
-					&& StringUtils.endsWith(uri, Global.getConfig("web.view.suffix"))){
+			if (StringUtils.startsWith(uri, "/template/")
+					&& StringUtils.endsWith(uri,".html")){
 				return;
 			}
 			// 手动控制不更新SESSION
