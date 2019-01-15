@@ -6,6 +6,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.zhou.plus.admin.common.entity.BaseModel;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 import java.util.List;
 
@@ -17,6 +20,9 @@ import java.util.List;
  * @author zhoushengyuan
  * @since 2018-11-08
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
+@Accessors(chain = true)
 @TableName("sys_user")
 @ApiModel(value = "SysUser类",description = "系统用户类")
 public class SysUser extends BaseModel<SysUser> {
@@ -58,53 +64,5 @@ public class SysUser extends BaseModel<SysUser> {
 
     public SysUser(String id) {
         setId(id);
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getDisabled() {
-        return disabled;
-    }
-
-    public void setDisabled(String disabled) {
-        this.disabled = disabled;
-    }
-
-    public List<SysRole> getRoleList() {
-        return roleList;
-    }
-
-    public void setRoleList(List<SysRole> roleList) {
-        this.roleList = roleList;
-    }
-
-    @Override
-    public String toString() {
-        return "SysUser{" +
-        "id=" + getId() +
-        ", username=" + username +
-        ", password=" + password +
-        ", name=" + name +
-        ", disabled=" + disabled +
-        "}";
     }
 }

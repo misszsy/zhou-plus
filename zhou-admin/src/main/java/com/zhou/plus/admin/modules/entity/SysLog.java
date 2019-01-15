@@ -2,6 +2,9 @@ package com.zhou.plus.admin.modules.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.zhou.plus.admin.common.entity.BaseModel;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 import java.time.LocalDateTime;
 
@@ -13,6 +16,9 @@ import java.time.LocalDateTime;
  * @author zhoushengyuan
  * @since 2018-12-03
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
+@Accessors(chain = true)
 @TableName("sys_log")
 public class SysLog extends BaseModel {
 
@@ -71,103 +77,4 @@ public class SysLog extends BaseModel {
      * 操作时间
      */
     private LocalDateTime createDate;
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-    public String getOperation() {
-        return operation;
-    }
-
-    public void setOperation(String operation) {
-        this.operation = operation;
-    }
-    public String getRequestUrl() {
-        return requestUrl;
-    }
-
-    public void setRequestUrl(String requestUrl) {
-        this.requestUrl = requestUrl;
-    }
-    public String getRequestIp() {
-        return requestIp;
-    }
-
-    public void setRequestIp(String requestIp) {
-        this.requestIp = requestIp;
-    }
-    public String getEquipMent() {
-        return equipMent;
-    }
-
-    public void setEquipMent(String equipMent) {
-        this.equipMent = equipMent;
-    }
-    public String getBrowser() {
-        return browser;
-    }
-
-    public void setBrowser(String browser) {
-        this.browser = browser;
-    }
-
-    public Long getRespTime() {
-        return respTime;
-    }
-
-    public void setRespTime(Long respTime) {
-        this.respTime = respTime;
-    }
-
-    public LocalDateTime getCreateDate() {
-        return createDate;
-    }
-
-    public void setCreateDate(LocalDateTime createDate) {
-        this.createDate = createDate;
-    }
-
-    public String getMethod() {
-        return method;
-    }
-
-    public void setMethod(String method) {
-        this.method = method;
-    }
-
-    public String getOperationSystem() {
-        return operationSystem;
-    }
-
-    public void setOperationSystem(String operationSystem) {
-        this.operationSystem = operationSystem;
-    }
-
-    @Override
-    public String toString() {
-        return "SysLog{" +
-        "userId=" + userId +
-        ", type=" + type +
-        ", operation=" + operation +
-        ", method=" + method +
-        ", requestUrl=" + requestUrl +
-        ", requestIp=" + requestIp +
-        ", equipMent=" + equipMent +
-        ", operationSystem=" + operationSystem +
-        ", browser=" + browser +
-        ", respDate=" + respTime +
-        ", createDate=" + createDate +
-        "}";
-    }
 }

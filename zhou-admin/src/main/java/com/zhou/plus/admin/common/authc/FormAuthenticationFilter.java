@@ -6,7 +6,6 @@ import com.zhou.plus.framework.utils.StringUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.util.WebUtils;
-import org.aspectj.weaver.MemberUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

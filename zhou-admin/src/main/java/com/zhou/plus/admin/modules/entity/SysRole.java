@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.zhou.plus.admin.common.entity.BaseModel;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 
 import java.util.List;
 
@@ -15,6 +18,9 @@ import java.util.List;
  * @author zhoushengyuan
  * @since 2018-11-13
  */
+@Data
+@EqualsAndHashCode(callSuper = true)
+@Accessors(chain = true)
 @TableName("sys_role")
 public class SysRole extends BaseModel {
 
@@ -40,51 +46,4 @@ public class SysRole extends BaseModel {
 
     @TableField(exist = false)
     private List<String> menuList; //只拥有子菜单集合
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getDisabled() {
-        return disabled;
-    }
-
-    public void setDisabled(String disabled) {
-        this.disabled = disabled;
-    }
-    public String getMenuIds() {
-        return menuIds;
-    }
-
-    public void setMenuIds(String menuIds) {
-        this.menuIds = menuIds;
-    }
-
-    public List<String> getMenuList() {
-        return menuList;
-    }
-
-    public void setMenuList(List<String> menuList) {
-        this.menuList = menuList;
-    }
-
-    @Override
-    public String toString() {
-        return "SysRole{" +
-        "code=" + code +
-        ", name=" + name +
-        ", disabled=" + disabled +
-        ", menuIds=" + menuIds +
-        "}";
-    }
 }
