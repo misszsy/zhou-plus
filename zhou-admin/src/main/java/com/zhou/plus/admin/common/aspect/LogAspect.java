@@ -87,7 +87,7 @@ public class LogAspect {
         //获取request
         HttpServletRequest request = Servlets.getRequest();
         //设置IP地址
-        sysLog.setRequestIp( StringUtils.getRemoteAddr((HttpServletRequest)request));
+        sysLog.setRequestIp( StringUtils.getRemoteAddr(request));
         sysLog.setRequestUrl(request.getRequestURI());
         //用户名
         String userId = UserUtils.getUser().getId();

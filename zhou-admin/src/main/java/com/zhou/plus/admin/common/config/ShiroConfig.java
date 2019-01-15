@@ -8,7 +8,6 @@ import com.zhou.plus.framework.security.CustomCredentialsMatcher;
 import com.zhou.plus.framework.security.session.CacheSessionDAO;
 import com.zhou.plus.framework.security.session.SessionManager;
 import com.zhou.plus.framework.utils.IdGen;
-import org.apache.shiro.cache.ehcache.EhCacheManager;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -17,12 +16,10 @@ import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.servlet.SimpleCookie;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
 import org.springframework.context.annotation.Lazy;
-import org.springframework.core.io.ClassPathResource;
 import org.springframework.web.filter.DelegatingFilterProxy;
 
 import javax.servlet.Filter;
@@ -83,7 +80,7 @@ public class ShiroConfig {
     @Bean
     public SimpleCookie simpleCookie(){
         SimpleCookie simpleCookie=new SimpleCookie();
-        simpleCookie.setName("zhou.session.id");
+        simpleCookie.setName("token");
         simpleCookie.setHttpOnly(true);
         simpleCookie.setMaxAge(-1);
         return simpleCookie;
@@ -154,7 +151,7 @@ public class ShiroConfig {
         //对所有用户认证
         map.put("/login","authc");
         map.put("/logout","logout");
-        map.put("/login","user");
+        map.put("/**","user");
         factoryBean.setFilterChainDefinitionMap(map);
 
         return factoryBean;
