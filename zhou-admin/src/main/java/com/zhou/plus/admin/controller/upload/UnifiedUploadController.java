@@ -1,7 +1,6 @@
 package com.zhou.plus.admin.controller.upload;
 
 import com.google.common.collect.Maps;
-import com.zhou.plus.framework.config.Global;
 import com.zhou.plus.framework.resp.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

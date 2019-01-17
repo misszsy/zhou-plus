@@ -2,9 +2,9 @@ package com.zhou.plus.admin.controller.sys;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.zhou.plus.admin.common.controller.BaseController;
-import com.zhou.plus.admin.modules.entity.SysLog;
-import com.zhou.plus.admin.modules.service.SysLogService;
+import com.zhou.plus.busi.common.controller.BaseController;
+import com.zhou.plus.busi.entity.SysLog;
+import com.zhou.plus.busi.service.SysLogService;
 import com.zhou.plus.framework.resp.R;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;

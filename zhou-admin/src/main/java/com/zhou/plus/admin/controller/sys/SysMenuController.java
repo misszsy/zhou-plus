@@ -1,10 +1,10 @@
 package com.zhou.plus.admin.controller.sys;
 
 
-import com.zhou.plus.admin.common.controller.BaseController;
-import com.zhou.plus.admin.common.utils.UserUtils;
-import com.zhou.plus.admin.modules.entity.SysMenu;
-import com.zhou.plus.admin.modules.service.SysMenuService;
+import com.zhou.plus.busi.common.controller.BaseController;
+import com.zhou.plus.busi.common.utils.UserUtils;
+import com.zhou.plus.busi.entity.SysMenu;
+import com.zhou.plus.busi.service.SysMenuService;
 import com.zhou.plus.framework.annotation.Log;
 import com.zhou.plus.framework.resp.R;
 import io.swagger.annotations.Api;

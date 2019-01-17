@@ -1,8 +1,8 @@
 package com.zhou.plus.admin.controller.sys;
 
 
-import com.zhou.plus.admin.common.utils.CommonUtils;
-import com.zhou.plus.admin.common.utils.UserUtils;
+import com.zhou.plus.busi.common.utils.CommonUtils;
+import com.zhou.plus.busi.common.utils.UserUtils;
 import com.zhou.plus.framework.resp.R;
 import com.zhou.plus.framework.security.Principal;
 import io.swagger.annotations.Api;

@@ -2,10 +2,10 @@ package com.zhou.plus.admin.controller.sys;
 
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.zhou.plus.admin.common.controller.BaseController;
-import com.zhou.plus.admin.common.utils.UserUtils;
-import com.zhou.plus.admin.modules.entity.SysRole;
-import com.zhou.plus.admin.modules.service.SysRoleService;
+import com.zhou.plus.busi.common.controller.BaseController;
+import com.zhou.plus.busi.common.utils.UserUtils;
+import com.zhou.plus.busi.entity.SysRole;
+import com.zhou.plus.busi.service.SysRoleService;
 import com.zhou.plus.framework.annotation.Log;
 import com.zhou.plus.framework.resp.R;
 import com.zhou.plus.framework.utils.StringUtils;

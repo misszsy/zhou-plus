@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhou.plus.busi.mapper.SysLogMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="map">
+        <result column="id" property="id" />
+        <result column="user_id" property="userId" />
+        <result column="type" property="type" />
+        <result column="operation" property="operation" />
+        <result column="method" property="method" />
+        <result column="request_url" property="requestUrl" />
+        <result column="request_ip" property="requestIp" />
+        <result column="equip_ment" property="equipMent" />
+        <result column="operation_system" property="operationSystem" />
+        <result column="browser" property="browser" />
+        <result column="resp_time" property="respTime" />
+        <result column="create_date" property="createDate" />
+        <result column="username" property="username" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        user_id, type, operation, method,request_url, request_ip, equip_ment,operation_system, browser, resp_time, create_date
+    </sql>
+
+    <!-- 筛选条件 删、改、查条件都在这加 -->
+    <sql id="Condition_Column_List">
+        <if test="userId!=null and userId!=''">
+            and a.user_id = #{userId}
+        </if>
+        <if test="type!=null and type!=''">
+            and a.type = #{type}
+        </if>
+    </sql>
+
+    <select id="selectPageMaps" resultMap="BaseResultMap">
+        SELECT
+            a.*,
+            b.username
+        FROM
+            sys_log a INNER JOIN sys_user b on a.user_id=b.id
+        ORDER BY a.create_date DESC
+    </select>
+
+</mapper>
