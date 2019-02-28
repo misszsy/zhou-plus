@@ -12,9 +12,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    username: mailitui
-    password: RG8b3P4NNs2WeGFS
-    url: jdbc:mysql://122.14.224.243:3306/mailitui?serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: guanshiji
+    password: iZDYbmGjw5B3wTn2
+    url: jdbc:mysql://122.14.224.243:3306/guanshiji?serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf8&useSSL=false
   druid:
     initial-size: 10 #初始化大小
     min-idle: 10     #最小初始化
