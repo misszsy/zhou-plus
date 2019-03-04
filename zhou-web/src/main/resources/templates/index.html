@@ -1,0 +1,483 @@
+﻿<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="/common/common :: commonHead">
+</head>
+<body>
+<div class="header" th:include="/common/header :: commonHeader"></div>
+<div class="headerTel" th:include="/common/header :: commonHeaderTel"></div>
+
+<div class="navLayer" th:include="/common/nav :: commonNavLayer"></div>
+
+    <!--导航菜单触发结束-->
+    <!-- 轮播 -->
+    <div class="ind-banner">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide" style="background: url(../static/images/login.jpg) 50% 50% no-repeat; background-size: cover;">
+                    <a href="javascript:void(0)">
+                        
+                    </a>
+                </div>
+                <div class="swiper-slide" style="background: url(../static/images/login.jpg) 0% 50% no-repeat; background-size: cover;">
+                    <a href="javascript:void(0)">
+                        
+                    </a>
+                </div>
+                <div class="swiper-slide" style="background: url(../static/images/login.jpg) 50% 50% no-repeat; background-size: cover;">
+                    <a href="about/culture.html">
+                        
+                    </a>
+                </div>
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <script>
+            var my = new Swiper('.ind-banner .swiper-container', {
+                autoplay: 3500,
+                speed: 600,
+                pagination: '.ind-banner .swiper-pagination',
+                paginationClickable: true,
+                autoplayDisableOnInteraction: false,
+                loop: true,
+                onInit: function (swiper) { //Swiper2.x的初始化是onFirstInit
+                    swiperAnimateCache(swiper); //隐藏动画元素 
+                    swiperAnimate(swiper); //初始化完成开始动画
+                },
+                onSlideChangeEnd: function (swiper) {
+                    swiperAnimate(swiper); //每个slide切换结束时也运行当前slide动画
+                }
+            });
+        </script>
+    </div>
+    <div class="bannerTel">
+        <div class="ind-bannerTel">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    
+                    <div class="swiper-slide" style="background: url(../static/images/back.jpeg)50% 50% no-repeat; background-size: cover;">
+                    </div>
+                    
+                    <div class="swiper-slide" style="background: url(../static/images/back.jpeg)50% 50% no-repeat; background-size: cover;">
+                    </div>
+                    
+                    <div class="swiper-slide" style="background: url(../static/images/back.jpeg)50% 50% no-repeat; background-size: cover;">
+                    </div>
+                    
+                </div>
+                <div class="swiper-pagination"></div>
+            </div>
+            <script>
+                var my = new Swiper('.ind-bannerTel .swiper-container', {
+                    autoplay: 3500,
+                    pagination: '.ind-bannerTel .swiper-pagination',
+                    paginationClickable: true,
+                    autoplayDisableOnInteraction: false,
+                    loop: true
+                });
+            </script>
+        </div>
+    </div>
+    <div class="indexPart1">
+        <div class="indexTitle">
+            <div class="txt1">Gallery</div>
+            <div class="txt2">作品展示<em></em></div>
+            <a href="case/case.html" class="more">More</a>
+        </div>
+        <div class="list">
+            <ul>
+                
+                
+
+            </ul>
+        </div>
+    </div>
+    <!---->
+    <div class="indexPart2">
+        <div class="indexTitle indexTitle2">
+            <div class="txt1">Recommended Case</div>
+            <div class="txt2">推荐案例<em></em></div>
+        </div>
+        <div class="tabContentDiv">
+            
+            <a href="case/case_detail.html">
+                <div class="tabContent">
+                    <div class="bigImg">
+                        <img src="vancheerfile/images/2018/5/20180524095852725.jpeg">
+                    </div>
+                </div>
+            </a>
+            
+            <a href="case/case_detail.html">
+                <div class="tabContent">
+                    <div class="bigImg">
+                        <img src="vancheerfile/images/2018/5/20180524013456741.jpeg">
+                    </div>
+                </div>
+            </a>
+            
+            <a href="case/case_detail.html">
+                <div class="tabContent">
+                    <div class="bigImg">
+                        <img src="vancheerfile/images/2018/5/20180529104918459.jpeg">
+                    </div>
+                </div>
+            </a>
+            
+        </div>
+        <div class="tab">
+            <div class="lbox">
+                <ul>
+                    
+                    <li class="liNow">
+                        <a href="case/case_detail.html">
+                            <div class="box">
+                                <div class="bg">
+                                    <div class="imgDiv">
+                                        <img src="vancheerfile/images/2018/5/2018052409585631.jpeg" alt="">
+                                    </div>
+                                    <div class="name">华都汇-湛江华都广场</div>
+                                    <div class="msg">
+                                        占地面积：443409.33㎡<br>
+                                        建筑面积：57000㎡
+                                    </div>
+                                    <div class="ico"></div>
+                                </div>
+                                <div class="bottom"></div>
+                            </div>
+                        </a>
+                    </li>
+                    
+                    <li class="">
+                        <a href="case/case_detail.html">
+                            <div class="box">
+                                <div class="bg">
+                                    <div class="imgDiv">
+                                        <img src="vancheerfile/images/2018/5/20180524095235975.jpeg" alt="">
+                                    </div>
+                                    <div class="name">香格里拉洲际酒店</div>
+                                    <div class="msg">
+                                        占地面积：83856.20㎡<br>
+                                        建筑面积：55000㎡
+                                    </div>
+                                    <div class="ico"></div>
+                                </div>
+                                <div class="bottom"></div>
+                            </div>
+                        </a>
+                    </li>
+                    
+                    <li class="">
+                        <a href="case/case_detail.html">
+                            <div class="box">
+                                <div class="bg">
+                                    <div class="imgDiv">
+                                        <img src="vancheerfile/images/2018/5/20180529104842506.jpeg" alt="">
+                                    </div>
+                                    <div class="name">湘潭九华东方威尼斯</div>
+                                    <div class="msg">
+                                        占地面积：32598921㎡<br>
+                                        建筑面积：266214.89㎡
+                                    </div>
+                                    <div class="ico"></div>
+                                </div>
+                                <div class="bottom"></div>
+                            </div>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!---->
+    <div class="indexPart2Tel">
+        <ul>
+            
+            <li>
+                <a href="case/case_100000008525675.html">
+                    <div class="imgDiv">
+                        <img src="vancheerfile/images/2018/5/2018052409585631.jpeg" alt="">
+                    </div>
+                    <div class="botDiv">
+                        <div class="name">华都汇-湛江华都广场</div>
+                        <div class="msg">
+                            占地面积：443409.33㎡<br>
+                            建筑面积：57000㎡
+                        </div>
+                        <div class="ico"></div>
+                    </div>
+                </a>
+            </li>
+            
+            <li>
+                <a href="case/case_100000007872556.html">
+                    <div class="imgDiv">
+                        <img src="vancheerfile/images/2018/5/20180524095235975.jpeg" alt="">
+                    </div>
+                    <div class="botDiv">
+                        <div class="name">香格里拉洲际酒店</div>
+                        <div class="msg">
+                            占地面积：83856.20㎡<br>
+                            建筑面积：55000㎡
+                        </div>
+                        <div class="ico"></div>
+                    </div>
+                </a>
+            </li>
+            
+            <li>
+                <a href="case/case_100000074774112.html">
+                    <div class="imgDiv">
+                        <img src="vancheerfile/images/2018/5/20180529104842506.jpeg" alt="">
+                    </div>
+                    <div class="botDiv">
+                        <div class="name">湘潭九华东方威尼斯</div>
+                        <div class="msg">
+                            占地面积：32598921㎡<br>
+                            建筑面积：266214.89㎡
+                        </div>
+                        <div class="ico"></div>
+                    </div>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <!---->
+    <div class="indexPart3">
+        <div class="indexTitle">
+            <div class="txt1">News</div>
+            <div class="txt2">新闻中心<em></em></div>
+            <div class="tab">
+                <ul>
+                    <li class="liNow">集团资讯</li>
+                    <li>行业动态</li>
+                    <li>最新项目</li>
+                </ul>
+            </div>
+        </div>
+        <div class="tabContentDiv">
+            <div class="tabContent bigBox">
+                
+                <div class="leftDiv fl">
+                    <div class="detail">
+                        <div class="imgDiv">
+                            <a href="news/news_detail.html">
+                                <img src="vancheerfile/images/2018/9/20180903055212707.jpeg" alt=""></a>
+                            <div class="hideBox">
+                                <div class="more"><a href="news/news_detail.html">More</a></div>
+                            </div>
+                        </div>
+                        <div class="name"><a href="news/news_detail.html">乐活丨激情飞扬 谁“羽”争锋</a></div>
+                        <div class="content"><em></em>雨水带走炎炎烈日
+唯运动不负丝丝凉意
+9月1日
+2018年羊城设计联盟“筑和杯”羽毛球公开赛
+在广州大学城体育中心自行车馆拉开序幕
+景森设计参赛队伍斗志昂然
+准备进行一场激烈角逐
+</div>
+                    </div>
+                </div>
+                
+                <div class="rightDiv fr">
+                    <div class="list">
+                        <ul>
+                            
+                            <li>
+                                <div class="imgDiv">
+                                    <a href="news/news_detail.html">
+                                        <img src="vancheerfile/images/2018/8/2018081006108334.jpeg" alt=""></a>
+                                    <div class="hideBox">
+                                        <div class="more"><a href="news/news_detail.html">More</a></div>
+                                    </div>
+                                </div>
+                                <div class="name"><a href="news/news_detail.html">力作 | 景森设计EPC标杆项目闪亮登场庐山西海</a></div>
+                                <div class="time">2018-08-10</div>
+                            </li>
+                            
+                            <li>
+                                <div class="imgDiv">
+                                    <a href="news/news_detail.html">
+                                        <img src="vancheerfile/images/2018/8/20180801061056870.jpeg" alt=""></a>
+                                    <div class="hideBox">
+                                        <div class="more"><a href="news/news_detail.html">More</a></div>
+                                    </div>
+                                </div>
+                                <div class="name"><a href="news/news_detail.html">前行 | 不忘匠心 燃动盛夏</a></div>
+                                <div class="time">2018-08-01</div>
+                            </li>
+                            
+                            <li>
+                                <div class="imgDiv">
+                                    <a href="news/news_detail.html">
+                                        <img src="vancheerfile/images/2018/8/20180801053526651.jpeg" alt=""></a>
+                                    <div class="hideBox">
+                                        <div class="more"><a href="news/news_detail.html">More</a></div>
+                                    </div>
+                                </div>
+                                <div class="name"><a href="news/news_detail.html">聚力 | 融新 · 创变 · 筑未来</a></div>
+                                <div class="time">2018-08-01</div>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tabContent bigBox">
+                
+                <div class="leftDiv fl">
+                    <div class="detail">
+                        <div class="imgDiv">
+                            <a href="news/news_detail.html">
+                                <img src="vancheerfile/images/2018/5/2018052905314366.jpeg" alt=""></a>
+                            <div class="hideBox">
+                                <div class="more"><a href="news/news_detail.html">More</a></div>
+                            </div>
+                        </div>
+                        <div class="name"><a href="news/news_detail.html">BIM+装配式+EPC,这就是建筑业的未来</a></div>
+                        <div class="content"><em></em>BIM技术协同和集成的理念与装配式建筑一体化建造的思路高度融合，特别是在EPC工程总承包管理模式下，基于BIM的装配式建筑信息化应用的作用和优势越显突出……</div>
+                    </div>
+                </div>
+                
+                <div class="rightDiv fr">
+                    <div class="list">
+                        <ul>
+                            
+                            <li>
+                                <div class="imgDiv">
+                                    <a href="news/news_detail.html">
+                                        <img src="vancheerfile/images/2018/5/20180529054216647.jpeg" alt=""></a>
+                                    <div class="hideBox">
+                                        <div class="more"><a href="news/news_detail.html">More</a></div>
+                                    </div>
+                                </div>
+                                <div class="name"><a href="news/news_detail.html">建筑节能设计及改造的主要内容</a></div>
+                                <div class="time">2018-05-17</div>
+                            </li>
+                            
+                            <li>
+                                <div class="imgDiv">
+                                    <a href="news/news_detail.html">
+                                        <img src="vancheerfile/images/2018/5/20180530114320288.jpeg" alt=""></a>
+                                    <div class="hideBox">
+                                        <div class="more"><a href="news/news_detail.html">More</a></div>
+                                    </div>
+                                </div>
+                                <div class="name"><a href="news/news_detail.html">建筑业的“互联网+”即将来临</a></div>
+                                <div class="time">2018-05-17</div>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="tabContent bigBox">
+                
+                <div class="leftDiv fl">
+                    <div class="detail">
+                        <div class="imgDiv">
+                            <a href="news/news2_100000010638473.html">
+                                <img src="vancheerfile/images/2018/5/20180530025930850.jpeg" alt=""></a>
+                            <div class="hideBox">
+                                <div class="more"><a href="news/news2_100000010638473.html">More</a></div>
+                            </div>
+                        </div>
+                        <div class="name"><a href="news/news2_100000010638473.html">佰利庄园</a></div>
+                        <div class="content"><em></em>初期的设计思考是基于红线内地形起伏的特征和地块周边的、景观条件等多种客观条件进行分析，在功能布局和空间结构上强调用地内外景观的贯穿，注意台地和平地的各种视线之间的联系，并利用内部局部造景实现公共景观的灵动跳跃渗透，从而使居住的价值得到充分的提升。</div>
+                    </div>
+                </div>
+                
+                <div class="rightDiv fr">
+                    <div class="list">
+                        <ul>
+                            
+                            <li>
+                                <div class="imgDiv">
+                                    <a href="news/news2_100000009944451.html">
+                                        <img src="vancheerfile/images/2018/5/20180530023921038.jpeg" alt=""></a>
+                                    <div class="hideBox">
+                                        <div class="more"><a href="news/news2_100000009944451.html">More</a></div>
+                                    </div>
+                                </div>
+                                <div class="name"><a href="news/news2_100000009944451.html">中山樱雪蓝悦湾花园</a></div>
+                                <div class="time">2018-05-17</div>
+                            </li>
+                            
+                            <li>
+                                <div class="imgDiv">
+                                    <a href="news/news2_100000009221328.html">
+                                        <img src="vancheerfile/images/2018/5/20180530024341428.jpeg" alt=""></a>
+                                    <div class="hideBox">
+                                        <div class="more"><a href="news/news2_100000009221328.html">More</a></div>
+                                    </div>
+                                </div>
+                                <div class="name"><a href="news/news2_100000009221328.html">信业清远郡城</a></div>
+                                <div class="time">2018-05-17</div>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="indexPart5">
+        <div class="box1">
+            <div class="rightDivTel ani-view fade-in-right">
+                <a href="about/culture.html">
+                    <img src="vancheerfile/images/2018/5/2018051711115120.jpeg" alt=""></a>
+            </div>
+            <div class="leftDiv ani-view fade-in-left fl">
+                <div class="contentBox">
+                    <div class="indexTitle">
+                        <div class="txt1">Culture</div>
+                        <div class="txt2">企业文化<em></em></div>
+                    </div>
+                    <div class="botBox">
+                        <div class="ltxt1">
+                            建筑艺术与人文思想邂逅<br>用文化开启一段旅程
+                        </div>
+                        <div class="ltxt2">
+                            Start a journey<br>with culture
+                        </div>
+                        <div class="btnDiv"><a href="about/culture.html">More</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="rightDiv ani-view fade-in-right fr">
+                <a href="about/culture.html">
+                    <img src="vancheerfile/images/2018/5/20180517111054195.jpeg" alt=""></a>
+            </div>
+        </div>
+        <div class="box2">
+            <div class="leftDiv ani-view fade-in-left fl">
+                <a href="about/culture.html">
+                    <img src="vancheerfile/images/2018/5/20180517110944187.jpeg" alt=""></a>
+            </div>
+            <div class="rightDiv ani-view fade-in-right fr">
+                <div class="contentBox">
+                    <div class="indexTitle">
+                        <div class="txt1">
+                            Social<br>Responsibility
+                        </div>
+                        <div class="txt2">社会责任<em></em></div>
+                    </div>
+                    <div class="botBox">
+                        <div class="ltxt1">
+                            绿色设计，节能减排<br>让现在看得见未来
+                        </div>
+                        <div class="ltxt2">
+                            Let's see the future<br>now
+                        </div>
+                        <div class="btnDiv"><a href="about/social.html">More</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---->
+<div class="footDiv" th:include="/common/footer :: commonFooter">
+</div>
+</body>
+</html>

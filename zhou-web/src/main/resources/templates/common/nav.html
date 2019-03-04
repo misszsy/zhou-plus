@@ -1,0 +1,55 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div class="navLayer"  th:fragment="commonNavLayer">
+    <div class="bg">
+        <div class="top">
+            <a href="index.html" class="logo">
+                <img  th:src="@{/static/images/logo3.png}"></a>
+            <a href="javascript:;" class="closeBtn">
+                <img  th:src="@{/static/images/close.png}"></a>
+        </div>
+        <div class="sideNav">
+            <div class="subNav">
+                <div class="name">
+                    <a href="index.html">
+                        <div class="txt1">首页</div>
+                        <div class="txt2">home</div>
+                    </a>
+                </div>
+            </div>
+            <div class="subNav">
+                <div class="name">
+                    <a href="about/about.html">
+                        <div class="txt1">关于景森</div>
+                        <div class="txt2">about us</div>
+                    </a>
+                </div>
+            </div>
+            <div class="subNav">
+                <div class="name">
+                    <a href="case/case.html">
+                        <div class="txt1">作品展示</div>
+                        <div class="txt2">gallery</div>
+                    </a>
+                </div>
+            </div>
+            <div class="subNav">
+                <div class="name">
+                    <a href="news/news.html">
+                        <div class="txt1">新闻中心</div>
+                        <div class="txt2">News Center</div>
+                    </a>
+                </div>
+            </div>
+            <div class="subNav">
+                <div class="name">
+                    <a href="Contact/company.html">
+                        <div class="txt1">联系我们</div>
+                        <div class="txt2">contact us</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

@@ -1,0 +1,23 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div class="header" th:fragment="commonHeader">
+    <a href="index.html" class="logo fl">
+        <img src="images/logo3.png" th:src="@{/static/images/logo3.png}" alt=""></a>
+    <ul class="list fr">
+        <li class="on"><a href="index.html">首页</a>
+        <li class="sNavA "><a href="#">关于我们</a>
+        <li class="sNavA "><a href="#">成功案例</a>
+        <li class="sNavA "><a href="#">新闻中心</a>
+        <li class="sNavA "><a href="#">联系我们</a>
+        </li></ul>
+    <div class="clear_f"></div>
+</div>
+
+<div class="headerTel" th:fragment="commonHeaderTel">
+    <a href="index.html" class="logo">
+        <img  th:src="@{/static/images/logo.png}"></a>
+    <a href="javascript:;" class="navIco">
+        <img th:src="@{/static/images/navIco.png}"></a>
+</div>
+</html>
