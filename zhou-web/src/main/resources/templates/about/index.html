@@ -1,0 +1,90 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="/common/common :: commonHead(~{},~{})">
+</head>
+
+<body>
+<div class="header" th:include="/common/header :: commonHeader"></div>
+<div class="headerTel" th:include="/common/header :: commonHeaderTel"></div>
+<div class="navLayer" th:include="/common/nav :: commonNavLayer"></div>
+<!--导航菜单触发结束-->
+<div class="pageBanner">
+    <div class="imgDiv">
+        <img  th:src="@{/static/images/login.jpg}"  style="height: 580px;" alt="">
+    </div>
+    <div class="contentBox">
+        <div class="txtDiv fl">
+            <div class="txt1">About Us</div>
+            <div class="txt2"><em></em>关于我们</div>
+        </div>
+        <div class="pageNav fr">
+            <div class="list">
+                <ul>
+                    <li><a href="index.html" class="aNow">公司介绍</a></li>
+                    <li><a href="history.html">发展历程</a></li>
+                    <li><a href="vision.html">合作伙伴</a></li>
+                    <li><a href="culture.html">企业文化</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!---->
+<div class="pageBannerTel">
+    <div class="txtDiv">
+        <div class="txt2"><em></em>公司介绍</div>
+    </div>
+</div>
+<!---->
+<div class="pageTitleTel">
+    <div class="sideTitleTel">
+        <div class="con"><a href="javascript:;" class="tan">公司介绍</a></div>
+        <div class="sideTitleNav">
+            <div class="box">
+                <ul>
+                    <li><a href="index.html">集团简介</a></li>
+                    <li><a href="history.html">发展历程</a></li>
+                    <li class="li01"><em><a href="javascript:;">荣誉与资质</a></em>
+                        <dl>
+                            <dd><a href="vision.html">资质证书</a></dd>
+                            <dd><a href="honours.html">景森荣誉</a></dd>
+                            <dd><a href="honor.html">项目荣誉</a></dd>
+                        </dl>
+                    </li>
+
+                    <li><a href="culture.html">企业文化</a></li>
+                    <li><a href="partner.html">合作伙伴</a></li>
+                    <li><a href="distribution.html">业务分布</a></li>
+                    <li><a href="power.html">研发实力</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!---->
+<div class="pageBox">
+    <div class="wal">
+        <div class="pageTitle" style="text-align: center">
+            <div class="txt1">Group  introduction</div>
+            <div class="txt2">公司介绍</div>
+        </div>
+        <div class="about">
+
+            <div class="content fl">景森设计股份有限公司（以下简称景森设计）成立于2001年，总部设立于广州。2015年12月28日，景森设计挂牌新三板（证券简称：景森设计，股票代码：835128），成为华南地区首家新三板挂牌上市的甲级建筑设计企业。<br>
+                <br>
+                景森设计以&ldquo;推动专业协作，提升设计价值&rdquo;为己任，融汇吸收国内外先进的技术、理念和设计元素并加以创新和运用，为客户提供前策、规划、建筑、BIM、文旅、景观、室内、照明、智能化、生态旅游等专业服务，现已获得建筑设计甲级资质、城乡规划乙级资质、风景园林乙级资质，以及旅游规划丙级资质，设计团队包括国家一级注册建筑师、一级注册结构师、高级工程师、城市规划师、园林设计师及外籍设计师等超过600名优秀专业人才，景森坚持&ldquo;专业、共赢、乐享&rdquo;的企业价值理念，不断优化人才结构及服务模式，致力于打造一个全方位可持续发展的建筑设计公众企业。<br>
+                <br>
+                景森设计坚持科学管理道路，2014年获得广东省高新技术企业认证。企业自主研发十多项设计及管理软件，建立了三大专家人才矩阵配合内部设计协同平台，推动了标准化管理向纵深发展，顺利取得ISO9001质量管理体系，ISO14001环境管理体系认证。<br>
+                <br>
+                景森设计推行以&ldquo;专业协同，资源同享&rdquo;的发展理念，目前已在广州、湛江、长沙、昆明、武汉、安徽、汕尾等地区建立区域公司，业务遍布国内、东南亚及澳洲等地区，与碧桂园、万科、万达、恒大、保利、时代、奥园等知名品牌地产发展商建立了长期的战略合作伙伴关系，先后为500多家知名企业提供优质服务。集团总部与各分公司尊重区域文化特色及建筑风格，为客户提供全方位、本地化的专业服务。</div>
+
+
+            <div class="clear_f"></div>
+        </div>
+    </div>
+</div>
+
+<div class="footDiv" th:include="/common/footer :: commonFooter">
+</div>
+</body>
+</html>

@@ -59,8 +59,8 @@
 .indexTitle .more{ position: absolute; right: 0px; top: 20px; width: 134px; height: 35px; text-align: center; line-height: 35px; display: block; background: #5a5a5a; font-size: 14px; color: #fff; font-weight: bold;}
 .indexTitle .more:hover{ background: #1b1b1b;}
 
-.indexPart1{ padding: 136px 7% 105px; }
-.indexPart1 .list{ padding-top: 84px; overflow: hidden;}
+.indexPart1{ padding: 136px 7% 0px; }
+.indexPart1 .list{  overflow: hidden;}
 .indexPart1 .list li{ float: left; width: 11.11%; }
 .indexPart1 .list li a{ display: block; width: 100%; height: 320px; padding-bottom: 6px; position: relative;}
 .indexPart1 .list li .bg{ height: 320px; width: 100%;}
@@ -103,7 +103,7 @@
 .indexPart2Tel li .msg{ font-size: 14px; height: 48px; line-height: 24px; overflow: hidden; color: #a4a4a4; }
 .indexPart2Tel li .ico{ position: absolute; right: 10px; top: 50px; width: 10px; height: 10px; background:url(../images/ico1.png) no-repeat;  }
 
-.indexPart3{ padding: 120px 7% 130px; }
+.indexPart3{ padding: 30px 7% 130px; }
 .indexPart3 .bigBox{ overflow: hidden; padding-top: 100px; }
 .indexPart3 .leftDiv{ width: 62%; }
 .indexPart3 .rightDiv{ width: 31%; }
@@ -185,8 +185,8 @@
 .indexPart5 .box2 .btnDiv a{ display: block; width: 134px; height: 35px; background: #5a5a5a; font-size: 14px; line-height: 35px; text-align: center; color: #fff;}
 .indexPart5 .box2 .btnDiv a:hover{ background: #1b1b1b; }
 
-.about{ position: relative; padding: 90px 0 140px;}
-.about .content{ width: 610px; position: relative; z-index: 2; font-size: 14px; line-height: 30px; color: #585858;}
+.about{ position: relative; padding: 50px 0 50px;}
+.about .content{ position: relative; z-index: 2; font-size: 14px; line-height: 30px; color: #585858;}
 .about .year{ position: absolute; top: 98px; left: -126px;}
 .about .imgDiv{ overflow: hidden; }
 
@@ -447,7 +447,7 @@
 .select4 dt a{ background:url(../images/nimg19_4.png) no-repeat 40px center;}
 
 .case{ padding-bottom: 30px; }
-.case .list{ padding-top: 80px; overflow: hidden; }
+.case .list{ padding-top: 50px; overflow: hidden; }
 .case .list li{ float: left; width: 30%; margin-bottom: 4.7%; margin-right: 5%;}
 .case .list .li01{ width: 65%; }
 .case .list li .imgDiv img{ width: 100%; }

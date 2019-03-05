@@ -129,7 +129,7 @@ transition:All 5s ease;
 .PCBg{ position:fixed; z-index:3; width:100%; height:100%; display:none; background:url(../images/bg2.png) repeat; left:0px; top:0px;}
 .pageBg{ position:fixed; z-index:11; width:100%; height:100%; display:none; background:url(../images/bg1.png) repeat; left:0px; top:0px;}
 
-.footDiv{ height:400px; background:#1a1a1a url(../images/nimg198Bg.jpeg) right 100px no-repeat; overflow: hidden; padding: 110px 7% 0;}
+.footDiv{ height:300px; background:#242424 right 100px no-repeat; overflow: hidden; padding: 80px 7% 0;}
 .footDiv .logoDiv{ width: 27%; }
 .footDiv .leftDiv{ width: 27%; }
 .footDiv .midDiv{ width: 24%; }

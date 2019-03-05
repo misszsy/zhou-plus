@@ -1,6 +1,6 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="commonHead">
+<head th:fragment="commonHead(links,scripts)">
     <meta http-equiv="X-UA-Compatible" content="IE=EDGE">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no, initial-scale=1">
@@ -11,24 +11,15 @@
     <link href="style/index.css" th:href="@{/static/css/index.css}"  rel="stylesheet" type="text/css">
     <link href="style/media.css" th:href="@{/static/css/media.css}"  rel="stylesheet" type="text/css">
     <link href="style/slick.css" th:href="@{/static/css/slick.css}"  rel="stylesheet" type="text/css">
-    <link href="style/animate.min.css" th:href="@{/static/css/animate.min.css}"  rel="stylesheet" type="text/css">
-    <link href="style/fade.css" th:href="@{/static/css/fade.css}"   rel="stylesheet" type="text/css">
-    <link href="style/swiper.min.css" th:href="@{/static/css/swiper.min.css}"  rel="stylesheet" type="text/css">
+    <!--/* Per-page placeholder for additional js */-->
+    <th:block th:replace="${links}" />
     <script language="javascript" type="text/javascript" th:src="@{/static/js/jquery-1.7.1.min.js}" src="script/jquery-1.7.1.min.js"></script>
     <script language="javascript" type="text/javascript" th:src="@{/static/js/easing.js}" src="script/easing.js"></script>
     <script language="javascript" type="text/javascript" th:src="@{/static/js/js.js}" src="script/js.js"></script>
     <script language="javascript" type="text/javascript" th:src="@{/static/js/form.js}" src="script/form.js"></script>
     <script language="javascript" type="text/javascript" th:src="@{/static/js/fun.js}" src="script/fun.js"></script>
     <script language="javascript" type="text/javascript" th:src="@{/static/js/jquery.SuperSlide.2.1.1.js}" src="script/jquery.SuperSlide.2.1.1.js"></script>
-    <script language="javascript" type="text/javascript" th:src="@{/static/js/swiper-3.4.2.jquery.min.js}" src="script/swiper-3.4.2.jquery.min.js"></script>
-    <script language="javascript" type="text/javascript" th:src="@{/static/js/slick.js}" src="script/slick.js"></script>
-    <script language="javascript" type="text/javascript" th:src="@{/static/js/swiper.animate1.0.2.min.js}" src="script/swiper.animate1.0.2.min.js"></script>
-    <script language="javascript" type="text/javascript" th:src="@{/static/js/main.js}" src="script/main.js"></script>
-    <!--[if lte IE 6]>
-    <script src="script/png.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        DD_belatedPNG.fix('div, ul, img, li, input , a');
-    </script>
-    <![endif]-->
+    <!--/* Per-page placeholder for additional js */-->
+    <th:block th:replace="${scripts}" />
 </head>
 </html>
