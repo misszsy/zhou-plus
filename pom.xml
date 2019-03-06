@@ -18,6 +18,7 @@
 
     <modules>
         <module>zhou-admin</module>
+        <module>zhou-web</module>
         <module>zhou-busi</module>
         <module>zhou-framework</module>
     </modules>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>资讯管理</title>
+        <link rel="stylesheet" href="static/css/element/element.css" th:href="@{/static/css/element/element.css}">
+        <link rel="stylesheet" href="static/css/common/style/layout.css" th:href="@{/static/css/common/style/layout.css}">
+    </head>
+    <style type="text/css">
+        #edui_fixedlayer{
+            z-index: 2005!important;
+        }
+
+    </style>
+<body class="gray-bg">
+    <div id="app" class="app-container calendar-list-container" v-cloak>
+        <div class="filter-container" style="padding-bottom: 10px;padding-top: 10px;">
+            <el-select v-model="listQuery.columnId" filterable  clearable  placeholder="请选择栏目名称" @change="columnChange">
+                <el-option
+                        v-for="item in columnList"
+                        :key="item.id"
+                        :label="item.name"
+                        :value="item.id">
+                </el-option>
+            </el-select>
+            <el-select v-model="listQuery.typeId" filterable  clearable  placeholder="请选择文章类型">
+                <el-option
+                        v-for="item in children"
+                        :key="item.enName"
+                        :label="item.name"
+                        :value="item.enName">
+                </el-option>
+            </el-select>
+            <el-select v-model="listQuery.status" filterable  clearable  placeholder="请选择发布状态">
+                <el-option
+                        v-for="item in statusList"
+                        :key="item.value"
+                        :label="item.label"
+                        :value="item.value">
+                </el-option>
+            </el-select>
+            <el-button class="filter-item" type="primary" v-waves icon="el-icon-search" @click="handleFilter">搜索</el-button>
+            <el-button class="filter-item" style="margin-left: 10px;"   @click="handleCreate" type="primary" icon="el-icon-edit">添加</el-button>
+            <el-button class="filter-item" style="margin-left: 10px;"   @click="handleAudit('advice')" type="success" icon="el-icon-success">推荐</el-button>
+            <el-button class="filter-item" style="margin-left: 10px;"   @click="handleAudit('active')" type="success" icon="el-icon-success">发布</el-button>
+            <el-button  class="filter-item"  style="margin-left: 10px;" @click="handleShutdown" type="danger" icon="el-icon-remove">取消</el-button>
+            <el-button  class="filter-item"  style="margin-left: 10px;" @click="handleDelete" type="danger" icon="el-icon-remove">批量删除</el-button>
+        </div>
+
+        <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row
+                  style="width: 100%"   @selection-change="handleSelectionChange" >
+            <el-table-column type="selection" width="55" >
+            </el-table-column>
+            <el-table-column align="center" type="index" label="序号" width="65px">
+            </el-table-column>
+                <el-table-column align="center" label="栏目名称">
+                    <template slot-scope="scope">
+                        <span>{{scope.row.columnName}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column align="center" label="文章类型">
+                    <template slot-scope="scope">
+                        <span>{{scope.row.typeName}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column align="center" label="文章标题">
+                    <template slot-scope="scope">
+                        <span>{{scope.row.title}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column align="center" label="文章来源">
+                    <template slot-scope="scope">
+                        <span>{{scope.row.source}}</span>
+                    </template>
+                </el-table-column>
+                <el-table-column align="center" label="是否推荐">
+                    <template slot-scope="scope">
+                        <el-tag v-if="scope.row.recommend=='0'" :type="'info'"  close-transition>否</el-tag>
+                        <el-tag v-if="scope.row.recommend=='1'" :type="'success'"  close-transition>是</el-tag>
+                    </template>
+                </el-table-column>
+                <el-table-column align="center" label="发布状态">
+                    <template slot-scope="scope">
+                        <el-tag v-if="scope.row.status=='0'" :type="'info'"  close-transition>未发布</el-tag>
+                        <el-tag v-if="scope.row.status=='1'" :type="'success'"  close-transition>已发布</el-tag>
+                        <el-tag v-if="scope.row.status=='2'" :type="'danger'"  close-transition>已取消</el-tag>
+                    </template>
+                </el-table-column>
+                <el-table-column align="center" label="发布时间">
+                    <template slot-scope="scope">
+                        <span>{{scope.row.publishDate}}</span>
+                    </template>
+                </el-table-column>
+            <el-table-column align="center" label="操作" fixed="right" class-name="small-padding fixed-width">
+                <template slot-scope="scope">
+                    <el-button  size="mini" @click="handlePreview(scope.row)">预览</el-button>
+                    <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+
+        <div class="pagination-container" style="padding-top: 10px;">
+            <el-pagination background  style="text-align: center"
+                            @size-change="handleSizeChange" @current-change="handleCurrentChange"
+                           :current-page="listQuery.pageNum" :page-sizes="[10,20,30, 50]" :page-size="listQuery.pageSize" layout="total, sizes, prev, pager, next, jumper" :total="total">
+            </el-pagination>
+        </div>
+    </div>
+</div>
+</body>
+<script src="static/js/common/vue.min.js" th:src="@{/static/js/common/vue.min.js}"></script>
+<script src="static/js/common/element.js" th:src="@{/static/js/common/element.js}"></script>
+<script src="static/js/jquery.min.js" th:src="@{/static/js/jquery.min.js}"></script>
+<script src="static/js/common/common.js" th:src="@{/static/js/common/common.js}"></script>
+<script>
+
+    var app = new Vue({
+        el: '#app',
+        name: 'rolePage',
+        data() {
+            return {
+                tableKey: 0,
+                list: null,
+                total: null,
+                listLoading: true,
+                listQuery: {
+                    pageNum: 1,
+                    pageSize: 20,
+                },
+                entity: {//临时变量，用于新增与修改
+                    columnId:'',
+                    title:'',
+                    typeId:'',
+                    keyword:'',
+                    description:'',
+                    source:'',
+                    status:'',
+                    createBy:'',
+                    createDate:'',
+                    publishBy:'',
+                    publishDate:'',
+                    content:'',
+                    disabled:'',
+                },
+                dialogFormVisible: false,
+                dialogStatus: '',
+                children:[],
+                columnList:[],
+                multipleSelection: [],
+                statusList:[{value:0,label:"未发布"},{value:1,label:"已发布"},{value:2,label:"已取消"}],
+                textMap: {
+                    update: '编辑',
+                    create: '新增'
+                },
+                rules: {//表单验证
+                        columnId: [{ required: true, message: '栏目名称不能为空', trigger: 'change' }],
+                        title: [{ required: true, message: '文章标题不能为空', trigger: 'change' }],
+                        typeId:[{required: true, message: '文章类型不能为空', trigger: 'change'}],
+                        keyword: [{ required: true, message: '关键字不能为空', trigger: 'change' }],
+                        description: [{ required: true, message: '描述说明不能为空', trigger: 'change' }],
+                        source: [{ required: true, message: '文章来源不能为空', trigger: 'change' }],
+                        createBy: [{ required: true, message: '创建人不能为空', trigger: 'change' }],
+                        createDate: [{ required: true, message: '创建时间不能为空', trigger: 'change' }],
+                        publishBy: [{ required: true, message: '发布人不能为空', trigger: 'change' }],
+                        publishDate: [{ required: true, message: '发布时间不能为空', trigger: 'change' }],
+                        content: [{ required: true, message: '文章内容不能为空', trigger: 'change' }],
+                },
+            }
+        },
+        created() {
+            const _this = this;
+            _this.getList()
+            _this.getColumnList()
+        },
+        methods: {
+            getList() {
+                const _this = this;
+                _this.listLoading = true
+                $.ajax({
+                    method: 'GET',
+                    url: 'listData',
+                    data: _this.listQuery,
+                    success: function (data) {
+                        if(data.code==200){
+                            _this.list = data.data.records;
+                            _this.total = data.data.total;
+                            _this.listLoading = false
+                        }else{
+                            window.dataErrorHandler(data)
+                        }
+                    }
+                });
+            },
+            getColumnList(){
+                const _this = this;
+                $.ajax({
+                    method: 'GET',
+                    url: '[[@{/column/getColumnList}]]',
+                    success: function (data) {
+                        if(data.code==200){
+                            _this.columnList=data.data;
+                        }else{
+                            window.dataErrorHandler(data)
+                        }
+                    }
+                });
+            },
+            columnChange(val){
+                const _this=this;
+                _this.entity.typeId=''
+                _this.columnList.forEach((e)=>{
+                    if(val===e.id){
+                        _this.children=e.children;
+                    }
+                })
+            },
+            handleFilter() {
+                this.listQuery.pageNum = 1
+                this.getList()
+            },
+            handleSizeChange(val) {
+                this.listQuery.pageSize = val
+                this.getList()
+            },
+            handleSelectionChange(row) {
+                this.multipleSelection = row;
+            },
+            handleCurrentChange(val) {
+                this.listQuery.pageNum = val
+                this.getList()
+            },
+            resetentity() {//重置临时数据
+                this.entity = {
+                    columnId:'',
+                    title:'',
+                    typeId:'',
+                    keyword:'',
+                    description:'',
+                    source:'',
+                    status:'',
+                    createBy:'',
+                    createDate:'',
+                    releaseBy:'',
+                    releaseDate:'',
+                    content:'',
+                    disabled:'',
+                }
+            },
+            handleCreate() {//点击新增
+                window.location.href ="add";
+            },
+            handleUpdate(row) {//点击修改
+                window.location.href ="edit/"+row.id;
+            },
+            handlePreview(row) {//点击修改
+                window.open("preview/"+row.id);
+            },
+            handleDelete() {//点击删除
+                const _this = this;
+                if(_this.multipleSelection.length==0){
+                    _this.$message({
+                        showClose: true,
+                        message: "请选择要删除的文章信息",
+                        type: 'warning',
+                    });
+                    return;
+                }
+                const obj=_this.multipleSelection;
+                const array=[];
+                for(let i=0;i <obj.length; i++){
+                    if(obj[i].status=='1'){
+                        _this.$message({
+                            showClose: true,
+                            message: '已发布的文章信息不能删除',
+                            type: 'warning'
+                        })
+                        return;
+                    }
+                    array.push(obj[i].id);
+                }
+                this.$confirm('确认提交吗？', '提示', {}).then(() => {
+                    $.ajax({
+                        method: 'POST',
+                        url: 'remove',
+                        data:{ids:array},
+                        success: function (data) {
+                            if(data.code==200){
+                                _this.$message({
+                                    showClose: true,
+                                    message: '删除成功',
+                                    type: 'success'
+                                })
+                                _this.dialogFormVisible = false
+                                _this.getList();
+                            }else{
+                                window.dataErrorHandler(data)
+                            }
+                        }
+                    });
+                });
+            },
+            handleAudit(value) {//点击发布
+                const _this = this;
+                const msg=value=='active'?"发布":"推荐";
+                if(_this.multipleSelection.length==0){
+                    _this.$message({
+                        showClose: true,
+                        message: "请选择要"+msg+"的文章信息",
+                        type: 'warning',
+                    });
+                    return;
+                }
+                const obj=_this.multipleSelection;
+                const array=[];
+                for(let i=0;i <obj.length;i++){
+                    array.push(obj[i].id);
+                }
+                _this.$confirm('确认提交'+msg+'文章吗？', '提示', {}).then(() => {
+                    $.ajax({
+                        method: 'POST',
+                        url: value,
+                        data:{ids:array},
+                        success: function (data) {
+                            if(data.code==200){
+                                _this.dialogFormVisible = false;
+                                _this.$message({
+                                    showClose: true,
+                                    message: msg+'成功',
+                                    type: 'success'
+                                });
+                                _this.getList();
+                            }else{
+                                window.dataErrorHandler(data)
+                            }
+                        }
+                    });
+                });
+            },
+            handleShutdown(){
+                const _this = this;
+                if(_this.multipleSelection.length==0){
+                    _this.$message({
+                        showClose: true,
+                        message: "请选择取消发布的文章信息",
+                        type: 'warning',
+                    });
+                    return;
+                }
+                const obj=_this.multipleSelection;
+                const array=[];
+                for(let i=0;i <obj.length;i++){
+                    array.push(obj[i].id);
+                }
+                _this.$confirm('确认取消发布文章吗？', '提示', {}).then(() => {
+                    $.ajax({
+                        method: 'POST',
+                        url: 'shutdown',
+                        data:{ids:array},
+                        success: function (data) {
+                            if(data.code==200){
+                                _this.dialogFormVisible = false;
+                                _this.$message({
+                                    showClose: true,
+                                    message: '取消成功',
+                                    type: 'success'
+                                });
+                                _this.getList();
+                            }else{
+                                window.dataErrorHandler(data)
+                            }
+                        }
+                    });
+                });
+            },
+            createData() {
+                const _this = this;
+                _this.$refs['dataForm'].validate((valid) => {
+                    if (valid) {
+                        _this.$confirm('确认提交吗？', '提示', {}).then(() => {
+                            $.ajax({
+                                method: 'POST',
+                                url: 'save',
+                                data: _this.entity,
+                                success: function (data) {
+                                    if(data.code==200){
+                                        _this.$message({
+                                            showClose: true,
+                                            message: '添加成功',
+                                            type: 'success'
+                                        })
+                                        _this.dialogFormVisible = false
+                                        _this.getList();
+                                    } else {
+                                        window.dataErrorHandler(data)
+                                    }
+                                }
+                            });
+                        })
+                    }
+                })
+            },
+            updateData() {
+                const _this = this;
+                _this.$refs['dataForm'].validate((valid) => {
+                    if (valid) {
+                        _this.$confirm('确认提交吗？', '提示', {}).then(() => {
+                            $.ajax({
+                                method: 'POST',
+                                url: 'update',
+                                data: _this.entity,
+                                success: function (data) {
+                                    if(data.code==200){
+                                        _this.$message({
+                                            showClose: true,
+                                            message: '更新成功',
+                                            type: 'success'
+                                        })
+                                        _this.dialogFormVisible = false
+                                        _this.getList();
+                                    } else {
+                                        window.dataErrorHandler(data)
+                                    }
+                                }
+                            });
+                        })
+                    }
+                })
+            },
+        }
+    })
+</script>
+
+</html>

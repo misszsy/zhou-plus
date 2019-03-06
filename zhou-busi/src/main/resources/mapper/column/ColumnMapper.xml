@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhou.plus.busi.mapper.ColumnMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="map">
+    <result column="id" property="id" />
+        <result column="name" property="name" />
+        <result column="en_name" property="enName" />
+        <result column="parent_id" property="parentId" />
+        <result column="sort" property="sort" />
+        <collection property="children"  column="id" ofType="map" javaType="java.util.List"
+                    select="getChildrenByParentId"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        name, parent_id, sort
+    </sql>
+
+
+    <select id="selectChildrenList" resultType="Column">
+         SELECT
+            a.id as "id",
+            a.name as "name",
+            a.en_name as "enName",
+            b.en_name AS "parentName",
+            a.parent_id as "parentId",
+            a.sort as "sort"
+        FROM
+            sys_column a INNER JOIN sys_column b ON a.parent_id=b.id
+        WHERE a.parent_id in  ('3','4')
+        ORDER BY a.sort DESC
+    </select>
+
+
+    <select id="selectColumnMaps" resultMap="BaseResultMap">
+         SELECT
+            a.id as "id",
+            a.name as "name",
+            a.en_name as "enName",
+            a.parent_id as "parentId",
+            a.sort as "sort"
+        FROM
+            sys_column a
+        WHERE
+             a.id in ('3','4')
+        ORDER BY a.sort DESC
+    </select>
+
+
+    <select id="getChildrenByParentId"  parameterType="string" resultType="map">
+        SELECT
+            a.id as "id",
+            a.name as "name",
+            a.en_name as "enName",
+            b.en_name AS "parentName",
+            a.parent_id as "parentId",
+            a.sort as "sort"
+        FROM
+            sys_column a INNER JOIN sys_column b ON a.parent_id=b.id
+        WHERE a.parent_id=#{id}
+        ORDER BY a.sort DESC
+    </select>
+</mapper>

@@ -48,7 +48,7 @@ public class LogAspect {
         long beginTime = System.currentTimeMillis();
         //执行方法
         Object result = null;
-        String type="1";
+        String type= "mapper/1";
         try {
             result = point.proceed();
         } catch (Throwable e) {

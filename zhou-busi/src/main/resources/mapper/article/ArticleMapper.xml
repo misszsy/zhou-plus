@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhou.plus.busi.mapper.ArticleMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="map">
+    <result column="id" property="id" />
+        <result column="name" property="columnName" />
+        <result column="column_id" property="columnId" />
+        <result column="type_id" property="typeId" />
+        <result column="label" property="typeName" />
+        <result column="picture" property="picture" />
+        <result column="title" property="title" />
+        <result column="keyword" property="keyword" />
+        <result column="description" property="description" />
+        <result column="source" property="source" />
+        <result column="recommend" property="recommend" />
+        <result column="status" property="status" />
+        <result column="create_by" property="createBy" />
+        <result column="create_date" property="createDate" />
+        <result column="publish_by" property="publishBy" />
+        <result column="publish_date" property="publishDate" />
+        <result column="content" property="content" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id,
+        column_id, title, keyword, description, source, status, create_by, create_date, publish_by, publish_date, content, disabled
+    </sql>
+
+    <select id="selectPageMaps" resultMap="BaseResultMap">
+        SELECT
+            a.id as "id",
+            a.column_id,
+            a.type_id,
+            a.status,
+            a.recommend,
+            a.description,
+            a.title,
+            a.picture,
+            a.source,
+            a.publish_date,
+            a.status,
+            b.name,
+            c.label
+        FROM
+            article a INNER JOIN sys_column b on a.column_id=b.id
+                      INNER JOIN sys_dict c on a.type_id=c.value
+        WHERE
+            a.disabled='0'
+            <if test="article.typeId!=null and article.typeId!=''">
+                and a.type_id = #{article.typeId}
+            </if>
+            <if test="article.status!=null and article.status!=''">
+                and a.status = #{article.status}
+            </if>
+            <if test="article.columnId!=null and article.columnId!=''">
+                and a.column_id = #{article.columnId}
+            </if>
+            <if test="article.keyword!=null and article.keyword!=''">
+                and  a.keyword like CONCAT('%',#{article.keyword},'%')
+            </if>
+        ORDER BY a.publish_date DESC
+    </select>
+
+    <select id="getArticleIndexList"  resultType="Article">
+          (SELECT
+                a.id as "id",
+                a.title as "title",
+                a.publish_Date  AS publishDate,
+                a.type_id as "typeId"
+            FROM article a
+            WHERE a.disabled='0'  AND a.status='1' AND a.column_id =  '3' AND type_id='company'
+            ORDER BY a.`publish_date`  DESC LIMIT 5 )
+            UNION ALL
+             (SELECT
+                a.id as "id",
+                a.title as "title",
+                a.publish_Date  AS publishDate,
+                a.type_id as "typeId"
+            FROM article a
+            WHERE a.disabled='0'  AND a.status='1' AND a.column_id =  '3' AND type_id='media'
+            ORDER BY a.`publish_date`  DESC LIMIT 5 )
+    </select>
+
+    <select id="getArticleMap" resultMap="BaseResultMap">
+         SELECT
+            a.id,
+            a.column_id,
+            a.type_id,
+            a.status,
+            a.recommend,
+            a.description,
+            a.title,
+            a.keyword,
+            a.source,
+            a.publish_date,
+            a.content,
+            (SELECT id AS "id" FROM article  WHERE id &lt; a.id  AND type_id=a.type_id ORDER BY id  LIMIT 1) AS "previous",
+            (SELECT id AS "id" FROM article  WHERE id &gt; a.id  AND type_id=a.type_id ORDER BY id  LIMIT 1) AS "next"
+        FROM
+            article a
+        WHERE
+            a.id=#{id}
+    </select>
+
+    <select id="selectLikeMaps"  resultType="Article">
+         SELECT
+            a.id as "id",
+            a.column_id as "columnId",
+            a.type_id as "typeId",
+            a.title as "title",
+            a.publish_date as "publishDate"
+        FROM
+            article a
+       WHERE
+            a.disabled='0'  AND a.status='1' AND a.column_id =  '3' and
+        <foreach collection="keywords" item="keyword" index="index"  separator="OR">
+            a.keyword like CONCAT('%',#{keyword},'%')
+        </foreach>
+        LIMIT 5
+    </select>
+</mapper>
