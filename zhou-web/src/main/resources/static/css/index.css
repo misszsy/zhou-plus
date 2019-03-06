@@ -455,7 +455,7 @@
 .case .list li .box{ position: relative;}
 .case .list li .hideBox{ display: none; position: absolute; left:0px; top: 0px; width: 100%; height: 100%; z-index: 2; background: url(../images/bg2.png) repeat;}
 .case .list li .hideBox a{ display: block; width: 88%; height: 100%; padding-right: 12%;}
-.case .list li .name1{ position: absolute; left: 16%; width: 68%; top: 31%; padding-right:30px; height: 40px; line-height: 40px; overflow:hidden; color: #fff; font-size: 30px; background: url(../images/ico4.jpeg) right center no-repeat;}
+.case .list li .name1{ position: absolute; width: 100%; top: 50%;text-align: center; padding-right:30px; height: 40px; line-height: 40px; overflow:hidden; color: #fff; font-size: 30px; }
 .case .list li .name2{ position: absolute; left: 16%; top: 45%; font-weight: bold; opacity: 0.2; color: #fff; text-transform: uppercase;}
 .case .list .li01 .name1{ font-size: 48px; height: 48px; line-height: 48px; overflow:hidden; font-weight: bold;}
 .case .list .li01 .name2{ top:40%; font-size: 14px;}
