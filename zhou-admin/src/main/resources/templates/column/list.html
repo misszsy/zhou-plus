@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>栏目管理</title>
+    <link rel="stylesheet" href="static/css/element/element.css" th:href="@{/static/css/element/element.css}">
+    <link rel="stylesheet" href="static/css/common/style/layout.css" th:href="@{/static/css/common/style/layout.css}">
+    <link rel="stylesheet" href="static/css/icon/iconfont.css" th:href="@{/static/css/icon/iconfont.css}">
+</head>
+<style>
+    .parentName > label[for='title']{
+        padding-top: 10px;
+    }
+    .icon-list{
+        overflow: hidden;
+        list-style: none;
+        padding: 0;
+        border: 1px solid #eaeefb;
+        border-radius: 4px;
+    }
+    .icon-list li {
+        float: left;
+        width: 16.66%;
+        text-align: center;
+        height: 120px;
+        line-height: 120px;
+        color: #666;
+        font-size: 13px;
+        transition: color .15s linear;
+        border-right: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        margin-right: -1px;
+        margin-bottom: -1px;
+        cursor: pointer;
+    }
+    .icon-list li:hover{
+        background-color: rgba(144,147,153,.1);
+    }
+    .active{
+        background-color: rgba(144,147,153,.1);
+    }
+    .icon-list li .icon-name {
+        display: inline-block;
+        padding: 0 3px;
+        height: 1em;
+        color: #606266;
+    }
+    .icon-list li i {
+        display: block;
+        font-size: 32px;
+        margin-bottom: 15px;
+        color: #606266;
+    }
+    .icon-list li span {
+        display: inline-block;
+        line-height: normal;
+        vertical-align: middle;
+        font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
+        color: #99a9bf;
+    }
+</style>
+<body class="gray-bg">
+<div id="app" v-cloak class="app-container calendar-list-container">
+    <div class="filter-container" style="padding-bottom: 10px;padding-top: 10px;">
+       <!-- <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="菜单名称" v-model="listQuery.name"></el-input>
+        <el-input @keyup.enter.native="handleFilter" style="width: 200px;" class="filter-item" placeholder="链接" v-model="listQuery.href"></el-input>&#45;&#45;%>
+        <el-button class="filter-item" type="primary" v-waves icon="el-icon-search" @click="handleFilter">搜索</el-button>
+        <el-button class="filter-item" style="margin-left: 10px;" @click="handleCreate" type="primary" icon="el-icon-edit">添加</el-button>-->
+    </div>
+
+    <el-table :key='tableKey' :data="list" v-loading="listLoading" element-loading-text="给我一点时间" border fit highlight-current-row
+              style="width: 100%">
+        <el-table-column align="center" type="index" label="序号" width="65px">
+        </el-table-column>
+        <el-table-column label="名称">
+            <template slot-scope="scope">
+                <div style="cursor:pointer" @click="fatherNode(scope,scope.$index)">
+                    <span v-for="space in scope.row._level" class="ms-tree-space" :key="space"></span>
+                    <span class="tree-ctrl" v-if="iconShow(0,scope.row)">
+                        <i v-if="scope.row._expanded" class="el-icon-caret-bottom"></i>
+                        <i v-else class="el-icon-caret-right"></i>
+                    </span>
+                    <span  v-if="iconShow(0,scope.row)">
+                         <i :class="scope.row.icon"></i>
+                    </span>
+                    <span>{{scope.row.name}}</span>
+                </div>
+            </template>
+        </el-table-column>
+        <el-table-column align="center" label="英文名称">
+            <template slot-scope="scope">
+                <span>{{scope.row.enName}}</span>
+            </template>
+        </el-table-column>
+        <el-table-column align="center" label="排序">
+            <template slot-scope="scope">
+                <span>{{scope.row.sort}}</span>
+            </template>
+        </el-table-column>
+        <el-table-column align="left" label="操作" class-name="small-padding fixed-width" width="300">
+            <template slot-scope="scope">
+                <el-button v-if="scope.row.parentId != '0'" type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
+                <el-button v-if="scope.row.parentId != '0'" type="danger" size="mini" @click="handleDelete(scope.row)">删除</el-button>
+                <el-button v-if="scope.row._level != 2" type="primary" size="mini" @click="handleAddChild(scope.row)">添加子栏目</el-button>
+            </template>
+        </el-table-column>
+    </el-table>
+
+    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible" :close-on-click-modal="false">
+        <el-form :rules="rules" ref="dataForm" :model="entity" label-position="left" label-width="100px" style='width: 400px; margin-left:50px;'>
+            <el-form-item label="上级栏目" prop="parentName" class="parentName">
+                <el-input v-model="entity.parentName" disabled="true" >
+                    <el-button slot="append"  icon="el-icon-search" @click="getTree"></el-button>
+                </el-input>
+            </el-form-item>
+            <el-form-item label="栏目名称" prop="name">
+                <el-input v-model="entity.name" placeholder="请输入栏目名称"></el-input>
+            </el-form-item>
+            <el-form-item label="英文名称" prop="enName">
+                <el-input v-model="entity.enName" placeholder="请输入英文名称"></el-input>
+            </el-form-item>
+            <el-form-item label="排序" prop="sort" >
+                <el-input v-model="entity.sort" placeholder="请输入排序数值"></el-input>
+            </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer" align="center">
+            <el-button v-if="dialogStatus=='create'" type="primary" @click="createData">确认</el-button>
+            <el-button v-else type="primary" @click="updateData">确认</el-button>
+            <el-button @click="dialogFormVisible = false">取消</el-button>
+        </div>
+    </el-dialog>
+
+    <el-dialog title="选择父级栏目" :visible.sync="dialogTreeVisible" :close-on-click-modal="false" width="400px">
+        <el-table ref="singleTable" :data="listTree" border fit highlight-current-row style="width: 100%" @row-dblclick="selectNode">
+            <el-table-column   label="双击选中菜单">
+                <template slot-scope="scope">
+                    <div style="cursor:pointer" @click="treeNode(scope,scope.$index)">
+                        <span v-for="space in scope.row._level" class="ms-tree-space" :key="space"></span>
+                        <span class="tree-ctrl" v-if="iconShow(0,scope.row)">
+                             <i v-if="scope.row._expanded" class="el-icon-caret-bottom"></i>
+                            <i v-else class="el-icon-caret-right"></i>
+                        </span>
+                        <span  v-if="iconShow(0,scope.row)">
+                            <i :class="scope.row.icon"></i>
+                        </span>
+                        <span>{{scope.row.name}}</span>
+                    </div>
+                </template>
+            </el-table-column>
+        </el-table>
+    </el-dialog>
+</div>
+</body>
+
+<script src="static/js/common/vue.min.js" th:src="@{/static/js/common/vue.min.js}"></script>
+<script src="static/js/common/element.js" th:src="@{/static/js/common/element.js}"></script>
+<script src="static/js/jquery.min.js" th:src="@{/static/js/jquery.min.js}"></script>
+<script src="static/js/common/common.js" th:src="@{/static/js/common/common.js}"></script>
+<script>
+
+    function treeToArray(data, expandAll, parent = null, level = null) {
+        let tmp = []
+        Array.from(data).forEach(function(record) {
+            if (record._expanded === undefined) {
+                this.Vue.set(record, '_expanded', expandAll)
+            }
+            let _level = 1
+            if (level !== undefined && level !== null) {
+                _level = level + 1
+            }
+                this.Vue.set(record, '_level', _level)
+            // 如果有父元素
+            if (parent) {
+                this.Vue.set(record, 'parent', parent)
+            }
+            tmp.push(record)
+            if (record.children && record.children.length > 0 && record._expanded) {
+                const children = treeToArray(record.children, expandAll, record, _level)
+                tmp = tmp.concat(children)
+            }
+        })
+        return tmp
+    }
+
+    var app = new Vue({
+        el: '#app',
+        name: 'menuPage',
+        data() {
+            return {
+                tableKey: 0,
+                data: {},
+                dataTree: {},
+                expandAll: true,
+                list : [],
+                listLoading: true,
+                entity: {//临时变量，用于新增与修改
+                    parentId:'',
+                    parentName:'',
+                    name:'',
+                    enName:'',
+                    sort:'',
+                },
+                dialogFormVisible: false,
+                dialogTreeVisible: false,
+                listTree:[],  //树结构对象
+                defaultProps: {
+                    children: 'children',
+                    label: 'name'
+                },
+                dialogStatus: '',
+                textMap: {
+                    update: '编辑',
+                    create: '新增'
+                },
+                rules: {//表单验证
+                    parentName: [{ required: true, message: '上级栏目不能为空', trigger: 'blur' }],
+                    name: [{ required: true, message: '栏目名称不能为空', trigger: 'blur' }],
+                    enName: [{ required: true, message: '英文名称不能为空', trigger: 'blur' }],
+                    sort: [{ required: true, message: '排序不能为空', trigger: 'blur' }],
+                },
+            }
+        },
+        created() {
+            this.getList()
+        },
+        methods: {
+            fatherNode(scope,index){
+                this.toggleExpanded(index)
+            },
+            treeNode(scope,index){
+                this.toggleExpandedTree(index)
+            },
+            getList() {
+                const _this = this;
+                _this.listLoading = true
+                $.ajax({
+                    method: 'GET',
+                    url: 'getColumnTree',
+                    data: _this.listQuery,
+                    success: function (data) {
+                        if(data.code==200){
+                            _this.data = data.data;
+                            _this.list = treeToArray(_this.data, _this.expandAll);
+                            _this.listLoading = false
+                        }else{
+                            window.dataErrorHandler(data)
+                        }
+                    }
+                });
+            },
+            resetentity() {//重置临时数据
+                this.entity = {
+                    parentId:'',
+                    parentName:'',
+                    name:'',
+                    enName:'',
+                    sort:'',
+                }
+            },
+            handleCreate() {//点击新增
+                const _this=this;
+                _this.resetentity()
+                _this.dialogStatus = 'create'
+                _this.dialogFormVisible = true
+                _this.$nextTick(() => {
+                    _this.$refs['dataForm'].clearValidate()
+                })
+            },
+            handleAddChild(row){
+                const _this=this;
+                _this.resetentity()
+                _this.dialogStatus = 'create'
+                _this.dialogFormVisible = true
+                _this.entity.parentId = row.id;
+                _this.entity.parentName = row.name;
+                _this.$nextTick(() => {
+                    _this.$refs['dataForm'].clearValidate()
+                })
+            },
+            handleUpdate(row) {//点击修改
+                const _this=this;
+                _this.entity = Object.assign({}, row) // copy obj
+                _this.dialogStatus = 'update'
+                _this.dialogFormVisible = true
+
+                _this.entity.parentId = row.parent.id;
+                _this.entity.parentName = row.parent.name;
+                _this.$nextTick(() => {
+                    _this.$refs['dataForm'].clearValidate()
+                })
+            },
+            handleDelete(row) {//点击删除
+                const _this = this;
+                _this.$confirm('确认提交吗？', '提示', {}).then(() => {
+                    $.ajax({
+                        method: 'POST',
+                        url: 'remove/'+row.id,
+                        success: function (data) {
+                            if (data.code == 200) {
+                                _this.dialogFormVisible = false
+                                _this.$message({
+                                    showClose: true,
+                                    message: '删除成功',
+                                    type: 'success'
+                                })
+                                _this.getList();
+                            }else{
+                                window.dataErrorHandler(data)
+                            }
+                        }
+                    });
+                });
+            },
+            createData() {
+                const _this = this;
+                this.$refs['dataForm'].validate((valid) => {
+                    if (valid) {
+                        $.ajax({
+                            method: 'POST',
+                            url: 'save',
+                            data: {
+                                parentId: _this.entity.parentId,
+                                parentName: _this.entity.parentName,
+                                name: _this.entity.name,
+                                enName: _this.entity.enName,
+                                sort: _this.entity.sort,
+                            },
+                            success: function (data) {
+                                if(data.code==200) {
+                                    _this.dialogFormVisible = false
+                                    _this.$message({
+                                        showClose: true,
+                                        message: '添加成功',
+                                        type: 'success'
+                                    })
+                                    _this.getList();
+                                }else{
+                                    window.dataErrorHandler(data)
+                                }
+                            }
+                        });
+                    }
+                })
+            },
+            updateData() {
+                const _this = this;
+                this.$refs['dataForm'].validate((valid) => {
+                    if (valid) {
+                        $.ajax({
+                            method: 'POST',
+                            url: 'update',
+                            data: {
+                                id: _this.entity.id,
+                                parentId: _this.entity.parentId,
+                                parentName: _this.entity.parentName,
+                                name: _this.entity.name,
+                                enName: _this.entity.enName,
+                                sort: _this.entity.sort,
+                            },
+                            success: function (data) {
+                                if(data.code==200) {
+                                    _this.dialogFormVisible = false
+                                    _this.$message({
+                                        showClose: true,
+                                        message: '更新成功',
+                                        type: 'success'
+                                    })
+                                    _this.getList();
+                                }else{
+                                    window.dataErrorHandler(data)
+                                }
+                            }
+                        });
+                    }
+                })
+            },
+            getTree() {
+                const _this = this
+                _this.dialogTreeVisible = true
+                $.ajax({
+                    method: 'GET',
+                    url: 'getColumnTree',
+                    success: function (data) {
+                        if(data.code==200){
+                            _this.dataTree = data.data;
+                            _this.listTree = treeToArray(_this.dataTree, _this.expandAll);
+                            _this.$nextTick(() => {
+                                const row=_this.listTree.filter(item=>item.id===_this.entity.parentId);
+                                _this.$refs['singleTable'].setCurrentRow(row[0]);
+                            })
+                        }else{
+                            window.dataErrorHandler(data)
+                        }
+                    }
+                });
+            },
+            selectNode(row){
+                const _this = this
+                _this.dialogTreeVisible = false;
+                _this.entity.parentId = row.id;
+                _this.entity.parentName = row.name;
+                // this.entity.parentId = ;
+            },
+            showRow: function(row) {
+                const show = (row.row.parent ? (row.row.parent._expanded && row.row.parent._show) : true)
+                row.row._show = show
+                return show ? 'animation:treeTableShow 1s;-webkit-animation:treeTableShow 1s;' : 'display:none;'
+            },
+            // 切换下级是否展开
+            toggleExpanded(trIndex) {
+                const record = this.list[trIndex]
+                record._expanded = !record._expanded
+
+                this.list = treeToArray(this.data, this.expandAll);
+            },
+            // 切换下级是否展开
+            toggleExpandedTree(trIndex) {
+                const record = this.listTree[trIndex]
+                record._expanded = !record._expanded
+
+                this.listTree = treeToArray(this.dataTree, this.expandAll);
+            },
+            // 图标显示
+            iconShow(index, record) {
+                return (index === 0 && record.children && record.children.length > 0)
+            },
+            iconClick(e){
+                const _this = this
+                const icon= e.currentTarget.firstElementChild.innerText;
+                _this.dialogIconVisible = false;
+                _this.entity.icon=icon;
+            }
+        }
+    })
+</script>
+
+
+<style rel="stylesheet/css">
+    @keyframes treeTableShow {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+    @-webkit-keyframes treeTableShow {
+        from {opacity: 0;}
+        to {opacity: 1;}
+    }
+</style>
+
+<style rel="stylesheet/css">
+    .ms-tree-space {
+        position: relative;
+        top: 1px;
+        display: inline-block;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 1;
+        width: 18px;
+        height: 14px;
+    }
+    .processContainer{
+        width: 100%;
+        height: 100%;
+    }
+    table td {
+        line-height: 26px;
+    }
+
+    .tree-ctrl{
+        position: relative;
+        cursor: pointer;
+        margin-left: -20px;
+        font-size: 16px;
+    }
+</style>
+
+</html>
