@@ -62,11 +62,10 @@ public class FileUtils extends org.apache.commons.io.FileUtils{
      * @throws Exception
      */
     public static String upload(MultipartFile file, String folder,String fileName){
-        String filePath = Global.FALSE+ folder+fileName;
+        String filePath = Global.PROJECT_FILE_ROOT_PATH+ folder+fileName;
       try {
-            CommonsMultipartFile cf= (CommonsMultipartFile) file;
             File cfile = new File(filePath);
-            cf.transferTo(cfile);
+            file.transferTo(cfile);
         } catch (Exception e) {
             logger.error("上传图片异常:",e);
             throw  new BusinessException("图片上传失败,请稍后再试");

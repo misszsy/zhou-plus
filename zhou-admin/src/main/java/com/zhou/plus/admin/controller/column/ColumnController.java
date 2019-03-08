@@ -6,10 +6,15 @@ import com.zhou.plus.busi.entity.Column;
 import com.zhou.plus.busi.service.ColumnService;
 import com.zhou.plus.framework.annotation.Log;
 import com.zhou.plus.framework.resp.R;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.data.redis.connection.jedis.JedisUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -125,8 +130,7 @@ public class ColumnController extends BaseController<ColumnService, Column> {
      * @return
      */
     @GetMapping("getColumnList")
-    public @ResponseBody
-    R getColumnList() {
-        return R.ok();
+    public @ResponseBody R getColumnList() {
+        return R.ok(baseService.listMaps(new QueryWrapper<>()));
     }
 }

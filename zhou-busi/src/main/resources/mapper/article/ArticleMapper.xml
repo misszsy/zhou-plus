@@ -43,10 +43,10 @@
             a.publish_date,
             a.status,
             b.name,
-            c.label
+            c.name as "label"
         FROM
             article a INNER JOIN sys_column b on a.column_id=b.id
-                      INNER JOIN sys_dict c on a.type_id=c.value
+                      INNER JOIN sys_column c on a.type_id=c.id
         WHERE
             a.disabled='0'
             <if test="article.typeId!=null and article.typeId!=''">

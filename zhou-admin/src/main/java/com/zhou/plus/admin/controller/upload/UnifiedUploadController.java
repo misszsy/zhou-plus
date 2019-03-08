@@ -39,7 +39,7 @@ public class UnifiedUploadController {
         if(file==null && file.getSize()<=0){
             return R.fail("文件不能为空");
         }
-        String filePath="";
+        String filePath=FileUtils.uploadFile(file, Global.IMG_BASE_PATH);
         return R.ok(filePath);
     }
 
@@ -63,12 +63,12 @@ public class UnifiedUploadController {
                 writer.flush();
                 writer.close();
             } else if ("uploadimage".equals(action) || "uploadfile".equals(action)) {    //如果是上传图片、和其他文件
-                String filePath = FileUtils.uploadFile(file, Global.FALSE);
+                String filePath = FileUtils.uploadFile(file, Global.IMG_BASE_EDITOR);
                 Map<String, Object> map = Maps.newHashMap();
                 map.put("state", "SUCCESS");
                 map.put("original", file.getOriginalFilename());//原来的文件名
                 map.put("title", file.getOriginalFilename());//随意，代表的是鼠标经过图片时显示的文字
-                map.put("url", Global.getConfig("image.ip") + filePath);
+                map.put("url",filePath);
                 return map;
             }
             }catch(Exception e){

@@ -18,40 +18,33 @@ import java.util.Map;
  */
 public class Global {
 
-	/**
-	 * 配置文件的路径，默认为classpath下的config.properties
-	 */
-	private static final String configPath =  "config.properties";
-
-	/**
-	 * 保存全局属性值
-	 */
-	private static Map<String, String> map = new HashMap<>();
-	
-	/**
-	 * 属性文件加载对象
-	 */
-	private static PropertiesLoader loader = new PropertiesLoader(configPath);
-
 	public static final String TURE = "1";
 
 	public static final String FALSE = "0";
 
-	private Global(){
 
-	}
+	public static final String CACHE_DICT_MAP = "M_dictMap";
+
+	public static final String CACHE_COLUMN_MAP = "M_columnMap";
+
+	public static final String CACHE_COLUMN_CHILDREN_MAP = "M_childrenMap";
 
 	/**
-	 * 根据key获取配置的中的值
-	 * @param key 键
-	 * @return
+	 * 项目上传文件路径总路口
 	 */
-	public static String getConfig(String key) {
-		String value = map.get(key);
-		if (value == null){
-			value = loader.getProperty(key);
-			map.put(key, value != null ? value : StringUtils.EMPTY);
-		}
-		return value;
+	public static final String PROJECT_FILE_ROOT_PATH ="D://usr/maili";
+
+	/**
+	 * 上传图片基础虚拟路径
+	 */
+	public static final String IMG_BASE_PATH ="/static/image/";
+
+	/**
+	 * 上传百度编辑器基础虚拟路径
+	 */
+	public static final String IMG_BASE_EDITOR ="/static/editor/";
+
+	private Global(){
+
 	}
 }

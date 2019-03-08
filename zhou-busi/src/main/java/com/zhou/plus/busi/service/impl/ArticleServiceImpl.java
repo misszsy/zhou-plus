@@ -1,10 +1,14 @@
 package com.zhou.plus.busi.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.zhou.plus.busi.entity.Article;
 import com.zhou.plus.busi.mapper.ArticleMapper;
 import com.zhou.plus.busi.service.ArticleService;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -17,5 +21,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> implements ArticleService {
 
+    @Override
+    public IPage<Map<String, Object>> pageMaps(IPage<Article> page, Wrapper<Article> queryWrapper) {
+        return baseMapper.selectPageMaps(page,queryWrapper.getEntity());
+    }
 
 }

@@ -1,7 +1,11 @@
 package com.zhou.plus.busi.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.zhou.plus.busi.entity.Article;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.Map;
 
 /**
  * <p>
@@ -13,5 +17,5 @@ import com.zhou.plus.busi.entity.Article;
  */
 public interface ArticleMapper extends BaseMapper<Article> {
 
-
+    IPage<Map<String,Object>> selectPageMaps(IPage page, @Param("article") Article article);
 }
