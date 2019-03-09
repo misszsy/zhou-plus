@@ -88,6 +88,12 @@
             <version>${mybatis.plus.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-typehandlers-jsr310</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
         <!-- jdbc driver -->
         <dependency>
             <groupId>mysql</groupId>

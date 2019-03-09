@@ -43,9 +43,9 @@
                     <el-select v-model="entity.typeId"  placeholder="请选择文章类型">
                         <el-option
                                 v-for="item in children"
-                                :key="item.enName"
+                                :key="item.id"
                                 :label="item.name"
-                                :value="item.enName">
+                                :value="item.id">
                         </el-option>
                     </el-select>
                 </el-form-item>
