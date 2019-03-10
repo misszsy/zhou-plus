@@ -103,7 +103,7 @@
 .indexPart2Tel li .msg{ font-size: 14px; height: 48px; line-height: 24px; overflow: hidden; color: #a4a4a4; }
 .indexPart2Tel li .ico{ position: absolute; right: 10px; top: 50px; width: 10px; height: 10px; background:url(../images/ico1.png) no-repeat;  }
 
-.indexPart3{ padding: 30px 7% 130px; }
+.indexPart3{ padding: 30px 7% 85px; }
 .indexPart3 .bigBox{ overflow: hidden; padding-top: 100px; }
 .indexPart3 .leftDiv{ width: 62%; }
 .indexPart3 .rightDiv{ width: 31%; }
@@ -300,9 +300,11 @@
 
 .pageDown{ text-align: center; padding-bottom: 40px; overflow: hidden;}
 .pageDown li{ display: inline-block; margin: 0 45px;}
-.pageDown li a{ text-align: center; line-height: 58px; color: #353535; font-weight: bold; display: block; width: 256px; height: 58px; background: #f7f7f7; border-bottom: #eaeaea solid 2px; }
+.pageDown li a{ text-align: center; line-height: 48px; color: #353535; font-weight: bold; display: block; width: 156px; height: 48px; background: #f7f7f7; border-bottom: #eaeaea solid 2px; }
 .pageDown li a:hover{ border-bottom:#353535 solid 2px;  }
-.pageDown2 li a{ background: #fff;}
+.pageDown2 li a{    background: #7574fe;
+    color: #fff;
+    font-size: 14px;}
 
 .caseBanBox{ display:none;}
 .caseFlashTel{position:relative; overflow:hidden; max-width:1004px;}
@@ -359,10 +361,10 @@
 .news .list li .more{ position: absolute; left: 50%; top: 50%; margin-top: -24px; width: 223px; height: 48px; margin-left: -111px; }
 .news .list li .more a{ display: block; width: 223px; height: 48px; line-height: 48px; text-align: center; background: url(../images/nimg223Bg.png) no-repeat; font-size: 14px; color: #fff; font-weight: bold;}
 
-.newsBox{ background: #f6f6f6; padding: 80px 0;}
+.newsBox{  padding: 20px 0;}
 .newShow{ padding: 0 125px 80px; }
 .newShow .name{ text-align: center; font-size: 20px; color: #353535; font-weight: bold; padding-bottom: 15px; }
-.newShow .time{ text-align: center; color: #b9b9b9; padding-bottom: 40px; border-bottom: #efefef solid 1px;}
+.newShow .time{ text-align: center; color: #999; padding-bottom: 40px; border-bottom: #efefef solid 1px;}
 .newShow .content{ font-size: 14px; line-height: 36px; color: #727272; padding: 40px 0;}
 .newShow .content img{ width: 100%; }
 .newShow .imgDiv{ padding: 45px 0; }
@@ -391,7 +393,7 @@
 .job .list li .tel{ margin-top: 42px; background: #000; color: #fff; height: 28px; line-height: 28px; text-align: center; width: 600px;}
 .job .list li:hover{-webkit-box-shadow: 0 17px 40px 0 hsla(230,9%,48%,.2); box-shadow: 0 17px 40px 0 hsla(230,9%,48%,.2); -webkit-transform: translate3d(0, -10px, 0); transform: translate3d(0, -10px, 0);}
 
-.companyBox{ padding: 86px 0 50px; }
+.companyBox{ padding: 86px 0 85px; }
 .company .list{ padding-bottom: 10px; }
 .company .list li{ margin-bottom: 52px; background: #f3f3f3; padding: 50px 275px 0 300px; position: relative; height: 150px;}
 .company .list li .leftDiv{ position: absolute; left: 60px; top: 50px; width: 142px; background: url(../images/line5.jpeg) right top no-repeat; min-height: 64px;}

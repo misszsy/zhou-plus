@@ -53,9 +53,6 @@ spring:
         max-idle: 8
         # 最小空闲连接数 默认0
         min-idle: 0
-  jackson:
-    date-format: yyyy-HH-mm HH:mm:ss
-    time-zone: GMT+8
 
 # mybatis-plus 配置
 mybatis-plus:

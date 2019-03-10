@@ -2,10 +2,10 @@ $(function () {
     //--
    /* $('.header').hover(function () {
         $(this).addClass('hov');
-        $('.header .logo img').attr('src', '/images/logo.png');
+        $('.header .logo img').attr('src', '/images/logo3.png');
     }, function () {
         $(this).removeClass('hov');
-        $('.header .logo img').attr('src', '/images/logo.png');
+        $('.header .logo img').attr('src', '/images/logo3.png');
     });*/
     //--
     $('.sNavA').each(function (i) {
@@ -33,7 +33,7 @@ $(function () {
 		   function () {
 		       $(this).animate({ top: '-552px', opacity: '0' }, 500);
 		       $('.header').removeClass('hov');
-		       $('.header .logo img').attr('src', '/images/logo.png');
+		       $('.header .logo img').attr('src', '/images/logo3.png');
 		       $('.sNavA').eq(i).removeClass('on');
 		   }
 		)*/

@@ -13,4 +13,13 @@ public class ArticleController {
     public String index() {
         return "article/index";
     }
+
+
+    /**
+     * 前后端分离，跳转到前端的主页
+     */
+    @GetMapping(value = {"article/detail"})
+    public String detail() {
+        return "article/detail";
+    }
 }

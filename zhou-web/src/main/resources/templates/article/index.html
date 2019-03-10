@@ -1,0 +1,228 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="/common/common :: commonHead(~{::link},~{})">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/loading.default.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/widget/refresh/refresh.default.css}">
+</head>
+
+<body>
+
+<div class="header header2" th:include="/common/header :: commonHeader"></div>
+<div class="headerTel" th:include="/common/header :: commonHeaderTel"></div>
+<div class="navLayer" th:include="/common/nav :: commonNavLayer"></div>
+
+
+<!--导航菜单触发结束-->
+<div class="pageBanner">
+    <div class="imgDiv">
+        <img  th:src="@{/static/images/login.jpg}"  style="height: 580px;" alt="">
+    </div>
+</div>
+<!---->
+<div class="pageBannerTel">
+    <div class="imgDiv">
+        <img  th:src="@{/static/images/login.jpg}"  style="height: 250px;" alt="">
+    </div>
+</div>
+<!---->
+<!--<div class="pageTitleTel">
+    <div class="sideTitleTel">
+        <div class="con"><a href="javascript:;" class="tan">集团资讯</a></div>
+        <div class="sideTitleNav">
+            <div class="box">
+                <ul>
+                    <li><a href="news.html">集团资讯</a></li>
+                    <li><a href="news1.html">行业动态</a></li>
+                    <li><a href="news2.html">最新项目</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>-->
+<!---->
+<div class="pageBox3">
+    <div class="wal">
+        <div class="pageTitle" style="text-align: center">
+            <div class="txt1">Group  introduction</div>
+            <div class="txt2">公司介绍</div>
+        </div>
+        <div class="news">
+            <div class="list">
+                <section id="body">
+                    <div class="ui-refresh" id="divrefresh">
+                        <ul class="data-list">
+
+                            <li>
+                                <div class="box">
+                                    <div class="imgDiv">
+                                        <a th:href="@{/article/detail}"><img th:src="@{/static/images/case02.jpg}"  alt=""></a>
+                                        <div class="hideBox">
+                                            <div class="more"><a th:href="@{/article/detail}">More</a></div>
+                                        </div>
+                                    </div>
+                                    <div class="name"><a th:href="@{/article/detail}">乐活丨激情飞扬 谁“羽”争锋</a></div>
+                                    <div class="content">雨水带走炎炎烈日
+                                        唯运动不负丝丝凉意
+                                        9月1日
+                                        2018年羊城设计联盟“筑和杯”羽毛球公开赛
+                                        在广州大学城体育中心自行车馆拉开序幕
+                                        景森设计参赛队伍斗志昂然
+                                        准备进行一场激烈角逐
+                                    </div>
+                                    <div class="botDiv">
+                                        <div class="time">2018-09-03</div>
+                                        <a href="news_100000019059117.html" class="add">
+                                            <img th:src="@{/static/images/nimg11_1.png}"  alt=""></a>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="box">
+                                    <div class="imgDiv">
+                                        <a th:href="@{/article/detail}"><img th:src="@{/static/images/case02.jpg}" alt=""></a>
+                                        <div class="hideBox">
+                                            <div class="more"><a th:href="@{/article/detail}">More</a></div>
+                                        </div>
+                                    </div>
+                                    <div class="name"><a th:href="@{/article/detail}">力作 | 景森设计EPC标杆项目闪亮登场庐山西海</a></div>
+                                    <div class="content">当人们提起漂流，想到的是从清凉的水中一跃而过，时而轻盈如燕，时而奔腾如虎，时而跌宕起伏，时而刺激欢叫，一个极具人文情怀的漂流景区，怎能少了一场视觉的盛宴？
+
+                                        庐山西海将军峡西海漂流景区这个华丽的舞台，景森设计已隆重登台亮相，在西海漂流景区更添地标建筑，成为景森设计最具标志性的EPC项目。</div>
+                                    <div class="botDiv">
+                                        <div class="time">2018-08-10</div>
+                                        <a th:href="@{/article/detail}" class="add">
+                                            <img th:src="@{/static/images/nimg11_1.png}" alt=""></a>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="box">
+                                    <div class="imgDiv">
+                                        <a th:href="@{/article/detail}"><img th:src="@{/static/images/case02.jpg}" alt=""></a>
+                                        <div class="hideBox">
+                                            <div class="more"><a th:href="@{/article/detail}">More</a></div>
+                                        </div>
+                                    </div>
+                                    <div class="name"><a th:href="@{/article/detail}">聚力 | 融新 · 创变 · 筑未来</a></div>
+                                    <div class="content">2018年7月30日，景森设计“融新·创变·筑未来”年中技术交流会在集团总部多功能厅隆重召开。景森集团参加会议的主要人员有：董事长袁颖，总裁贾涛，技术总裁林少斌以及各分公司、事业部与会代表人员，共计50余人。</div>
+                                    <div class="botDiv">
+                                        <div class="time">2018-08-01</div>
+                                        <a th:href="@{/article/detail}" class="add">
+                                            <img th:src="@{/static/images/nimg11_1.png}" alt=""></a>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="box">
+                                    <div class="imgDiv">
+                                        <a th:href="@{/article/detail}"><img th:src="@{/static/images/case02.jpg}" alt=""></a>
+                                        <div class="hideBox">
+                                            <div class="more"><a th:href="@{/article/detail}">More</a></div>
+                                        </div>
+                                    </div>
+                                    <div class="name"><a th:href="@{/article/detail}">重磅 | 景森设计携手方圆集团加码“城市更新”，让城市“凤凰涅槃”</a></div>
+                                    <div class="content">7月9日下午，景森设计与方圆集团旗下广东方圆城市更新投资有限公司在方圆大厦举行正式的战略合作签约仪式。出席的领导有：方圆集团董事局副主席韩曙光，方圆城市更新产业集团副总裁夏登兵、张国梁，方圆城市更新产业集团佛肇片区总经理陈庆宝，景森集团董事长袁颖，华南理工大学建筑学院城市规划系教授、景森规划研究院高级顾问袁奇峰，景森集团营销总裁张贵福等。</div>
+                                    <div class="botDiv">
+                                        <div class="time">2018-07-11</div>
+                                        <a th:href="@{/article/detail}" class="add">
+                                            <img th:src="@{/static/images/nimg11_1.png}" alt=""></a>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="box">
+                                    <div class="imgDiv">
+                                        <a th:href="@{/article/detail}"><img th:src="@{/static/images/case02.jpg}" alt=""></a>
+                                        <div class="hideBox">
+                                            <div class="more"><a th:href="@{/article/detail}">More</a></div>
+                                        </div>
+                                    </div>
+                                    <div class="name"><a th:href="@{/article/detail}">领航 | 再下一城，景森设计签约上海逾千亩未来农业小镇</a></div>
+                                    <div class="content">近日，景森设计与浦东新区合庆区域综合开发主体——上海合庆建设开发有限公司达成未来农业艺术小镇合作意向，这是景森设计积极响应国家乡村振兴发展战略的又一力作。</div>
+                                    <div class="botDiv">
+                                        <div class="time">2018-07-05</div>
+                                        <a th:href="@{/article/detail}" class="add">
+                                            <img th:src="@{/static/images/nimg11_1.png}" alt=""></a>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="box">
+                                    <div class="imgDiv">
+                                        <a th:href="@{/article/detail}"><img th:src="@{/static/images/case02.jpg}" alt=""></a>
+                                        <div class="hideBox">
+                                            <div class="more"><a th:href="@{/article/detail}">More</a></div>
+                                        </div>
+                                    </div>
+                                    <div class="name"><a th:href="@{/article/detail}">喜讯 | 景森设计荣获龙湖长租公寓概念设计大赛金奖</a></div>
+                                    <div class="content">近日，由龙湖冠寓主办的首届长租公寓概念空间设计大赛，在北京圆满落幕。大赛评选出“空间”、“概念”、“生活”和“趋势”四大类八个奖项。景森设计团队与来自19个省市，53家高校和设计机构的激烈角逐中脱颖而出，夺得最佳概念类金奖！</div>
+                                    <div class="botDiv">
+                                        <div class="time">2018-06-26</div>
+                                        <a th:href="@{/article/detail}" class="add">
+                                            <img th:src="@{/static/images/nimg11_1.png}" alt=""></a>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+                        <div class="clear_f"></div>
+                        <div class="pageMore"><a class="ui-refresh-down"></a></div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div class="pageNum"><a class='aNow'>1</a><a href='news_2.html'>2</a></div>
+    </div>
+</div>
+<div class="footDiv" th:include="/common/footer :: commonFooter"></div>
+
+<script  th:src="@{/static/js/zepto.min.js}"></script>
+<script  th:src="@{/static/js/zepto.extend.js}"></script>
+<script  th:src="@{/static/js/zepto.ui.js}"></script>
+<script  th:src="@{/static/js/widget/refresh.js}"></script>
+<script  th:src="@{/static/js/widget/refresh.lite.js}"></script>
+
+<script type="text/javascript">
+    //加载更多
+    var page = 1;
+    var hasMore = "true";
+    (function () {
+        /*组件初始化js begin*/
+        $('.ui-refresh').refresh({
+            ready: function (dir, type) {
+                var me = this;
+                page++;
+                if (hasMore == "true") {
+                    $.getJSON('/ajax/news.aspx?page=' + page + '&m=120001', function (data) {
+                        var list = $('.data-list'),
+                            html = (function (data) {      //数据渲染
+                                var liArr = [];
+                                $.each(data, function () {
+                                    liArr.push(this.html);
+
+                                    hasMore = this.hasMore;
+
+                                });
+                                return liArr.join('');
+                            })(data);
+
+                        list[dir == 'up' ? 'prepend' : 'append'](html);
+                        me.afterDataLoading();
+                        if (hasMore == "false") {
+                            $(".ui-refresh-down").hide();
+                            $(".diva1").hide();
+                        }
+                    });
+                }
+            }
+        });
+        /*组件初始化js end*/
+    })();
+</script>
+</body>
+</html>

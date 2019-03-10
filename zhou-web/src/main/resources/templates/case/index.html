@@ -6,7 +6,7 @@
 </head>
 <body>
 <div class="header header2" th:include="/common/header :: commonHeader"></div>
-<div class="headerTel headerTel2" th:include="/common/header :: commonHeaderTel"></div>
+<div class="headerTel" th:include="/common/header :: commonHeaderTel"></div>
 <div class="navLayer" th:include="/common/nav :: commonNavLayer"></div>
 
 <!--导航菜单触发结束-->
@@ -23,15 +23,15 @@
 </div>
 <!---->
 <div class="pageBannerTel">
-    <div class="txtDiv">
-        <div class="txt2"><em></em>成功案例</div>
+    <div class="imgDiv">
+        <img  th:src="@{/static/images/login.jpg}"  style="height: 250px;" alt="">
     </div>
 </div>
 
 <div class="caseBox">
     <div class="pageTitle" style="text-align: center">
         <div class="txt1">Gallery</div>
-        <div class="txt2">案例展示</div>
+        <div class="txt2">成功案例</div>
     </div>
     <div class="case">
         <div class="list">

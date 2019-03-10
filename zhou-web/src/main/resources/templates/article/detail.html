@@ -1,0 +1,50 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="/common/common :: commonHead(~{},~{})">
+</head>
+<body>
+<div class="header" th:include="/common/header :: commonHeader"></div>
+<div class="headerTel" th:include="/common/header :: commonHeaderTel"></div>
+<div class="navLayer" th:include="/common/nav :: commonNavLayer"></div>
+
+<!--导航菜单触发结束-->
+<div class="pageBanner">
+    <div class="imgDiv">
+        <img  th:src="@{/static/images/login.jpg}"  style="height: 580px;" alt="">
+    </div>
+</div>
+<!---->
+<div class="pageBannerTel">
+    <div class="imgDiv">
+        <img  th:src="@{/static/images/login.jpg}"  style="height: 250px;" alt="">
+    </div>
+    <div class="txtDiv">
+        <div class="txt1">News Center</div>
+        <div class="txt2"><em></em>新闻中心</div>
+    </div>
+</div>
+<div class="pageBox4">
+    <div class="wal">
+        <div class="pageNow"><a href="../index.html">首页</a> > <a href="news.html">新闻中心</a> > 集团资讯</div>
+        <div class="newsBox">
+            <div class="newShow">
+                <div class="name">景森“佰利庄园”项目荣获广东省优秀工程勘察设计住宅与住宅小区三等奖</div>
+                <div class="time"><span style="margin-right: 40px">日期：2018-05-16 12:22</span><span>来源：冠世纪实业有限公司</span></div>
+                <div class="content">
+                    <p> &nbsp; &nbsp;11月30日上午，广东省工程勘察设计行业协会四届三次会员代表大会暨30周年纪念活动在越秀宾馆隆重召开。伴随着改革开放和广东的先行先试，广东省工程勘察设计行业协会迄今已走过了三十年的光辉历程。</p><div class="imgDiv"><img th:src="@{/static/images/case02.jpg}" ></div><p> &nbsp; &nbsp;三十年来，在中国勘察设计协会、省住建厅、省民政厅的正确领导下，在全体会员单位的共同努力下，省工程勘察设计行业协会着眼全省住房城乡建设大局，围绕勘察设计行业中心工作的热点和难点问题，积极做好“双向服务”，为确保勘察设计质量、推进行业科技进步、提升勘察设计水平、促进行业做大做强、推动住房城乡建设事业发展做出了积极贡献。<br> &nbsp; &nbsp;<br> &nbsp; &nbsp;大会由广东省住房和城乡建设厅副厅长蔡瀛先生，香港建筑师注册管理委员会主席、香港建筑师学会义务秘书长戚务诚先生分别致辞。华南理工大学建筑设计研究院院长、中国工程院院士、全国勘察设计大师何镜堂先生和中国工程院院士，全国勘察设计大师容柏生先生分别向获得协会30周年工作特别贡献奖的16家单位进行颁奖。 &nbsp;</p>
+                </div>
+                <div class="h10"></div>
+            </div>
+            <div class="pageDown pageDown2">
+                <ul>
+                    <li><a href="news_100000011345987.html">上一篇：←</a></li>
+                    <li><a href="news.html">返回列表</a></li>
+                    <li><a href="news_100000002935758.html">下一篇： →</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footDiv" th:include="/common/footer :: commonFooter"></div>
+</body>
+</html>

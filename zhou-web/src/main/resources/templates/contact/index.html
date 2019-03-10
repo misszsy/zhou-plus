@@ -1,0 +1,69 @@
+
+
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="/common/common :: commonHead(~{},~{})"></head>
+<body>
+
+<div class="header" th:include="/common/header :: commonHeader"></div>
+<div class="headerTel" th:include="/common/header :: commonHeaderTel"></div>
+<div class="navLayer" th:include="/common/nav :: commonNavLayer"></div>
+
+<!--导航菜单触发结束-->
+<div class="pageBanner">
+    <div class="imgDiv">
+        <img  th:src="@{/static/images/login.jpg}"  style="height: 580px;" alt="">
+    </div>
+    <!--<div class="contentBox">
+        <div class="txtDiv fl">
+            <div class="txt1">Contact Us</div>
+            <div class="txt2"><em></em>联系我们</div>
+        </div>
+        <div class="pageNav fr">
+            <div class="list">
+                <ul>
+                    <li><a href="company.html" class="aNow">联系我们</a></li>
+                    &lt;!&ndash; <li><a href="lyb.html">在线留言</a></li> &ndash;&gt;
+                </ul>
+            </div>
+        </div>
+    </div>-->
+</div>
+<!---->
+<div class="pageBannerTel">
+    <div class="imgDiv">
+        <img  th:src="@{/static/images/login.jpg}"  style="height: 250px;" alt="">
+    </div>
+</div>
+<!---->
+<!---->
+<div class="companyBox">
+    <div class="pageTitle" style="text-align: center">
+        <div class="txt1">Contact us</div>
+        <div class="txt2">联系我们</div>
+    </div>
+    <div class="wal">
+        <div class="company">
+            <div class="list">
+                <ul>
+                    <li>
+                        <div class="msgList">
+                            <dl>
+                                <dd><h1>深圳市冠世纪实业有限公司</h1></dd>
+                                <dd><em>电话：</em>0755-86701867</dd>
+                                <dd><em>公司地址：</em>深圳市南山区中山园路1001号TCL科学园区C9栋1层B单位102号</dd>
+                            </dl>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <hr style="border-top: 1px solid #eee;margin-bottom: 50px;">
+            <div class="list" style="margin-top: 10px;">
+                <img  th:src="@{/static/images/address.png}"   alt="">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="footDiv" th:include="/common/footer :: commonFooter"></div>
+</body>
+</html>
