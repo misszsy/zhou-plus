@@ -8,7 +8,7 @@ public class ContactController {
 
 
     /**
-     * 前后端分离，跳转到前端的主页
+     * 联系我们
      */
     @GetMapping(value = {"contact"})
     public String index() {

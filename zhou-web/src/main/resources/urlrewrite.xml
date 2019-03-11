@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE urlrewrite PUBLIC "-//tuckey.org//DTD UrlRewrite 4.0//EN"
+        "http://www.tuckey.org/res/dtds/urlrewrite4.0.dtd">
+
+<urlrewrite>
+    <!-- 首页 -->
+    <rule>
+        <from>^/(\w+)\.html$</from>
+        <to>/$1</to>
+    </rule>
+
+    <!-- 文章详情页 -->
+    <rule>
+        <from>^/article/detail_(\w+)\.html$</from>
+        <to>/article/detail/$1/</to>
+    </rule>
+
+    <!-- 文章详情页 -->
+    <rule>
+        <from>^/case/(\w+)\.html$</from>
+        <to>/case/detail/$1</to>
+    </rule>
+</urlrewrite>

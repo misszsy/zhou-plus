@@ -1,6 +1,12 @@
 package com.zhou.plus.web.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.zhou.plus.busi.entity.Article;
+import com.zhou.plus.busi.service.ArticleService;
+import com.zhou.plus.framework.config.Global;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -11,12 +17,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IndexController {
 
+    @Autowired
+    private ArticleService articleService;
 
     /**
-     * 前后端分离，跳转到前端的主页
+     *  首页
      */
     @GetMapping(value = {"/","index"})
-    public String index() {
+    public String index(Model model) {
+        model.addAttribute("indexMap", articleService.getArticleIndexMap());
+        model.addAttribute("article",articleService.getOne(new QueryWrapper<Article>().lambda()
+                                                                .eq(Article::getDisabled, Global.FALSE)
+                                                                .eq(Article::getRecommend,Global.TURE)
+                                                                .eq(Article::getStatus,Global.TURE)
+                                                                .orderByDesc(Article::getPublishDate).last("limit 1")));
         return "index";
     }
 }

@@ -6,6 +6,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.zhou.plus.framework.utils.SpringContextHolder;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -16,8 +17,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Configuration
 @ComponentScan(basePackages = {"com.zhou.plus.busi"})
@@ -65,4 +65,17 @@ public class WebConfig implements WebMvcConfigurer {
     public SpringContextHolder springContextHolder() {
              return new SpringContextHolder();
         }
+
+
+    @Bean
+    public FilterRegistrationBean urlRewrite(MyUrlRewriteFilter urlRewriteFilter) {
+        FilterRegistrationBean registration =
+                new FilterRegistrationBean<>(urlRewriteFilter);
+        registration.setUrlPatterns(Collections.singletonList("/*"));
+        Map initParam = new HashMap<>();
+        initParam.put("confPath", "urlrewirte.xml");
+        initParam.put("infoLevel", "INFO");
+        registration.setInitParameters(initParam);
+        return registration;
     }
+}

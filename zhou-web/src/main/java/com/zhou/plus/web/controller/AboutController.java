@@ -8,7 +8,7 @@ public class AboutController {
 
 
     /**
-     * 前后端分离，跳转到前端的主页
+     * 关于我们
      */
     @GetMapping(value = {"about"})
     public String index() {

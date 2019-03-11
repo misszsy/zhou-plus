@@ -8,7 +8,9 @@ import com.zhou.plus.busi.mapper.ArticleMapper;
 import com.zhou.plus.busi.service.ArticleService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -26,4 +28,15 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
         return baseMapper.selectPageMaps(page,queryWrapper.getEntity());
     }
 
+
+    /**
+     * 获取新闻资讯和成功案例
+     * @return
+     */
+    @Override
+    public Map<String, List<Article>> getArticleIndexMap() {
+        Map<String,List<Article>> mapList=baseMapper.getArticleIndexList()
+                .stream().collect(Collectors.groupingBy(Article::getTypeId));
+        return mapList;
+    }
 }
