@@ -179,8 +179,8 @@ transition:All 5s ease;
 
 
 .pageBox{ padding:85px 0 85px; position: relative;}
-.pageBox2{ padding: 80px 0 130px; }
-.pageBox3{  padding-bottom: 85px;}
+.pageBox2{ padding: 80px 0 85px; }
+.pageBox3{  padding: 85px 0 85px;}
 .pageBox4{  padding-bottom: 60px;}
 .pageTitle .txt1{ font-size: 22px; color: #000; font-weight: bold; line-height: 40px;}
 .pageTitle .txt2{ font-size: 20px; color: #2f343c; padding:10px 0 28px; position: relative; }

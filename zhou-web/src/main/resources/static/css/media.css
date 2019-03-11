@@ -30,7 +30,7 @@
 	.indexTitle .txt1{ font-size: 30px;}
 	.indexTitle .txt2{ font-size: 16px; height: 50px; }
 	.indexTitle .more{ display: none;}
-	.indexPart1{ padding: 65px 10px 50px; }
+	.indexPart1{ padding: 40px 10px 20px; }
 	.indexPart1 .list{ padding-top: 60px;}
 	.indexPart1 .list li{ float: left; width: 33.33%; }
 	.indexPart1 .list li a{ height: 260px;}
@@ -41,8 +41,8 @@
 	.indexPart1 .list li .name2 em{ left: 20%;}
 	.indexPart1 .list li:hover img{ display: none; }
 	.indexPart1 .list li:hover .img1{ display: inline-block; }
-	.indexPart3{ padding: 65px 10px 60px; }
-	.indexPart3 .bigBox{ padding-top: 50px; }
+	.indexPart3{ padding: 40px 10px 60px; }
+	.indexPart3 .bigBox{ padding-top: 20px; }
 	.indexPart3 .leftDiv{ width: 100%; }
 	.indexPart3 .rightDiv{ width: 100%; }
 	.indexPart3 .leftDiv .detail{ padding-left: 0px; height: auto; border-bottom: #f2f2f2 solid 1px;}
@@ -94,12 +94,12 @@
 	.indexPart5 .box2 .ltxt2{ padding-top: 15px;}
 	.indexPart5 .box2 .btnDiv{ padding-top: 25px;}
 	.indexPart5 .box2 .btnDiv a{ width: 115px; height: 30px; line-height: 30px;}
-	.pageBox, .pageBox2{ padding:65px 0;}
-	.pageBox3{ padding-bottom: 70px; }
+	.pageBox, .pageBox2{ padding:40px 0;}
+	.pageBox3{ padding:40px 0 10px; }
 	.pageTitle{ padding-left: 10px; }
 	.pageTitle .txt1{ font-size: 30px; line-height: 30px;}
 	.pageTitle .txt2{ font-size: 16px; padding:10px 0 20px; }
-	.about{ padding: 45px 10px 20px;}
+	.about{ padding: 30px 10px 20px;}
 	.about .content{ width: 100%; line-height: 26px;}
 	.about .year{ top: 52px; left: -60px;}
 	.about .year img{ width: 120px; }
@@ -213,14 +213,14 @@
 	.layoutShow .imgDiv img{ width: 100%; }
 	.layoutShow .rightDiv{ width: 100%; padding-top: 25px;}
 	.layoutShow .content{ line-height: 26px; }
-	.news{ padding: 40px 10px; }
+	.news{ padding: 30px 10px; }
 	.news .detail{ padding-left: 0px; height: auto; padding-bottom: 30px;}
 	.news .detail .imgDiv{ position:relative; }
 	.news .detail .imgDiv img{ width: 100%; }
 	.news .detail .name{ padding-top: 15px; height:52px; line-height: 26px; font-size: 18px; }
 	.news .detail .content{ padding-top: 20px; line-height: 24px; height: 72px;}
 	.news .detail .time{ padding-top: 35px;}
-	.news .list{ padding-top: 45px;}
+	.news .list{ padding-top: 0px;}
 	.news .list ul{ margin-right: 0px; }
 	.news .list li{ width: 100%; margin-bottom: 30px;}
 	.news .list li .box{ margin-right: 0px; }
@@ -230,7 +230,7 @@
 	.news .list li .add{ top: 15px;}
 	.pageBox4{ padding: 40px 0; }
 	.newsBox{ padding: 0 10px 30px;}
-	.newShow{ padding: 30px 0 50px; }
+	.newShow{ padding: 0px 0 50px; }
 	.newShow .name{ font-size: 18px;}
 	.newShow .time{ padding-bottom: 20px;}
 	.newShow .content{ line-height: 26px; padding: 30px 0;}
@@ -253,7 +253,7 @@
 	.job .list li a{ right: 15px; bottom: 20px;}
 	.job .list li .tel{ margin-top: 30px; height: auto; line-height: 28px; text-align: left; width: auto; padding: 5px 15px;}
 	.companyBox{ padding: 40px 0 30px; }
-	.company .list{ padding: 0 10px 30px; }
+	.company .list{ padding: 30px 10px 30px; }
 	.company .list li{ margin-bottom: 20px; padding: 25px 15px 30px 15px; height: auto;}
 	.company .list li .leftDiv{ position: relative; left: 0px; top: 0px; width: auto; background: none; min-height: 30px; padding-bottom: 20px;}
 	.company .list li .name{ width: 100%; font-size: 18px; line-height: 26px; padding-bottom: 20px;}
@@ -278,7 +278,7 @@
 	.lyb .form li em{ color: #333; }
 	.lyb .btnDiv{ padding: 45px 0 0 0; width: 100%;}
 	.lyb .btnDiv a{ width: auto;  border:#1a1a1a solid 2px; color: #1a1a1a;}
-	.caseBox{ padding: 40px 0 70px; }
+	.caseBox{ padding: 40px 0 0px; }
 	.selectBox{ border-left:none; height: auto; margin-top: 35px; padding: 0 10px; }
 	.select{ width: 100%; height: 50px; margin-bottom: 10px;}
 	.select dt{height: 48px;line-height:48px; border: 1px solid #000; border-left:1px solid #000; background-size: 26px;}

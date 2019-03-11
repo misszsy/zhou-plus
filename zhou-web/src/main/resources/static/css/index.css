@@ -59,7 +59,7 @@
 .indexTitle .more{ position: absolute; right: 0px; top: 20px; width: 134px; height: 35px; text-align: center; line-height: 35px; display: block; background: #5a5a5a; font-size: 14px; color: #fff; font-weight: bold;}
 .indexTitle .more:hover{ background: #1b1b1b;}
 
-.indexPart1{ padding: 136px 7% 0px; }
+.indexPart1{ padding: 100px 10% 0px; }
 .indexPart1 .list{  overflow: hidden;}
 .indexPart1 .list li{ float: left; width: 11.11%; }
 .indexPart1 .list li a{ display: block; width: 100%; height: 320px; padding-bottom: 6px; position: relative;}
@@ -103,8 +103,8 @@
 .indexPart2Tel li .msg{ font-size: 14px; height: 48px; line-height: 24px; overflow: hidden; color: #a4a4a4; }
 .indexPart2Tel li .ico{ position: absolute; right: 10px; top: 50px; width: 10px; height: 10px; background:url(../images/ico1.png) no-repeat;  }
 
-.indexPart3{ padding: 30px 7% 85px; }
-.indexPart3 .bigBox{ overflow: hidden; padding-top: 100px; }
+.indexPart3{ padding: 30px 10% 85px; }
+.indexPart3 .bigBox{ overflow: hidden; padding-top: 50px; }
 .indexPart3 .leftDiv{ width: 62%; }
 .indexPart3 .rightDiv{ width: 31%; }
 .indexPart3 .leftDiv .detail{ padding-left: 58%; height: 387px; position: relative;}
@@ -344,7 +344,7 @@
 .news .detail .name a{ color: #000; }
 .news .detail .content{ padding-top: 40px; line-height: 26px; height: 78px; overflow: hidden; color: #888;}
 .news .detail .time{ padding-top: 70px; color: #bfbfbf; }
-.news .list{ padding-top: 98px; overflow: hidden;}
+.news .list{ padding-top: 50px; overflow: hidden;}
 .news .list ul{ margin-right: -72px; }
 .news .list li{ float: left; width: 33.33%; margin-bottom: 120px;}
 .news .list li .box{ margin-right: 72px; }

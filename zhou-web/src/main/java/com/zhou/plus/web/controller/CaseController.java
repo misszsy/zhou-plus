@@ -13,4 +13,13 @@ public class CaseController {
     public String index() {
         return "case/index";
     }
+
+
+    /**
+     * 案例详情
+     */
+    @GetMapping(value = {"case/detail"})
+    public String detail() {
+        return "case/detail";
+    }
 }

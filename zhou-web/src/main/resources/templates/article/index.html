@@ -43,8 +43,8 @@
 <div class="pageBox3">
     <div class="wal">
         <div class="pageTitle" style="text-align: center">
-            <div class="txt1">Group  introduction</div>
-            <div class="txt2">公司介绍</div>
+            <div class="txt1">News information</div>
+            <div class="txt2">新闻资讯</div>
         </div>
         <div class="news">
             <div class="list">
@@ -171,12 +171,12 @@
 
                         </ul>
                         <div class="clear_f"></div>
-                        <div class="pageMore"><a class="ui-refresh-down"></a></div>
+                        <div class="pageMore"><a class="ui-refresh-down" th:href="@{/article}">加载更多</a></div>
                     </div>
                 </section>
             </div>
         </div>
-        <div class="pageNum"><a class='aNow'>1</a><a href='news_2.html'>2</a></div>
+        <div class="pageNum"><a class='aNow' th:href="@{/article}">1</a></div>
     </div>
 </div>
 <div class="footDiv" th:include="/common/footer :: commonFooter"></div>
