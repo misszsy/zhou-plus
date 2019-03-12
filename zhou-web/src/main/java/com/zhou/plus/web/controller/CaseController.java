@@ -1,6 +1,8 @@
 package com.zhou.plus.web.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhou.plus.busi.entity.Article;
 import com.zhou.plus.busi.service.ArticleService;
 import com.zhou.plus.framework.config.Global;
@@ -9,8 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-
-import java.util.List;
 
 @Controller
 public class CaseController {
@@ -23,13 +23,13 @@ public class CaseController {
      */
     @GetMapping(value = {"case"})
     public String index(Model model) {
-      List<Article> articles=articleService.list(new QueryWrapper<Article>().lambda()
-                                                                            .eq(Article::getDisabled, Global.FALSE)
-                                                                            .eq(Article::getStatus,Global.TURE)
-                                                                            .eq(Article::getColumnId,"3")
-                                                                            .orderByDesc(Article::getPublishDate));
-      model.addAttribute("articles",articles);
-      return "case/index";
+        IPage<Article> page=articleService.page(new Page<>(1,6),new QueryWrapper<Article>().lambda()
+                                                                                        .eq(Article::getDisabled, Global.FALSE)
+                                                                                        .eq(Article::getStatus,Global.TURE)
+                                                                                        .eq(Article::getColumnId,"3")
+                                                                                         .orderByDesc(Article::getPublishDate));
+        model.addAttribute("page",page);
+        return "case/index";
     }
 
 

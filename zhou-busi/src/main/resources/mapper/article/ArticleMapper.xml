@@ -70,6 +70,7 @@
                 a.picture as "picture",
                 a.title as "title",
                 a.publish_Date  AS publishDate,
+                a.description  AS description,
                 "case"  as "typeId"
             FROM article a
             WHERE a.disabled='0'  AND a.status='1' AND a.column_id =  '3'
@@ -80,6 +81,7 @@
                 a.picture as "picture",
                 a.title as "title",
                 a.publish_Date  AS publishDate,
+                a.description  AS description,
                 "news" as "typeId"
             FROM article a
             WHERE a.disabled='0'  AND a.status='1' AND a.column_id =  '4'

@@ -1,6 +1,8 @@
 package com.zhou.plus.web.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.zhou.plus.busi.entity.Article;
 import com.zhou.plus.busi.service.ArticleService;
 import com.zhou.plus.framework.config.Global;
@@ -23,13 +25,13 @@ public class ArticleController {
      * 新闻资讯
      */
     @GetMapping(value = {"article"})
-    public String index(Model model) {
-        List<Article> articles=articleService.list(new QueryWrapper<Article>().lambda()
-                                                                              .eq(Article::getDisabled, Global.FALSE)
-                                                                              .eq(Article::getStatus,Global.TURE)
-                                                                              .eq(Article::getColumnId,"4")
-                                                                              .orderByDesc(Article::getPublishDate));
-        model.addAttribute("articles",articles);
+    public String index(Model model, Integer pageNum, Integer pageSize) {
+        IPage<Article> page=articleService.page(new Page<>(pageNum,pageSize),new QueryWrapper<Article>().lambda()
+                                                                                                          .eq(Article::getDisabled, Global.FALSE)
+                                                                                                          .eq(Article::getStatus,Global.TURE)
+                                                                                                          .eq(Article::getColumnId,"4")
+                                                                                                          .orderByDesc(Article::getPublishDate));
+        model.addAttribute("page",page);
         return "article/index";
     }
 

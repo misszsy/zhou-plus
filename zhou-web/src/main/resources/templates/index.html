@@ -29,7 +29,7 @@
                     </a>
                 </div>
                 <div class="swiper-slide" style="background: url(../static/images/backg.jpg) 50% 50% no-repeat; background-size: cover;">
-                    <a href="about/culture.html">
+                    <a href="javascript:void(0)">
                         
                     </a>
                 </div>
@@ -149,9 +149,8 @@
                                 <div class="more"><a th:href="@{/article/detail_}+${article.id}+'.html'">更多</a></div>
                             </div>
                         </div>
-                        <div class="name"><a th:href="@{/article/detail_}+${article.id}+'.html'">乐活丨激情飞扬 谁“羽”争锋</a></div>
-                        <div class="content"><em></em>雨水带走炎炎烈日唯运动不负丝丝凉意9月1日2018年羊城设计联盟“筑和杯”羽毛球公开赛
-                        </div>
+                        <div class="name"><a th:href="@{/article/detail_}+${article.id}+'.html'" th:text="${article.title}"></a></div>
+                        <div class="content"  th:text="${article.description}"><em></em></div>
                     </div>
                 </div>
 

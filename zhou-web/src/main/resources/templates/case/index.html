@@ -38,105 +38,20 @@
             <section id="body">
                 <div class="ui-refresh" id="divrefresh">
                     <ul class="data-list">
-                        <li>
+                        <li th:each="article,stat:${page.records}" th:class="${stat.index==2 || stat.index==5}?'li02':''">
                             <div class="box">
                                 <div class="imgDiv">
-                                    <img th:src="@{/static/images/case02.jpg}" alt="">
+                                    <img  th:src="${article.picture}" alt="">
                                 </div>
                                 <div class="hideBox" >
-                                    <a href="case_detail.html" th:href="@{/case/detail}">
-                                        <div class="name1">冠世纪实业</div>
+                                    <a href="case_detail.html" th:href="@{/case/detail_}+${article.id}+'.html'"  >
+                                        <div class="name1" th:text="${article.title}">冠世纪实业</div>
                                         <div class="name2">
                                         </div>
                                     </a>
                                 </div>
                             </div>
                         </li>
-
-                        <li>
-                            <div class="box">
-                                <div class="imgDiv">
-                                    <img th:src="@{/static/images/case02.jpg}" alt="">
-                                </div>
-                                <div class="hideBox">
-                                    <a href="case_detail.html" th:href="@{/case/detail}">
-                                        <div class="name1">冠世纪实业</div>
-                                        <div class="name2">
-
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="li02">
-
-                            <div class="box">
-                                <div class="imgDiv">
-                                    <img th:src="@{/static/images/case02.jpg}" alt="">
-                                </div>
-                                <div class="hideBox">
-                                    <a href="case_detail.html" th:href="@{/case/detail}">
-                                        <div class="name1">冠世纪实业</div>
-                                        <div class="name2">
-
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li>
-
-                            <div class="box">
-                                <div class="imgDiv">
-                                    <img th:src="@{/static/images/case02.jpg}" alt="">
-                                </div>
-                                <div class="hideBox">
-                                    <a href="case_detail.html" th:href="@{/case/detail}">
-                                        <div class="name1">冠世纪实业</div>
-                                        <div class="name2">
-
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li>
-
-                            <div class="box">
-                                <div class="imgDiv">
-                                    <img th:src="@{/static/images/case02.jpg}" alt="">
-                                </div>
-                                <div class="hideBox">
-                                    <a href="case_detail.html" th:href="@{/case/detail}">
-                                        <div class="name1">冠世纪实业</div>
-                                        <div class="name2">
-
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="li02">
-
-                            <div class="box">
-                                <div class="imgDiv">
-                                    <img th:src="@{/static/images/case02.jpg}" alt="">
-                                </div>
-                                <div class="hideBox">
-                                    <a href="case_detail.html" th:href="@{/case/detail}">
-                                        <div class="name1">冠世纪实业</div>
-                                        <div class="name2">
-
-                                        </div>
-                                    </a>
-                                </div>
-                            </div>
-                        </li>
-
                     </ul>
                     <div class="clear_f"></div>
                     <div class="pageMore"><a class="ui-refresh-down" th:href="@{/case}">加载更多</a></div>
