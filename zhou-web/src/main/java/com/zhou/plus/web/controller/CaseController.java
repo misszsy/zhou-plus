@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CaseController {
@@ -22,8 +23,8 @@ public class CaseController {
      * 成功案例
      */
     @GetMapping(value = {"case"})
-    public String index(Model model) {
-        IPage<Article> page=articleService.page(new Page<>(1,6),new QueryWrapper<Article>().lambda()
+    public String index(Model model,@RequestParam(required = false,defaultValue = "1") Integer pageNum) {
+        IPage<Article> page=articleService.page(new Page<>(pageNum,6),new QueryWrapper<Article>().lambda()
                                                                                         .eq(Article::getDisabled, Global.FALSE)
                                                                                         .eq(Article::getStatus,Global.TURE)
                                                                                         .eq(Article::getColumnId,"3")

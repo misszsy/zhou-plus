@@ -9,10 +9,21 @@
         <to>/$1</to>
     </rule>
 
+    <rule>
+        <from>^/case/list_(\w+)\.html$</from>
+        <to>/case?pageNum=$1</to>
+    </rule>
+
+
+    <rule>
+        <from>^/article/list_(\w+)\.html$</from>
+        <to>/article?pageNum=$1</to>
+    </rule>
+
     <!-- 文章详情页 -->
     <rule>
-        <from>^/article/detail_(\w+)\.html$</from>
-        <to>/article/detail/$1/</to>
+        <from>^/article/(\w+)\.html$</from>
+        <to>/article/detail/$1</to>
     </rule>
 
     <!-- 文章详情页 -->

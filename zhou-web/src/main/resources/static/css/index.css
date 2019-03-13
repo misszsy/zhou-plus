@@ -346,17 +346,17 @@
 .news .detail .time{ padding-top: 70px; color: #bfbfbf; }
 .news .list{ padding-top: 50px; overflow: hidden;}
 .news .list ul{ margin-right: -72px; }
-.news .list li{ float: left; width: 33.33%; margin-bottom: 120px;}
+.news .list li{ float: left; width: 33.33%; margin-bottom: 80px;}
 .news .list li .box{ margin-right: 72px; }
 .news .list li .imgDiv{ position: relative; }
-.news .list li .imgDiv img{ width: 100%; }
-.news .list li .name{ padding-top: 40px; height: 38px; line-height: 38px; font-size: 16px; font-weight: bold; overflow: hidden;}
+.news .list li .imgDiv img{ width: 100%; height: 240px;}
+.news .list li .name{ padding-top: 20px; height: 38px; line-height: 38px; font-size: 16px; font-weight: bold; overflow: hidden;}
 .news .list li .name a{ color: #353535; }
 .news .list li .name a:hover{ text-decoration: underline; }
 .news .list li .content{ padding-top: 20px; line-height: 28px; height: 56px; overflow: hidden; color: #949494; }
-.news .list li .botDiv{ padding-top: 25px; position: relative;}
+.news .list li .botDiv{ padding-top: 15px; position: relative;}
 .news .list li .time{ color: #bfbfbf; }
-.news .list li .add{ position: absolute; right: 0px; top: 25px; width: 11px; height: 11px;}
+.news .list li .add{ position: absolute; right: 0px; top: 15px; width: 11px; height: 11px;}
 .news .list li .hideBox{ position: absolute; left: 0px; top: 0px; display: none; width: 100%; z-index: 2; background: url(../images/bg2.png) repeat;}
 .news .list li .more{ position: absolute; left: 50%; top: 50%; margin-top: -24px; width: 223px; height: 48px; margin-left: -111px; }
 .news .list li .more a{ display: block; width: 223px; height: 48px; line-height: 48px; text-align: center; background: url(../images/nimg223Bg.png) no-repeat; font-size: 14px; color: #fff; font-weight: bold;}
@@ -452,7 +452,7 @@
 .case .list{ padding-top: 50px; overflow: hidden; }
 .case .list li{ float: left; width: 30%; margin-bottom: 4.7%; margin-right: 5%;}
 .case .list .li01{ width: 65%; }
-.case .list li .imgDiv img{ width: 100%; }
+.case .list li .imgDiv img{ width: 100%; height: 340px; }
 .case .list .li02{ margin-right: 0px;}
 .case .list li .box{ position: relative;}
 .case .list li .hideBox{ display: none; position: absolute; left:0px; top: 0px; width: 100%; height: 100%; z-index: 2; background: url(../images/bg2.png) repeat;}

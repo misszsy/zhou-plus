@@ -292,13 +292,14 @@
 
 	.case{ padding-bottom: 30px; }
 	.case .list{ padding: 30px 10px 0; }
-	.case .list li{ float: left; width: 100%; margin-bottom: 10px; margin-right: 0;}
+	.case .list li{ float: left; width: 100%; margin-bottom: 20px; margin-right: 0;}
 	.case .list .li01{ width: 100%; }
 	.case .list .li02{ margin-right: 0px;}
 	.case .list li .name1{ left: 10%; width: 80%; top: 31%; height: 40px; line-height: 40px; font-size: 18px;}
 	.case .list li .name2{ left: 10%; top: 50%;}
 	.case .list .li01 .name1{ font-size: 18px; height: 40px; line-height: 40px; font-weight: normal;}
 	.case .list .li01 .name2{ top: 50%; font-size: 12px;}
+	.case .list li .imgDiv img{ height: 100%;}
 
     .video{ padding:30px 10px 0;}
 	.video .list ul{ margin-right:-10px;}
