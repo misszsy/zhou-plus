@@ -21,4 +21,6 @@ public interface ArticleMapper extends BaseMapper<Article> {
     IPage<Map<String,Object>> selectPageMaps(IPage page, @Param("article") Article article);
 
     List<Article> getArticleIndexList();
+
+    Map<String,Object> getArticleMap(@Param("id") String id);
 }

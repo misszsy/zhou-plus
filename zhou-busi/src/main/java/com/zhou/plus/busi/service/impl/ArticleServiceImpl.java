@@ -39,4 +39,15 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
                 .stream().collect(Collectors.groupingBy(Article::getTypeId));
         return mapList;
     }
+
+
+    /**
+     * 根据id查询文章详情上下篇
+     * @param queryWrapper
+     * @return
+     */
+    @Override
+    public Map<String, Object> getMap(Wrapper<Article> queryWrapper) {
+        return baseMapper.getArticleMap(queryWrapper.getEntity().getId());
+    }
 }

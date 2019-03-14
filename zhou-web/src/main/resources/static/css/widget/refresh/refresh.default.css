@@ -1,8 +1,6 @@
 .ui-refresh .ui-refresh-up, .ui-refresh .ui-refresh-down
 {
-	background: url("/image/line.gif") repeat-x scroll center top rgba(0, 0, 0, 0);
-	font-size: 12px;
-	color: #da251c;
+	font-size: 14px;
 	text-align: center;
 	margin-top: 10px;
 }

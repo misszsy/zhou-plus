@@ -58,21 +58,26 @@
                                         <img th:if="${article.picture ==null || article.picture==''}"  th:src="@{/static/images/case02.jpg}"  alt="">
                                         </a>
                                         <div class="hideBox">
-                                            <div class="more"><a th:href="@{/article/detail_}+${article.id}+'.html'">更多</a></div>
+                                            <div class="more"><a th:href="@{/article/}+${article.id}+'.html'">更多</a></div>
                                         </div>
                                     </div>
-                                    <div class="name"><a th:href="@{/article/detail_}+${article.id}+'.html'"  th:text="${article.title}"></a></div>
+                                    <div class="name"><a th:href="@{/article/}+${article.id}+'.html'"  th:text="${article.title}"></a></div>
                                     <div class="content" th:text="${article.description}"> </div>
                                     <div class="botDiv">
                                         <div class="time" th:text="${#temporals.format(article.publishDate, 'yyyy-MM-dd HH:mm')}"></div>
-                                        <a th:href="@{/article/detail_}+${article.id}+'.html'" class="add">
+                                        <a th:href="@{/article/}+${article.id}+'.html'" class="add">
                                             <img th:src="@{/static/images/nimg11_1.png}"  alt=""></a>
                                     </div>
                                 </div>
                             </li>
                         </ul>
                         <div class="clear_f"></div>
-                        <div class="pageMore"><a class="ui-refresh-down" th:href="@{/article}">加载更多</a></div>
+                        <div class="pageMore">
+                            <a class="ui-refresh-down">
+                                 <span class="ui-refresh-icon"></span>
+                                 <span class="ui-refresh-label">加载更多&nbsp;</span>
+                            </a>
+                        </div>
                     </div>
                 </section>
             </div>
@@ -92,43 +97,42 @@
 <script  th:src="@{/static/js/zepto.ui.js}"></script>
 <script  th:src="@{/static/js/widget/refresh.js}"></script>
 <script  th:src="@{/static/js/widget/refresh.lite.js}"></script>
-
 <script type="text/javascript">
     //加载更多
-    var page = 1;
-    var hasMore = "true";
+    let page = 1;
+    let hasMore = "true";
     (function () {
-        /*组件初始化js begin*/
         $('.ui-refresh').refresh({
             ready: function (dir, type) {
-                var me = this;
+                let me = this;
                 page++;
                 if (hasMore == "true") {
-                    $.getJSON('/ajax/news.aspx?page=' + page + '&m=120001', function (data) {
-                        var list = $('.data-list'),
+                    $.getJSON('/article/'+page, function (data) {
+                        const list = $('.data-list'),
                             html = (function (data) {      //数据渲染
-                                var liArr = [];
+                                const liArr = [];
                                 $.each(data, function () {
                                     liArr.push(this.html);
-
                                     hasMore = this.hasMore;
-
                                 });
                                 return liArr.join('');
                             })(data);
-
                         list[dir == 'up' ? 'prepend' : 'append'](html);
                         me.afterDataLoading();
                         if (hasMore == "false") {
                             $(".ui-refresh-down").hide();
-                            $(".diva1").hide();
                         }
                     });
                 }
             }
         });
-        /*组件初始化js end*/
     })();
 </script>
+<script  type="text/javascript" th:src="@{/static/js/jquery-1.7.1.min.js}" ></script>
+<script  type="text/javascript" th:src="@{/static/js/easing.js}" ></script>
+<script  type="text/javascript" th:src="@{/static/js/js.js}" ></script>
+<script  type="text/javascript" th:src="@{/static/js/form.js}" ></script>
+<script  type="text/javascript" th:src="@{/static/js/fun.js}" ></script>
+<script  type="text/javascript" th:src="@{/static/js/jquery.SuperSlide.2.1.1.js}"></script>
 </body>
 </html>

@@ -2,7 +2,14 @@
 
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="/common/common :: commonHead(~{},~{})"></head>
+<head th:include="/common/common :: commonHead(~{},~{::script})">
+    <script  type="text/javascript" th:src="@{/static/js/jquery-1.7.1.min.js}" ></script>
+    <script  type="text/javascript" th:src="@{/static/js/easing.js}" ></script>
+    <script  type="text/javascript" th:src="@{/static/js/js.js}" ></script>
+    <script  type="text/javascript" th:src="@{/static/js/form.js}" ></script>
+    <script  type="text/javascript" th:src="@{/static/js/fun.js}" ></script>
+    <script  type="text/javascript" th:src="@{/static/js/jquery.SuperSlide.2.1.1.js}"></script>
+</head>
 <body>
 
 <div class="header" th:include="/common/header :: commonHeader"></div>

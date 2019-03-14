@@ -84,7 +84,7 @@ public class Article extends BaseModel {
     /**
      * 创建时间
      */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime createDate;
 
     /**
@@ -95,7 +95,7 @@ public class Article extends BaseModel {
     /**
      * 发布时间
      */
-    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime publishDate;
 
     /**

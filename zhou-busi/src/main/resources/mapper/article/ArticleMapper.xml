@@ -91,18 +91,14 @@
     <select id="getArticleMap" resultMap="BaseResultMap">
          SELECT
             a.id,
-            a.column_id,
-            a.type_id,
-            a.status,
-            a.recommend,
             a.description,
             a.title,
             a.keyword,
             a.source,
             a.publish_date,
             a.content,
-            (SELECT id AS "id" FROM article  WHERE id &lt; a.id  AND type_id=a.type_id ORDER BY id  LIMIT 1) AS "previous",
-            (SELECT id AS "id" FROM article  WHERE id &gt; a.id  AND type_id=a.type_id ORDER BY id  LIMIT 1) AS "next"
+            (SELECT id AS "id" FROM article  WHERE id &lt; a.id  AND column_id=a.column_id ORDER BY id DESC LIMIT 1) AS "previous",
+            (SELECT id AS "id" FROM article  WHERE id &gt; a.id  AND column_id=a.column_id ORDER BY id  LIMIT 1) AS "next"
         FROM
             article a
         WHERE
