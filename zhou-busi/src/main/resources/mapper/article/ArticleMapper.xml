@@ -19,7 +19,6 @@
         <result column="create_by" property="createBy" />
         <result column="create_date" property="createDate" />
         <result column="publish_by" property="publishBy" />
-        <result column="publish_date" property="publishDate" />
         <result column="content" property="content" />
     </resultMap>
 
@@ -40,7 +39,7 @@
             a.title,
             a.picture,
             a.source,
-            a.publish_date,
+            a.publish_date as "publishDate",
             a.status,
             b.name,
             c.name as "label"
@@ -95,7 +94,7 @@
             a.title,
             a.keyword,
             a.source,
-            a.publish_date,
+            date_format(a.publish_date,'%Y-%m-%d %H:%i')  as "publishDate",
             a.content,
             (SELECT id AS "id" FROM article  WHERE id &lt; a.id  AND column_id=a.column_id ORDER BY id DESC LIMIT 1) AS "previous",
             (SELECT id AS "id" FROM article  WHERE id &gt; a.id  AND column_id=a.column_id ORDER BY id  LIMIT 1) AS "next"
