@@ -37,7 +37,7 @@ public class WebConfig implements WebMvcConfigurer {
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
         FastJsonHttpMessageConverter fastJsonHttpMessageConverter=new FastJsonHttpMessageConverter();
         FastJsonConfig fastJsonConfig = new FastJsonConfig();
-        fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm:ss");
+        fastJsonConfig.setDateFormat("yyyy-MM-dd HH:mm");
         fastJsonConfig.setFeatures(Feature.DisableCircularReferenceDetect);
         fastJsonConfig.setSerializerFeatures(SerializerFeature.WriteNullListAsEmpty,
                                              SerializerFeature.WriteNullStringAsEmpty,
