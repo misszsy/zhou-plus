@@ -4,12 +4,19 @@
 
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
     <!-- 定义日志文件 输入位置 -->
-    <property name="log_dir" value="D://usr/local/tomcat/logs/zhou-admin"/>
+    <springProfile name="dev">
+         <property name="log_dir" value="D://usr/local/tomcat/logs/zhou-admin"/>
+    </springProfile>
+
+
+    <springProfile name="prod">
+        <property name="log_dir" value="/usr/local/logs/zhou-admin"/>
+    </springProfile>
     <!--
         <property name="log_dir" value="/opt/Log/prom_prize" />
      -->
     <!-- 日志最大的历史 30天 -->
-    <property name="maxHistory" value="30"/>
+    <property name="maxHistory" value="10"/>
 
     <!-- ConsoleAppender 控制台输出日志 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">

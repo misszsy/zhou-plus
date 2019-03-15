@@ -1,14 +1,6 @@
 package com.zhou.plus.framework.config;
 
 
-import com.zhou.plus.framework.utils.PropertiesLoader;
-import com.zhou.plus.framework.utils.StringUtils;
-import org.springframework.core.io.DefaultResourceLoader;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 全局配置属性读取工具类
@@ -32,17 +24,17 @@ public class Global {
 	/**
 	 * 项目上传文件路径总路口
 	 */
-	public static final String PROJECT_FILE_ROOT_PATH ="D://usr/maili";
+	public static final String PROJECT_FILE_ROOT_PATH ="/usr/local";
 
 	/**
 	 * 上传图片基础虚拟路径
 	 */
-	public static final String IMG_BASE_PATH ="/static/image/";
+	public static final String IMG_BASE_PATH ="/assets/images/";
 
 	/**
 	 * 上传百度编辑器基础虚拟路径
 	 */
-	public static final String IMG_BASE_EDITOR ="/static/editor/";
+	public static final String IMG_BASE_EDITOR ="/assets/editor/";
 
 	private Global(){
 

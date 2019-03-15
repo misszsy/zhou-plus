@@ -1,0 +1,42 @@
+# Spring配置
+spring:
+  # 数据源配置
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: guanshiji
+    password: iZDYbmGjw5B3wTn2
+    url: jdbc:mysql://122.14.224.243:3306/guanshiji?serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf8&useSSL=false
+  druid:
+    initial-size: 10 #初始化大小
+    min-idle: 10     #最小初始化
+    max-active: 30   #最大初始化
+    max-wait: 60000  #获取连接等待超时的时间
+    test-while-idle: true
+    test-on-borrow: false
+    test-on-return: false
+    validation-query: SELECT 'x'
+    time-between-eviction-runs-millis: 20000  # 配置间隔多久检测需要关闭的空闲连接,单位毫秒
+    min-evictable-idle-time-millis: 300000    # 配置一个连接在池中最小的生存时间,单位毫秒
+    max-evictable-idle-time-millis: 600000    # 配置一个连接在池中最大的生存时间,单位毫秒
+    filters: stat,wall
+
+# mybatis-plus 配置
+mybatis-plus:
+  type-aliases-package: com.zhou.plus.busi.entity
+  mapper-locations: classpath*:/mapper/**/*.xml
+  global-config:
+    db-config:
+      db-type: mysql
+      id-type: id_worker_str
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+  configuration:
+    cache-enabled: true
+    lazyLoadingEnabled: true
+    aggressive-lazy-loading: true
+    auto-mapping-behavior: partial
+    default-executor-type: simple
+    map-underscore-to-camel-case: true
+    local-cache-scope: session
+    jdbc-type-for-null: null
