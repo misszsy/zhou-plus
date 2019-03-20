@@ -12,10 +12,7 @@ import com.zhou.plus.framework.utils.SpringContextHolder;
 import com.zhou.plus.framework.utils.StringUtils;
 import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 
 /**
@@ -84,11 +81,7 @@ public class UserUtils extends CommonUtils{
 	public static SysUser getUser(){
 		Principal principal = getPrincipal();
 		if (principal!=null){
-			SysUser user = get(principal.getId());
-			if (user != null){
-				return user;
-			}
-			return new SysUser();
+			return Optional.ofNullable(get(principal.getId())).orElseGet(SysUser::new);
 		}
 		// 如果没有登录，则返回实例化空的User对象。
 		return new SysUser();
