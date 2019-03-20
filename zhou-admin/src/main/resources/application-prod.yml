@@ -26,37 +26,3 @@ spring:
     min-evictable-idle-time-millis: 300000    # 配置一个连接在池中最小的生存时间,单位毫秒
     max-evictable-idle-time-millis: 600000    # 配置一个连接在池中最大的生存时间,单位毫秒
     filters: stat,wall
-  # thymeleaf 模板配置
-  thymeleaf:
-    encoding: UTF-8
-    suffix: .html
-    prefix: classpath:/templates/
-    cache: false
-    mode: HTML5
-  # 上传文件配置
-  servlet:
-    multipart:
-      max-file-size: 10MB
-      max-request-size: 10MB
-  #redis 配置
-  redis:
-    host: 127.0.0.1
-    port: 6379
-    password:
-    lettuce:
-      pool:
-        # 最大活跃链接数 默认8
-        max-active: 8
-        # 最大空闲连接数 默认8
-        max-idle: 8
-        # 最小空闲连接数 默认0
-        min-idle: 0
-  mvc:
-    favicon:
-      enabled: false
-  devtools:
-    restart:
-      enabled: true
-  profiles:
-    active: @spring.active@
-

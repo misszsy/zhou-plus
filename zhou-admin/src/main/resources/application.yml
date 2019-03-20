@@ -1,12 +1,4 @@
-# tomcat配置
-server:
-  port: 8080
-  tomcat:
-    uri-encoding: UTF-8
-
 spring:
-  profiles:
-    active: @spring.active@  #多环境
   # thymeleaf 模板配置
   thymeleaf:
     encoding: UTF-8
@@ -38,7 +30,8 @@ spring:
   devtools:
     restart:
       enabled: true
-
+  profiles:
+    active: @spring.active@  #多环境
 
 # mybatis-plus 配置
 mybatis-plus:

@@ -9,7 +9,7 @@
     </springProfile>
 
 
-    <springProfile name="prod">
+    <springProfile name="!dev">
         <property name="log_dir" value="/usr/local/logs/zhou-admin"/>
     </springProfile>
     <!--

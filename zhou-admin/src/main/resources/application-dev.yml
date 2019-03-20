@@ -1,3 +1,9 @@
+# tomcat配置
+server:
+  port: 8081
+  tomcat:
+    uri-encoding: UTF-8
+
 # Spring配置
 spring:
   # 数据源配置
@@ -20,23 +26,3 @@ spring:
     min-evictable-idle-time-millis: 300000    # 配置一个连接在池中最小的生存时间,单位毫秒
     max-evictable-idle-time-millis: 600000    # 配置一个连接在池中最大的生存时间,单位毫秒
     filters: stat,wall
-
-# mybatis-plus 配置
-mybatis-plus:
-  type-aliases-package: com.zhou.plus.busi.entity
-  mapper-locations: classpath*:/mapper/**/*.xml
-  global-config:
-    db-config:
-      db-type: mysql
-      id-type: id_worker_str
-      logic-delete-value: 1
-      logic-not-delete-value: 0
-  configuration:
-    cache-enabled: true
-    lazyLoadingEnabled: true
-    aggressive-lazy-loading: true
-    auto-mapping-behavior: partial
-    default-executor-type: simple
-    map-underscore-to-camel-case: true
-    local-cache-scope: session
-    jdbc-type-for-null: null
