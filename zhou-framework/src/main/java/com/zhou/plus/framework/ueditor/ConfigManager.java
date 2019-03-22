@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.*;
+import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -127,7 +128,7 @@ public final class ConfigManager {
 				break;
 				
 		}
-		
+
 		conf.put( "savePath", savePath );
 		conf.put( "rootPath", this.rootPath );
 		
@@ -152,7 +153,13 @@ public final class ConfigManager {
 	}
 	
 	private String getConfigPath () {
-		return this.rootPath + File.separator +"conf"+File.separator+ ConfigManager.configFileName;
+		try{
+			//获取classpath下的config.json路径
+			return this.getClass().getClassLoader().getResource("config.json").toURI().getPath();
+		}catch (URISyntaxException e){
+			return null;
+		}
+
 	}
 
 	private String[] getArray ( String key ) {

@@ -7,6 +7,8 @@ import org.apache.shiro.session.InvalidSessionException;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 
+import java.util.Optional;
+
 
 public class CommonUtils {
 
@@ -21,7 +23,6 @@ public class CommonUtils {
             if (principal != null){
                 return principal;
             }
-//			subject.logout();
         }catch (UnavailableSecurityManagerException e) {
 
         }catch (InvalidSessionException e){
@@ -34,13 +35,7 @@ public class CommonUtils {
         try{
             Subject subject = SecurityUtils.getSubject();
             Session session = subject.getSession(false);
-            if (session == null){
-                session = subject.getSession();
-            }
-            if (session != null){
-                return session;
-            }
-//			subject.logout();
+            return Optional.ofNullable(session).orElse(subject.getSession());
         }catch (InvalidSessionException e){
 
         }
@@ -61,18 +56,16 @@ public class CommonUtils {
     }
 
     public static Object getCache(String key, Object defaultValue) {
-//		Object obj = getCacheMap().get(key);
         Object obj = getSession().getAttribute(key);
-        return obj==null?defaultValue:obj;
+        return Optional.ofNullable(obj).orElse(defaultValue);
+
     }
 
     public static void putCache(String key, Object value) {
-//		getCacheMap().put(key, value);
         getSession().setAttribute(key, value);
     }
 
     public static void removeCache(String key) {
-//		getCacheMap().remove(key);
         getSession().removeAttribute(key);
     }
 }

@@ -32,6 +32,8 @@ spring:
       enabled: true
   profiles:
     active: @spring.active@  #多环境
+  resources:
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
 
 # mybatis-plus 配置
 mybatis-plus:

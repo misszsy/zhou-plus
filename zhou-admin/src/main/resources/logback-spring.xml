@@ -4,14 +4,8 @@
 
     <include resource="org/springframework/boot/logging/logback/base.xml"/>
     <!-- 定义日志文件 输入位置 -->
-    <springProfile name="dev">
-         <property name="log_dir" value="D://usr/local/tomcat/logs/zhou-admin"/>
-    </springProfile>
+    <property name="log_dir" value="/usr/local/logs/zhou-admin"/>
 
-
-    <springProfile name="!dev">
-        <property name="log_dir" value="/usr/local/logs/zhou-admin"/>
-    </springProfile>
     <!--
         <property name="log_dir" value="/opt/Log/prom_prize" />
      -->

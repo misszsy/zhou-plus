@@ -45,7 +45,7 @@ public class SystemAuthorizingRealm extends AuthorizingRealm {
 
 		if (user != null) {
 			//判断是否允许登陆
-			if (Global.FALSE.equals("mapper/1")){
+			if (Global.FALSE.equals("1")){
 				throw new AuthenticationException("该帐号未激活,不允许登录。");
 			}
 			//创建身份信息
