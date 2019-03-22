@@ -23,11 +23,4 @@ public class MybatisPlusConfig {
         return new PaginationInterceptor();
     }
 
-    /**
-     * SQL执行效率插件
-     */
-    @Bean
-    public PerformanceInterceptor performanceInterceptor() {
-        return new PerformanceInterceptor();
-    }
 }
