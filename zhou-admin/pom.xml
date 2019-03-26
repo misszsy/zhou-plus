@@ -56,6 +56,13 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional> <!-- 表示依赖不会传递 -->
 		</dependency>
+
+		<!--验证码-->
+		<dependency>
+			<groupId>com.github.penggle</groupId>
+			<artifactId>kaptcha</artifactId>
+			<version>${kaptcha.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>

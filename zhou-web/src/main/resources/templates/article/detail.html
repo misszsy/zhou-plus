@@ -45,8 +45,10 @@
             <div class="pageDown pageDown2">
                 <ul>
                     <li th:if="${article.previous>0}" ><a  th:href="@{/article/}+${article.previous}+'.html'">上一篇：←</a></li>
+                    <li th:if="${article.previous<=0}" ><a  href="javascript:void(0)">--</a></li>
                     <li><a  th:href="@{/article.html}">返回列表</a></li>
                     <li th:if="${article.next>0}"><a  th:href="@{/article/}+${article.next}+'.html'">下一篇： →</a></li>
+                    <li th:if="${article.next<=0}" ><a  href="javascript:void(0)">--</a></li>
                 </ul>
             </div>
         </div>

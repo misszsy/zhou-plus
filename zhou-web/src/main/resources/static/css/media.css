@@ -41,7 +41,7 @@
 	.indexPart1 .list li .name2 em{ left: 20%;}
 	.indexPart1 .list li:hover img{ display: none; }
 	.indexPart1 .list li:hover .img1{ display: inline-block; }
-	.indexPart3{ padding: 40px 10px 60px; }
+	.indexPart3{ padding: 40px 10px 40px; }
 	.indexPart3 .bigBox{ padding-top: 20px; }
 	.indexPart3 .leftDiv{ width: 100%; }
 	.indexPart3 .rightDiv{ width: 100%; }
@@ -229,8 +229,8 @@
 	.news .list li .botDiv{ padding-top: 15px;}
 	.news .list li .add{ top: 15px;}
 	.pageBox4{ padding: 40px 0; }
-	.newsBox{ padding: 0 10px 30px;}
-	.newShow{ padding: 0px 0 50px; }
+	.newsBox{ padding: 0 10px 0px;}
+	.newShow{ padding: 0px 0 0px; }
 	.newShow .name{ font-size: 18px;}
 	.newShow .time{ padding-bottom: 20px;}
 	.newShow .content{ line-height: 26px; padding: 30px 0;}
