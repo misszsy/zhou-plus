@@ -6,9 +6,8 @@
 package com.zhou.plus.framework.utils;
 
 import com.alibaba.fastjson.JSON;
-import com.zhou.plus.framework.config.Global;
+import com.google.common.net.HttpHeaders;
 import org.apache.commons.lang3.Validate;
-import org.springframework.http.HttpHeaders;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 

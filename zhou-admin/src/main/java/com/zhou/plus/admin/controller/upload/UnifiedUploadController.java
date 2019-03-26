@@ -5,10 +5,13 @@ import com.zhou.plus.framework.config.Global;
 import com.zhou.plus.framework.resp.R;
 import com.zhou.plus.framework.ueditor.ActionEnter;
 import com.zhou.plus.framework.utils.FileUtils;
+import com.zhou.plus.framework.utils.SpringContextHolder;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +30,8 @@ import java.util.Map;
 @RequestMapping(value = "/upload")
 @Api(value = "UnifiedUploadController",description = "文件上传相关api")
 public class UnifiedUploadController {
+
+    private static Logger logger = LoggerFactory.getLogger(UnifiedUploadController.class);
 
     /**
      * 上传文件

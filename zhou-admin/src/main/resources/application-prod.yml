@@ -12,7 +12,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: guanshiji
     password: XeiiAh38CEKZhtpL
-    url: jdbc:mysql://39.96.48.250:3306/guanshiji?serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://localhost:3306/guanshiji?serverTimezone=Hongkong&useUnicode=true&characterEncoding=utf8&useSSL=false
   druid:
     initial-size: 10 #初始化大小
     min-idle: 10     #最小初始化
@@ -26,3 +26,6 @@ spring:
     min-evictable-idle-time-millis: 300000    # 配置一个连接在池中最小的生存时间,单位毫秒
     max-evictable-idle-time-millis: 600000    # 配置一个连接在池中最大的生存时间,单位毫秒
     filters: stat,wall
+
+log:
+  path: /usr/local/logs/guan-admin

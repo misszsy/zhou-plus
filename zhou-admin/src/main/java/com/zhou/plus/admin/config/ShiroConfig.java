@@ -91,7 +91,7 @@ public class ShiroConfig {
     public SessionManager sessionManager(){
         SessionManager sessionManager=new SessionManager();
         sessionManager.setGlobalSessionTimeout(180000);
-        sessionManager.setSessionValidationInterval(120000);
+        sessionManager.setSessionValidationInterval(300000); //5分钟扫描
         sessionManager.setSessionValidationSchedulerEnabled(true);
         sessionManager.setDeleteInvalidSessions(true);
         sessionManager.setSessionIdCookie(simpleCookie());

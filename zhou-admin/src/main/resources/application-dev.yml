@@ -28,3 +28,7 @@ spring:
     min-evictable-idle-time-millis: 300000    # 配置一个连接在池中最小的生存时间,单位毫秒
     max-evictable-idle-time-millis: 600000    # 配置一个连接在池中最大的生存时间,单位毫秒
     filters: stat,wall
+
+log:
+  path: D:/usr/local/logs/guan-admin
+

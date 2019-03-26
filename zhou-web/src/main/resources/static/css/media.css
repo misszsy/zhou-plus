@@ -96,7 +96,7 @@
 	.indexPart5 .box2 .btnDiv a{ width: 115px; height: 30px; line-height: 30px;}
 	.pageBox, .pageBox2{ padding:40px 0;}
 	.pageBox3{ padding:40px 0 10px; }
-	.pageTitle{ padding-left: 10px; }
+	/*.pageTitle{ padding-left: 10px; }*/
 	.pageTitle .txt1{ font-size: 30px; line-height: 30px;}
 	.pageTitle .txt2{ font-size: 16px; padding:10px 0 20px; }
 	.about{ padding: 30px 10px 20px;}
@@ -223,7 +223,7 @@
 	.news .list{ padding-top: 0px;}
 	.news .list ul{ margin-right: 0px; }
 	.news .list li{ width: 100%; margin-bottom: 30px;}
-	.news .list li .box{ margin-right: 0px; }
+	.news .list li .box{ margin-right: 0px;text-align: center; font-size: 13px; }
 	.news .list li .name{ padding-top: 20px; height: 30px; line-height: 30px;}
 	.news .list li .content{ padding-top: 15px; line-height: 24px; height: 48px;}
 	.news .list li .botDiv{ padding-top: 15px;}
@@ -300,8 +300,8 @@
 	.case .list .li01 .name1{ font-size: 18px; height: 40px; line-height: 40px; font-weight: normal;}
 	.case .list .li01 .name2{ top: 50%; font-size: 12px;}
 	.case .list li .imgDiv img{ height: 100%;}
-
-    .video{ padding:30px 10px 0;}
+	.case .list li .box{ text-align: center;font-size: 13px;}
+	.video{ padding:30px 10px 0;}
 	.video .list ul{ margin-right:-10px;}
 	.video .list li{ width:50%; margin-bottom:35px;}
 	.video .list li .box{ margin-right:10px;}

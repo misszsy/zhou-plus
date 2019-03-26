@@ -91,8 +91,8 @@
         <div class="list">
             <section id="body">
                 <div class="ui-refresh" id="divrefresh">
-                    <ul class="data-list">
-                        <li th:each="case,recordStat:${indexMap.case}" th:class="${recordStat.index==2 || recordStat.index==5}?'li02':''">
+                    <ul class="data-list" th:if="${indexMap.size()>0}">
+                        <li  th:each="case,recordStat:${indexMap.case}" th:class="${recordStat.index==2 || recordStat.index==5}?'li02':''">
                             <div class="box" >
                                 <div class="imgDiv">
                                     <img th:src="${case.picture}"  alt="">
@@ -116,8 +116,8 @@
 </div>
     <!---->
     <div class="indexPart2Tel" style="padding: 0 10px 0;">
-        <ul>
-            <li th:each="case,recordStat:${indexMap.case}">
+        <ul th:if="${indexMap.size()>0}">
+            <li  th:each="case,recordStat:${indexMap.case}">
                 <a  th:href="@{/case/}+${case.id}+'.html'">
                     <div class="imgDiv">
                         <img  th:src="${case.picture}"  alt="">
@@ -141,7 +141,7 @@
         <div class="tabContentDiv">
             <div class="tabContent bigBox">
                 <div class="leftDiv fl">
-                    <div class="detail">
+                    <div class="detail" th:if="${article!=null}">
                         <div class="imgDiv">
                             <a th:href="@{/article/}+${article.id}+'.html'">
                                 <img  th:src="${article.picture}"  alt=""></a>
@@ -156,7 +156,7 @@
 
                 <div class="rightDiv fr">
                     <div class="list">
-                        <ul>
+                        <ul th:if="${indexMap.size()>0}">
                             <li th:each="article,recordStat:${indexMap.news}">
                                 <div class="imgDiv">
                                     <a th:href="@{/article/}+${article.id}+'.html'">

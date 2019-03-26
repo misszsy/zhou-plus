@@ -8,8 +8,10 @@ import com.zhou.plus.busi.mapper.ArticleMapper;
 import com.zhou.plus.busi.service.ArticleService;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -37,7 +39,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
     public Map<String, List<Article>> getArticleIndexMap() {
         Map<String,List<Article>> mapList=baseMapper.getArticleIndexList()
                 .stream().collect(Collectors.groupingBy(Article::getTypeId));
-        return mapList;
+        return Optional.ofNullable(mapList).orElseGet(HashMap::new);
     }
 
 
@@ -48,6 +50,7 @@ public class ArticleServiceImpl extends ServiceImpl<ArticleMapper, Article> impl
      */
     @Override
     public Map<String, Object> getMap(Wrapper<Article> queryWrapper) {
-        return baseMapper.getArticleMap(queryWrapper.getEntity().getId());
+        Map<String, Object> map=baseMapper.getArticleMap(queryWrapper.getEntity().getId());
+        return Optional.ofNullable(map).orElseGet(HashMap::new);
     }
 }

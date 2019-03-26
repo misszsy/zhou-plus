@@ -40,7 +40,7 @@
                     <span style="margin-right: 40px" th:text="'日期：'+${article.publishDate}"></span>
                     <span th:text="'来源：'+${article.source}"></span>
                 </div>
-                <div class="content" th:text="${article.content}"> </div>
+                <div class="content" th:utext="${article.content}"> </div>
                 <div class="h10"></div>
             </div>
             <div class="pageDown pageDown2">

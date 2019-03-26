@@ -1,9 +1,12 @@
 package com.zhou.plus.framework.ueditor;
 
 
+import com.zhou.plus.framework.exception.WebExceptionHandler;
 import com.zhou.plus.framework.ueditor.define.ActionMap;
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.net.URISyntaxException;
@@ -16,6 +19,8 @@ import java.util.Map;
  *
  */
 public final class ConfigManager {
+
+	private static Logger logger = LoggerFactory.getLogger(ConfigManager.class);
 
 	private final String rootPath;
 	private final String originalPath;
@@ -153,13 +158,15 @@ public final class ConfigManager {
 	}
 	
 	private String getConfigPath () {
-		try{
+		/*try{
+
 			//获取classpath下的config.json路径
-			return this.getClass().getClassLoader().getResource("config.json").toURI().getPath();
+			String configPath=this.getClass().getClassLoader().getResource("config.json").toURI().getPath();
+			return configPath;
 		}catch (URISyntaxException e){
 			return null;
-		}
-
+		}*/
+		return this.rootPath + File.separator +"WEB-INF/classes"+File.separator+ ConfigManager.configFileName;
 	}
 
 	private String[] getArray ( String key ) {
