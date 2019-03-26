@@ -141,7 +141,7 @@
         <div class="tabContentDiv">
             <div class="tabContent bigBox">
                 <div class="leftDiv fl">
-                    <div class="detail" th:if="${article!=null}">
+                    <div class="detail" >
                         <div class="imgDiv">
                             <a th:href="@{/article/}+${article.id}+'.html'">
                                 <img  th:src="${article.picture}"  alt=""></a>
@@ -156,8 +156,8 @@
 
                 <div class="rightDiv fr">
                     <div class="list">
-                        <ul th:if="${indexMap.size()>0}">
-                            <li th:each="article,recordStat:${indexMap.news}">
+                        <ul>
+                            <li th:each="article,recordStat:${indexMap.news}" th:class="${recordStat.index==0}?'li01':(${recordStat.index==2}?'ist02':'')">
                                 <div class="imgDiv">
                                     <a th:href="@{/article/}+${article.id}+'.html'">
                                         <img  th:src="${article.picture}" alt=""></a>

@@ -30,7 +30,8 @@ public class IndexController {
      */
     @GetMapping(value = {"/","index"})
     public String index(Model model) {
-        model.addAttribute("indexMap", articleService.getArticleIndexMap());
+        Map<String,List<Article>> indexMap=articleService.getArticleIndexMap();
+        model.addAttribute("indexMap", indexMap);
         model.addAttribute("article",articleService.getOne(new QueryWrapper<Article>().lambda()
                                                                 .eq(Article::getDisabled, Global.FALSE)
                                                                 .eq(Article::getRecommend,Global.TURE)
