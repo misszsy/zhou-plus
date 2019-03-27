@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统用户管理</title>
+    <link rel="stylesheet" href="static/css/element/element.css" th:href="@{/static/css/element/element.css}">
+    <link rel="stylesheet" href="static/css/common/style/layout.css" th:href="@{/static/css/common/style/layout.css}">
+</head>
+
+<body class="gray-bg">
+
+<div id="app" class ="app-container calendar-list-container"  v-cloak>
+
+    <el-form :rules="rules" ref="dataForm" :model="entity" label-position="left" label-width="200px" style='margin-left:50px;'>
+        <el-form-item label="旧密码："  prop="oldPassword">
+            <el-input v-model="entity.oldPassword" style="width:300px;" type="password" placeholder="请输入旧密码" maxlength="16"></el-input>
+        </el-form-item>
+        <el-form-item label="新密码："  prop="newPassword">
+            <el-input v-model="entity.newPassword" style="width:300px;"  type="password" placeholder="请输入新密码" maxlength="16"></el-input>
+        </el-form-item>
+        <el-form-item label="确认新密码："  prop="checkPass">
+            <el-input v-model="entity.checkPass" style="width:300px;"  type="password" placeholder="请输入确认密码" maxlength="16"></el-input>
+        </el-form-item>
+    </el-form>
+    <div  style="text-align: right;width:400px" >
+        <el-button type="primary" @click="createData">确认</el-button>
+    </div>
+</div>
+</body>
+
+<script src="static/js/common/vue.min.js" th:src="@{/static/js/common/vue.min.js}"></script>
+<script src="static/js/common/element.js" th:src="@{/static/js/common/element.js}"></script>
+<script src="static/js/jquery.min.js" th:src="@{/static/js/jquery.min.js}"></script>
+<script src="static/js/common/common.js" th:src="@{/static/js/common/common.js}"></script>
+<script>
+    var app = new Vue({
+        el:'#app',
+        name: 'modifyPwdPage',
+        data(){
+            const validatePass = (rule, value, callback) => {
+                const regPassWord=/^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{8,16}$/;
+                if (value === '') {
+                    callback(new Error('新密码不能为空'));
+                }else if(!regPassWord.test(value)) {
+                    callback(new Error('新密码格式为8-16位字母+数字'));
+                }else {
+                    if (this.entity.checkPass !== '') {
+                        this.$refs['dataForm'].validateField('checkPass');
+                    }
+                    callback();
+                }
+            };
+            const validateCheckPass = (rule, value, callback) => {
+                if (value === '') {
+                    callback(new Error('确认密码不能为空'));
+                } else if (value !== this.entity.newPassword) {
+                    callback(new Error('两次输入密码不一致!'));
+                } else {
+                    callback();
+                }
+            };
+            return{
+                flag:false,
+                entity:{
+                    checkPass:'',
+                    newPassword:'',
+                    oldPassword:''
+                },
+                rules: {//表单验证
+                    oldPassword: [{ required: true, message: '旧密码不能为空', trigger: 'blur' }],
+                    newPassword: [  { required: true,validator: validatePass, trigger: 'blur' }],
+                    checkPass: [  {required: true, validator: validateCheckPass, trigger: 'blur' }],
+                },
+            }
+        },
+        methods: {
+            createData() {
+                const _this = this;
+                _this.$refs['dataForm'].validate((valid) => {
+                    if (valid) {
+                        _this.$confirm('密码修改成功后,将会重新登录,是否确认提交？', '提示', {}).then(() => {
+                            $.ajax({
+                                method: 'POST',
+                                url: 'modifyPwd',
+                                data: _this.entity,
+                                success: function (data) {
+                                    if (data.code == 200) {
+                                        _this.$alert(data.data, '提示', {
+                                            confirmButtonText: '确定',
+                                            type: 'success',
+                                            callback: action => {
+                                                window.parent.location.href="[[@{/logout}]]";
+                                            }
+                                        });
+                                    } else {
+                                        window.dataErrorHandler(data)
+                                    }
+                                }
+                            });
+                        })
+                    }
+                })
+            },
+
+        },
+        created(){
+            const message="${message}";
+            this.flag=message=='' || message==null ?false:true;
+        },
+    })
+</script>
+</html>

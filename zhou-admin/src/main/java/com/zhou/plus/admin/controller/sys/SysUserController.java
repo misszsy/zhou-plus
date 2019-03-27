@@ -8,11 +8,13 @@ import com.zhou.plus.busi.entity.SysUser;
 import com.zhou.plus.busi.service.SysUserService;
 import com.zhou.plus.framework.annotation.Log;
 import com.zhou.plus.framework.resp.R;
+import com.zhou.plus.framework.utils.CryptoUtils;
 import com.zhou.plus.framework.utils.StringUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
+import org.apache.catalina.User;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.stereotype.Controller;
@@ -46,6 +48,17 @@ public class SysUserController extends BaseController<SysUserService, SysUser> {
     public String listView(){
         return getViewPath() + "list";
     }
+
+    /**
+     * 页面跳转
+     * @return
+     */
+    @GetMapping(value = {"modifyPwd"})
+    @RequiresPermissions("sys:user:view")
+    public String modifyPwd() {
+        return getViewPath()+"modifyPwd";
+    }
+
 
     /**
      * 查询系统用户列表
@@ -154,5 +167,30 @@ public class SysUserController extends BaseController<SysUserService, SysUser> {
     public @ResponseBody
     R get(@PathVariable("id") String id) {
         return  R.ok(UserUtils.get(id));
+    }
+
+
+    /**
+     * 修改个人用户密码
+     * @param oldPassword
+     * @param newPassword
+     * @return
+     */
+    @Log(value = "修改密码")
+    @RequiresPermissions("sys:user:update")
+    @RequestMapping(value = "modifyPwd")
+    @ResponseBody
+    public R modifyPwd(String oldPassword, String newPassword) {
+        SysUser user = UserUtils.getUser();
+        if (StringUtils.isNotBlank(oldPassword) && StringUtils.isNotBlank(newPassword)){
+            if (!CryptoUtils.validatePassword(oldPassword,user.getPassword())){
+                return R.fail("修改密码失败，旧密码错误");
+            }
+        }else{
+            return R.fail("旧密码或新密码不能为空");
+        }
+        user.setPassword(CryptoUtils.encryptPassword(newPassword));
+        super.update(user);
+        return R.ok("修改密码成功,请重新登录！");
     }
 }

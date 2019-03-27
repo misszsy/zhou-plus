@@ -229,6 +229,8 @@
                             return;
                         }
                         this.$confirm('确认提交吗？', '提示', {}).then(() => {
+                            _this.entity.createDate='';
+                            _this.entity.publishDate='';
                             $.ajax({
                                 method: 'POST',
                                 url: '[[@{/article/update}]]',

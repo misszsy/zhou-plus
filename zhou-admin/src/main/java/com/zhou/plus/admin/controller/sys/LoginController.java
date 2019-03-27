@@ -89,4 +89,14 @@ public class LoginController {
 
         return R.fail(message);
     }
+
+    /**
+     * 管理登录
+     */
+    @GetMapping(value = "/logout")
+    public String logout( ) {
+        UserUtils.clearCache();
+       CommonUtils.getSubject().logout();
+       return "login";
+    }
 }

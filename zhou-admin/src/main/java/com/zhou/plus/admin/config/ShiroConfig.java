@@ -138,7 +138,6 @@ public class ShiroConfig {
         // 自定义过滤器
         Map<String, Filter> filterMap = factoryBean.getFilters();
         filterMap.put("authc", formAuthenticationFilter());
-        filterMap.put("logout", new LogoutFilter());
         factoryBean.setFilters(filterMap);
 
         Map<String,String> map = new LinkedHashMap<>();
