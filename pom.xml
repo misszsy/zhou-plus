@@ -40,7 +40,7 @@
         <commons-beanutils.version>1.9.3</commons-beanutils.version>
         <commons-tx.version>1.4</commons-tx.version>
         <!-- json version setting -->
-        <fastjson-version>1.2.47</fastjson-version>
+        <fastjson-version>1.2.83</fastjson-version>
         <!-- cache version setting-->
         <ehcache.version>2.10.4</ehcache.version>
         <ehcache-web.version>2.0.4</ehcache-web.version>
